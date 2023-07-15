@@ -5,7 +5,7 @@ import HightlightText from "./HightlightText";
 import { TypeAnimation } from "react-type-animation";
 
 const CodeBlocks = ({
-    postion,
+    position,
     heading,
     subheading,
     ctabtn1,
@@ -15,7 +15,7 @@ const CodeBlocks = ({
     backgroundGradient,
 }) => {
     return (
-        <div className={`flex ${postion} gap-20 my-28`}>
+        <div className={`flex ${position} gap-20 my-28 w-[100%]`}>
             <div className="flex flex-col gap-8 w-[55%]">
                 {heading}
                 <div className=" text-richblack-300 font-medium">

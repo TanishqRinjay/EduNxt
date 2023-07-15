@@ -5,6 +5,8 @@ import HightlightText from "../components/core/HomePage/HightlightText";
 import CTAButton from "../components/core/HomePage/CTAButton";
 import CodeBlocks from "../components/core/HomePage/CodeBlocks";
 import Banner from "../assets/Images/banner.mp4";
+import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection";
+import TimelineSection from "../components/core/HomePage/TimelineSection";
 
 const Home = () => {
     return (
@@ -52,6 +54,7 @@ const Home = () => {
                     ></video>
                 </div>
 
+                {/* CodeBlock 1 */}
                 <CodeBlocks
                     position={"lg:flex-row"}
                     heading={
@@ -88,10 +91,92 @@ const Home = () => {
                     </html>`}
                     codeColor="text-yellow-25"
                 ></CodeBlocks>
+
+                {/* CodeBlock 2 */}
+                <CodeBlocks
+                    position={"flex-row-reverse"}
+                    heading={
+                        <div className=" text-4xl font-semibold">
+                            Start
+                            <HightlightText
+                                text={" coding in seconds "}
+                            ></HightlightText>
+                        </div>
+                    }
+                    subheading={
+                        "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
+                    }
+                    ctabtn1={{
+                        btnText: "Continue Lesson",
+                        linkto: "/signup",
+                        active: true,
+                    }}
+                    ctabtn2={{
+                        btnText: "Learn More",
+                        linkto: "/login",
+                        active: false,
+                    }}
+                    codeblock={`<!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <title>Document</title>
+                    </head>
+                    <body>
+                        <h1>Let's Learn</h1>
+                        <h2>HTML</h2>
+                    </body>
+                    </html>`}
+                    codeColor="text-blue-25"
+                ></CodeBlocks>
             </div>
 
             {/* Section 2 */}
+            <div className=" bg-pure-greys-5 text-richblack-700">
+                <div className="homepage_bg h-[310px]">
+                    <div className=" w-11/12 max-w-maxContent flex flex-col justify-between items-center gap-5 mx-auto">
+                        <div className="h-[150px]"></div>
+                        <div className="flex flex-row text-white gap-7">
+                            <CTAButton active={true} linkto={""}>
+                                <div className="flex flex-row items-center gap-2">
+                                    Explore Full Catalog
+                                    <FaArrowRight />
+                                </div>
+                            </CTAButton>
+                            <CTAButton active={false} linkto={"/signup"}>
+                                Learn More
+                            </CTAButton>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex mx-auto flex-col w-[90%] items-center justify-between gap-7">
+                    <div className="flex flex-row justify-around mt-[90px]">
+                        <div className="w-[45%] text-4xl font-semibold">
+                            <div>
+                                Get the Skills you need for a
+                                <HightlightText
+                                    text={"job that is in demand."}
+                                />
+                            </div>
+                        </div>
+                        <div className="flex flex-col gap-10 w-[40%] items-start">
+                            <div className=" text-[16px] ">
+                                The modern StudyNotion is the dictates its own
+                                terms. Today, to be a competitive specialist
+                                requires more than professional skills.
+                            </div>
+                            <CTAButton active={true} linkto={"/signup"}>
+                                Learn More
+                            </CTAButton>
+                        </div>
+                    </div>
+                </div>
+                <TimelineSection />
+
+                <LearningLanguageSection />
+            </div>
+
             {/* Section 3 */}
+
             {/* Footer */}
         </div>
     );

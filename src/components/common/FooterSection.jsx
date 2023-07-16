@@ -43,11 +43,11 @@ const FooterSection = () => {
                             <div className="flex flex-col text-[14px] gap-2">
                                 {Company.map((ele, index) => {
                                     return (
-                                        <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200">
-                                            <Link
-                                                key={index}
-                                                to={`/${ele.toLowerCase()}`}
-                                            >
+                                        <div
+                                            className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                                            key={index}
+                                        >
+                                            <Link to={`/${ele.toLowerCase()}`}>
                                                 {ele}
                                             </Link>
                                         </div>
@@ -70,9 +70,9 @@ const FooterSection = () => {
                                 <div className="flex flex-col text-[14px] gap-2">
                                     {Resources.map((ele, index) => {
                                         return (
-                                            <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200">
+                                            <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                                            key={index}>
                                                 <Link
-                                                    key={index}
                                                     to={`/${ele
                                                         .split(" ")
                                                         .join("-")
@@ -92,9 +92,11 @@ const FooterSection = () => {
                                 <div className="flex flex-col text-[14px] gap-2">
                                     {Support.map((ele, index) => {
                                         return (
-                                            <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200">
+                                            <div
+                                                className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                                                key={index}
+                                            >
                                                 <Link
-                                                    key={index}
                                                     to={`/${ele
                                                         .split(" ")
                                                         .join("-")
@@ -119,9 +121,11 @@ const FooterSection = () => {
                                 <div className="flex flex-col text-[14px] gap-2">
                                     {Plans.map((ele, index) => {
                                         return (
-                                            <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200">
+                                            <div
+                                                className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                                                key={index}
+                                            >
                                                 <Link
-                                                    key={index}
                                                     to={`/${ele
                                                         .split(" ")
                                                         .join("-")
@@ -141,9 +145,11 @@ const FooterSection = () => {
                                 <div className="flex flex-col text-[14px] gap-2">
                                     {Community.map((ele, index) => {
                                         return (
-                                            <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200">
+                                            <div
+                                                className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                                                key={index}
+                                            >
                                                 <Link
-                                                    key={index}
                                                     to={`/${ele
                                                         .split(" ")
                                                         .join("-")
@@ -176,18 +182,16 @@ const FooterSection = () => {
                                             {FooterLink.title}
                                         </h2>
                                         <div className="flex flex-col text-[14px] gap-2">
-                                            {FooterLink.links.map(
-                                                (link, index) => {
-                                                    return (
-                                                        <Link
-                                                            to={link.link}
-                                                            key={index}
-                                                        >
-                                                            {link.title}
-                                                        </Link>
-                                                    );
-                                                }
-                                            )}
+                                            {FooterLink.links.map((link, index) => {
+                                                return (
+                                                    <Link
+                                                        key={index}
+                                                        to={link.link}
+                                                    >
+                                                        {link.title}
+                                                    </Link>
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                 );
@@ -207,6 +211,7 @@ const FooterSection = () => {
                                         ? ""
                                         : "border-r border-richblack-700"
                                 }`}
+                                key={index}
                             >
                                 {ele}
                             </div>

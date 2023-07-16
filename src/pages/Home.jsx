@@ -140,7 +140,7 @@ const Home = () => {
 
             {/* Section 2 */}
             <div className=" bg-pure-greys-5 text-richblack-700">
-                <div className="homepage_bg h-[310px]">
+                <div className="homepage_bg h-[320px]">
                     <div className=" w-11/12 max-w-maxContent flex flex-col justify-between items-center gap-5 mx-auto">
                         <div className="h-[150px]"></div>
                         <div className="flex flex-row text-white gap-7">

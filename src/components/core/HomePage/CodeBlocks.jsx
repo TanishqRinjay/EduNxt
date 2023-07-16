@@ -2,6 +2,7 @@ import React from "react";
 import CTAButton from "./CTAButton";
 import { FaArrowRight } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
+import "./codeblock.css"
 
 const CodeBlocks = ({
     position,
@@ -13,8 +14,11 @@ const CodeBlocks = ({
     codeColor,
     backgroundGradient,
 }) => {
+
+
     return (
-        <div className={`flex ${position} gap-20 my-28 w-[100%]`}>
+        <div className={`flex ${position} justify-between gap-20 my-28 w-[100%]`}>
+
             <div className="flex flex-col gap-8 w-[55%]">
                 {heading}
                 <div className=" text-richblack-300 font-medium">
@@ -32,7 +36,7 @@ const CodeBlocks = ({
                     </CTAButton>
                 </div>
             </div>
-            <div className="flex flex-row gap-0 w-[45%] h-fit text-[14px] leading-[22px] py-4">
+            <div className="flex flex-row gap-0 w-[35%] h-fit text-[14px] leading-[22px] py-4 code-border">
                 <div className=" text-center flex flex-col w-[10%] text-richblack-400 font-bold">
                     <p>1</p>
                     <p>2</p>
@@ -48,6 +52,7 @@ const CodeBlocks = ({
                 <div
                     className={` w-[90%] flex flex-col gap-2 font-mono font-bold ${codeColor} pr-2`}
                 >
+                    <div className={`${position.includes("reverse")? "codeblock1":"codeblock2"} absolute translate-x-5`}></div>
                     <TypeAnimation
                         sequence={[codeblock, 1000, ""]}
                         repeat={Infinity}

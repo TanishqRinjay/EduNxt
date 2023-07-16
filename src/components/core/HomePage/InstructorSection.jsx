@@ -28,9 +28,8 @@ const Instructor = () => {
                     <div className="w-fit mt-2">
                         <CTAButton
                             active={true}
-                            shadow={false}
+                            shadow={true}
                             linkto={"/signup"}
-                            clas
                         >
                             <div className="flex flex-row justify-center items-center gap-2">
                                 Start Teaching Today

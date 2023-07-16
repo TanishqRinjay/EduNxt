@@ -1,12 +1,17 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import HightlightText from "../components/core/HomePage/HightlightText";
+import HighlightText from "../components/core/HomePage/HighlightText";
 import CTAButton from "../components/core/HomePage/CTAButton";
 import CodeBlocks from "../components/core/HomePage/CodeBlocks";
 import Banner from "../assets/Images/banner.mp4";
 import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection";
 import TimelineSection from "../components/core/HomePage/TimelineSection";
+// import Instructor from "../assets/Images/Instructor.png"
+import InstructorSection from "../components/core/HomePage/InstructorSection";
+import ReviewSection from "../components/core/HomePage/ReviewSection";
+import FooterSection from "../components/common/FooterSection";
+import ExploreMore from "../components/core/HomePage/ExploreMore"
 
 const Home = () => {
     return (
@@ -23,7 +28,7 @@ const Home = () => {
                 </Link>
                 <div className=" text-center text-4xl font-semibold mt-7">
                     Empower Your Future with
-                    <HightlightText text={"Coding Skills"}></HightlightText>
+                    <HighlightText text={"Coding Skills"}></HighlightText>
                 </div>
 
                 <div className=" text-richblack-300 font-medium text-lg w-[90%] mt-4 text-center">
@@ -43,7 +48,7 @@ const Home = () => {
                     </CTAButton>
                 </div>
 
-                <div className="mt-16  shadow-[0px_-5px_40px_-7px_#4299e1]">
+                <div className="mt-16 shadow-[0px_-5px_40px_-7px_#4299e1]">
                     <video
                         muted
                         autoPlay
@@ -60,9 +65,9 @@ const Home = () => {
                     heading={
                         <div className=" text-4xl font-semibold">
                             Unlock your
-                            <HightlightText
+                            <HighlightText
                                 text={" coding potential "}
-                            ></HightlightText>
+                            ></HighlightText>
                             with our online courses.
                         </div>
                     }
@@ -98,9 +103,9 @@ const Home = () => {
                     heading={
                         <div className=" text-4xl font-semibold">
                             Start
-                            <HightlightText
+                            <HighlightText
                                 text={" coding in seconds "}
-                            ></HightlightText>
+                            ></HighlightText>
                         </div>
                     }
                     subheading={
@@ -128,6 +133,9 @@ const Home = () => {
                     </html>`}
                     codeColor="text-blue-25"
                 ></CodeBlocks>
+
+                {/* Unlock the power of Code */}
+                <ExploreMore/>
             </div>
 
             {/* Section 2 */}
@@ -136,24 +144,28 @@ const Home = () => {
                     <div className=" w-11/12 max-w-maxContent flex flex-col justify-between items-center gap-5 mx-auto">
                         <div className="h-[150px]"></div>
                         <div className="flex flex-row text-white gap-7">
-                            <CTAButton active={true} linkto={""}>
+                            <CTAButton active={true} shadow={false} linkto={""}>
                                 <div className="flex flex-row items-center gap-2">
                                     Explore Full Catalog
                                     <FaArrowRight />
                                 </div>
                             </CTAButton>
-                            <CTAButton active={false} linkto={"/signup"}>
+                            <CTAButton
+                                shadow={false}
+                                active={false}
+                                linkto={"/signup"}
+                            >
                                 Learn More
                             </CTAButton>
                         </div>
                     </div>
                 </div>
-                <div className="flex mx-auto flex-col w-[90%] items-center justify-between gap-7">
-                    <div className="flex flex-row justify-around mt-[90px]">
+                <div className="flex mx-auto flex-col max-w-maxContent w-11/12 items-center justify-between gap-7">
+                    <div className="flex flex-row justify-around gap-5 mt-[90px]">
                         <div className="w-[45%] text-4xl font-semibold">
                             <div>
                                 Get the Skills you need for a
-                                <HightlightText
+                                <HighlightText
                                     text={"job that is in demand."}
                                 />
                             </div>
@@ -164,20 +176,30 @@ const Home = () => {
                                 terms. Today, to be a competitive specialist
                                 requires more than professional skills.
                             </div>
-                            <CTAButton active={true} linkto={"/signup"}>
+                            <CTAButton
+                                shadow={false}
+                                active={true}
+                                linkto={"/signup"}
+                            >
                                 Learn More
                             </CTAButton>
                         </div>
                     </div>
+                    <TimelineSection />
+                    <LearningLanguageSection />
                 </div>
-                <TimelineSection />
-
-                <LearningLanguageSection />
             </div>
 
             {/* Section 3 */}
+            <div className="w-11/12 mx-auto max-w-maxContent flex flex-col items-center justify-center text-white gap-40">
+                <InstructorSection />
+                <ReviewSection />
+            </div>
 
             {/* Footer */}
+            <div className="flex bg-richblack-800 justify-center items-center">
+                <FooterSection />
+            </div>
         </div>
     );
 };

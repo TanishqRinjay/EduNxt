@@ -1,7 +1,6 @@
 import React from "react";
 import CTAButton from "./CTAButton";
 import { FaArrowRight } from "react-icons/fa";
-import HightlightText from "./HightlightText";
 import { TypeAnimation } from "react-type-animation";
 
 const CodeBlocks = ({

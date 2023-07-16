@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CTAButton = ({ children, active, linkto }) => {
+const CTAButton = ({ children, active, linkto, shadow=true }) => {
     return (
         <Link to={linkto}>
             <div
@@ -13,7 +13,7 @@ const CTAButton = ({ children, active, linkto }) => {
                     active
                         ? "shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)]"
                         : "shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)]"
-                }`}
+                } ${shadow?"":"shadow-none"}`}
             >
                 {children}
             </div>

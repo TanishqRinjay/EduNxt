@@ -1,4 +1,4 @@
-export const FooterLink2 = [
+export const FooterLinks = [
   {
     title: "Subjects",
     links: [

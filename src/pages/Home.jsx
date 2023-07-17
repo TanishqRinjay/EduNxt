@@ -11,7 +11,7 @@ import TimelineSection from "../components/core/HomePage/TimelineSection";
 import InstructorSection from "../components/core/HomePage/InstructorSection";
 import ReviewSection from "../components/core/HomePage/ReviewSection";
 import FooterSection from "../components/common/FooterSection";
-import ExploreMore from "../components/core/HomePage/ExploreMore"
+import ExploreMore from "../components/core/HomePage/ExploreMore";
 
 const Home = () => {
     return (
@@ -26,12 +26,12 @@ const Home = () => {
                         </div>
                     </div>
                 </Link>
-                <div className=" text-center text-4xl font-semibold mt-7">
+                <div className=" text-center md:text-4xl text-3xl font-semibold mt-7">
                     Empower Your Future with
                     <HighlightText text={"Coding Skills"}></HighlightText>
                 </div>
 
-                <div className=" text-richblack-300 font-medium text-lg w-[90%] mt-4 text-center">
+                <div className=" text-richblack-300 md:text-lg text-base font-medium w-[90%] mt-4 text-center">
                     With our online coding courses, you can learn at your own
                     pace, from anywhere in the world, and get access to a wealth
                     of resources, including hands-on projects, quizzes, and
@@ -55,7 +55,7 @@ const Home = () => {
                         loop
                         src={Banner}
                         type="video/mp4"
-                        className="h-[90vh] shadow-[20px_20px_0px_0px_#F5F5F5]"
+                        className="h-fit shadow-[20px_20px_0px_0px_#F5F5F5]"
                     ></video>
                 </div>
 
@@ -63,7 +63,7 @@ const Home = () => {
                 <CodeBlocks
                     position={"lg:flex-row"}
                     heading={
-                        <div className=" text-4xl font-semibold">
+                        <div className=" md:text-4xl text-3xl font-semibold">
                             Unlock your
                             <HighlightText
                                 text={" coding potential "}
@@ -99,9 +99,9 @@ const Home = () => {
 
                 {/* CodeBlock 2 */}
                 <CodeBlocks
-                    position={"flex-row-reverse"}
+                    position={"lg:flex-row-reverse lg:mt-0 mt-[-30px]"}
                     heading={
-                        <div className=" text-4xl font-semibold">
+                        <div className=" md:text-4xl text-3xl font-semibold">
                             Start
                             <HighlightText
                                 text={" coding in seconds "}
@@ -135,7 +135,7 @@ const Home = () => {
                 ></CodeBlocks>
 
                 {/* Unlock the power of Code */}
-                <ExploreMore/>
+                <ExploreMore />
             </div>
 
             {/* Section 2 */}
@@ -161,8 +161,8 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="flex mx-auto flex-col max-w-maxContent w-11/12 items-center justify-between gap-7">
-                    <div className="flex flex-row justify-around gap-5 mt-[90px]">
-                        <div className="w-[45%] text-4xl font-semibold">
+                    <div className="flex lg:flex-row flex-col justify-around gap-5 mt-[90px]">
+                        <div className="lg:w-[45%] md:text-4xl text-3xl font-semibold">
                             <div>
                                 Get the Skills you need for a
                                 <HighlightText
@@ -170,7 +170,7 @@ const Home = () => {
                                 />
                             </div>
                         </div>
-                        <div className="flex flex-col gap-10 w-[40%] items-start">
+                        <div className="flex flex-col gap-10 lg:w-[40%] items-start">
                             <div className=" text-[16px] ">
                                 The modern StudyNotion is the dictates its own
                                 terms. Today, to be a competitive specialist

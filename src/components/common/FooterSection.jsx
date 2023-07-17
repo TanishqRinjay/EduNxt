@@ -23,14 +23,14 @@ const Community = ["Forums", "Chapters", "Events"];
 
 const FooterSection = () => {
     return (
-        <div className="flex flex-col w-11/12 mx-auto items-center justify-center h-[100vh]">
+        <div className="flex flex-col w-11/12 mx-auto items-center justify-center h-[100%]">
             <div className="flex flex-row items-start justify-center w-[100%] py-[50px]">
                 {/* First Half */}
                 <div className="w-[50%] flex flex-col lg:flex-row justify-end items-start">
                     <div className="flex flex-col lg:flex-row gap-3 w-[60%]">
                         {/* Company and Resources */}
                         <div className="flex flex-col gap-3 w-[50%] text-richblack-400 leading-[22px]">
-                            <div className=" h-[32px] w-[160px]">
+                            <div className=" md:h-[32px] md:w-[160px] h-[26px] w-[130px]">
                                 <img
                                     src={LogoLight}
                                     alt="logo"
@@ -70,8 +70,10 @@ const FooterSection = () => {
                                 <div className="flex flex-col text-[14px] gap-2">
                                     {Resources.map((ele, index) => {
                                         return (
-                                            <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                                            key={index}>
+                                            <div
+                                                className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                                                key={index}
+                                            >
                                                 <Link
                                                     to={`/${ele
                                                         .split(" ")
@@ -169,7 +171,7 @@ const FooterSection = () => {
                 {/* Second Half */}
                 <div className="w-[50%] flex-row border-l border-richblack-700">
                     <div className=" leading-[22px] w-[100%]">
-                        <div className="text-richblack-400 flex lg:flex-row md:flex-col flex-nowrap items-start justify-center">
+                        <div className="text-richblack-400 flex lg:flex-row lg:ml-0 ml-5 lg:gap-0 gap-5 flex-col flex-nowrap items-start justify-center">
                             {FooterLinks.map((FooterLink, index) => {
                                 return (
                                     <div
@@ -182,16 +184,18 @@ const FooterSection = () => {
                                             {FooterLink.title}
                                         </h2>
                                         <div className="flex flex-col text-[14px] gap-2">
-                                            {FooterLink.links.map((link, index) => {
-                                                return (
-                                                    <Link
-                                                        key={index}
-                                                        to={link.link}
-                                                    >
-                                                        {link.title}
-                                                    </Link>
-                                                );
-                                            })}
+                                            {FooterLink.links.map(
+                                                (link, index) => {
+                                                    return (
+                                                        <Link
+                                                            key={index}
+                                                            to={link.link}
+                                                        >
+                                                            {link.title}
+                                                        </Link>
+                                                    );
+                                                }
+                                            )}
                                         </div>
                                     </div>
                                 );
@@ -201,7 +205,7 @@ const FooterSection = () => {
                 </div>
             </div>
             {/* Last line */}
-            <div className="flex flex-row items-center w-[90%] justify-between h-[300px] text-richblack-400 text-sm border-t border-richblack-700 p-4">
+            <div className="flex lg:flex-row flex-col items-center w-[90%] lg:justify-between justify-center lg:h-[120px] h-[60px] text-richblack-400 text-sm lg:gap-0 gap-5 border-t border-richblack-700 lg:p-4 p-16">
                 <div className="flex flex-row gap-3">
                     {BottomFooter.map((ele, index) => {
                         return (

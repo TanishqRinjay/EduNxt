@@ -17,9 +17,9 @@ const CodeBlocks = ({
 
 
     return (
-        <div className={`flex ${position} justify-between gap-20 my-28 w-[100%]`}>
+        <div className={`flex ${position} flex-col justify-between gap-20 lg:my-28 my-20 w-[100%]`}>
 
-            <div className="flex flex-col gap-8 w-[55%]">
+            <div className="flex flex-col gap-8 lg:w-[55%] w-[90%]">
                 {heading}
                 <div className=" text-richblack-300 font-medium">
                     {subheading}
@@ -36,7 +36,7 @@ const CodeBlocks = ({
                     </CTAButton>
                 </div>
             </div>
-            <div className="flex flex-row gap-0 w-[35%] h-fit text-[14px] leading-[22px] py-4 code-border">
+            <div className="flex flex-row gap-0 lg:w-[35%] w-[90%] h-fit text-[14px] leading-[22px] py-4 code-border">
                 <div className=" text-center flex flex-col w-[10%] text-richblack-400 font-bold">
                     <p>1</p>
                     <p>2</p>

@@ -27,7 +27,7 @@ const ExploreMore = () => {
 
     return (
         <div className=" flex flex-col items-center">
-            <div className=" text-richblack-5 text-4xl font-semibold text-center">
+            <div className=" text-richblack-5 md:text-4xl text-3xl font-semibold text-center">
                 Unlock the
                 <HighlightText text={"Power of code"} />
             </div>
@@ -38,11 +38,11 @@ const ExploreMore = () => {
                 {tabsName.map((tab, i) => {
                     return (
                         <div
-                            className={`text-[16px] flex items-center ${
+                            className={`md:text-[16px] sm:text-[14px] text-[12px] flex items-center text-center ${
                                 currentTab === tab
                                     ? "bg-richblack-900 text-richblack-5"
                                     : "text-richblack-200 transition-all duration-200 hover:bg-richblack-900 hover:ring-richblack-25"
-                            } cursor-pointer px-4 py-[6px] rounded-full`}
+                            } cursor-pointer md:px-4 px-2 py-[6px] rounded-full`}
                             key={i}
                             onClick={() => {
                                 setMyCards(tab);
@@ -54,8 +54,8 @@ const ExploreMore = () => {
                 })}
             </div>
             {/* Card group */}
-            <div className="h-[200px]"></div>
-            <div className="absolute gap-10 flex flex-row justify-between items-start bottom-0 translate-y-[50%] mb-0">
+            <div className="lg:block hidden h-[200px]"></div>
+            <div className="lg:absolute gap-10 flex lg:flex-row flex-col justify-between items-start bottom-0 lg:translate-y-[50%] mb-0 lg:mt-0 mt-10">
                 {courses.map((course, i) => {
                     return (
                         <CourseCard

@@ -34,28 +34,29 @@ const TimelineSection = () => {
             <div className="flex flex-col lg:gap-1 lg:w-[45%]">
                 {timeline.map((element, index) => {
                     return (
-                        <div>
-                            <div
-                            className=" flex flex-row gap-8 items-center"
-                            key={index}
-                        >
-                            <div className="flex w-[50px] h-[50px] rounded-full bg-white items-center justify-center shadow-md">
-                                <img
-                                    className="top-[8px] left-[11px]"
-                                    src={element.Logo}
-                                    alt="logo"
-                                />
+                        <div key={index}>
+                            <div className=" flex flex-row gap-8 items-center">
+                                <div className="flex w-[50px] h-[50px] rounded-full bg-white items-center justify-center shadow-md">
+                                    <img
+                                        className="top-[8px] left-[11px]"
+                                        src={element.Logo}
+                                        alt="logo"
+                                    />
+                                </div>
+                                <div className="flex flex-col">
+                                    <h2 className="font-semibold text-[18px]">
+                                        {element.Heading}
+                                    </h2>
+                                    <p className="text-base">
+                                        {element.Description}
+                                    </p>
+                                </div>
                             </div>
-                            <div className="flex flex-col">
-                                <h2 className="font-semibold text-[18px]">
-                                    {element.Heading}
-                                </h2>
-                                <p className="text-base">
-                                    {element.Description}
-                                </p>
-                            </div>
-                        </div>
-                        {index===timeline.length-1? "":<div className="border-l-2 border-richblack-400 h-6 border-dotted w-[100%] translate-x-[5.3%] lg:my-1"></div>}
+                            {index === timeline.length - 1 ? (
+                                ""
+                            ) : (
+                                <div className="border-l-2 border-richblack-400 h-6 border-dotted w-[100%] translate-x-[5.3%] lg:my-1"></div>
+                            )}
                         </div>
                     );
                 })}

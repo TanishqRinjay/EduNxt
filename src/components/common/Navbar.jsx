@@ -1,16 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logoFullLight from "../../assets/Logo/Logo-Full-Light.png";
 import { Link, useLocation, matchPath } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links";
 import { useSelector } from "react-redux";
 import { userType } from "../../data/userType";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { IoMdArrowDropdown } from "react-icons/io";
 import ProfileDropdown from "../core/Auth/ProfileDropdown";
+import { apiConnector } from "../../services/apiconnector";
+import { categories } from "../../services/apis";
+
+const allSubLinks = [
+    {
+        title: "Python",
+        link: "/python",
+    },
+    {
+        title: "Web-Dev",
+        link: "/web-development",
+    },
+];
 
 const Navbar = () => {
     const { token } = useSelector((state) => state.auth);
     const { user } = useSelector((state) => state.profile);
     const { totalItems } = useSelector((state) => state.cart);
+
+    const [subLinks, setSubLinks] = useState([]);
+
+    // const fetchSubLinks = async () => {
+    //     try {
+    //         const result = await apiConnector("GET", categories.CATEGORIES_API);
+    //         console.log("Printing sublinks: " + result);
+    //         setSubLinks(result);
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     fetchSubLinks();
+    // }, []);
 
     const location = useLocation();
     const matchRoute = (route) => {
@@ -34,7 +64,31 @@ const Navbar = () => {
                             return (
                                 <li key={index}>
                                     {link.title === "Catalog" ? (
-                                        <div></div>
+                                        <div className="group cursor-pointer flex flex-row items-center justify-center relative">
+                                            <p>{link.title}</p>
+                                            <IoMdArrowDropdown />
+                                            <div className="invisible absolute left-[50%] top-[50%] flex flex-col gap-3 rounded-md bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all group-hover:visible group-hover:opacity-100 lg:w-[250px] translate-x-[-50%] translate-y-[20%] z-10">
+                                                <div className="absolute left-[50%] translate-y-[-15%] translate-x-[72%] top-0 h-6 w-6 rotate-45 bg-richblack-5"></div>
+                                                    {allSubLinks.length ? (
+                                                        allSubLinks.map(
+                                                            (subLink, i) => (
+                                                                <Link
+                                                                    to={`/catalog/${subLink.link}`}
+                                                                    key={i}
+                                                                >
+                                                                    <p>
+                                                                        {
+                                                                            subLink.title
+                                                                        }
+                                                                    </p>
+                                                                </Link>
+                                                            )
+                                                        )
+                                                    ) : (
+                                                        <div></div>
+                                                    )}
+                                            </div>
+                                        </div>
                                     ) : (
                                         <Link to={link?.path}>
                                             <p
@@ -75,8 +129,7 @@ const Navbar = () => {
                         )
                     }
 
-                    {
-                        token===null &&
+                    {token === null && (
                         <div className="flex flex-row gap-4">
                             <Link
                                 to={"/login"}
@@ -91,10 +144,8 @@ const Navbar = () => {
                                 Sign up
                             </Link>
                         </div>
-                    }
-                    {
-                        token!=null && <ProfileDropdown/>
-                    }
+                    )}
+                    {token != null && <ProfileDropdown />}
                 </div>
             </div>
         </div>

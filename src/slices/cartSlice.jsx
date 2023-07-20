@@ -11,7 +11,10 @@ const cartSlice = createSlice({
     reducers:{
         setTotalItems(state, value){
             state.totalItems = value.payload
-        }
+        },
+        //Add to Cart
+        //Remove from Cart
+        //Reset Cart
     }
 })
 

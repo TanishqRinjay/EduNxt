@@ -25,6 +25,8 @@ const Navbar = () => {
     const { token } = useSelector((state) => state.auth);
     const { user } = useSelector((state) => state.profile);
     const { totalItems } = useSelector((state) => state.cart);
+    // FOR TESTING CHANGE totalItems from "const" to "let"
+    // totalItems = 1
 
     const [subLinks, setSubLinks] = useState([]);
 
@@ -73,7 +75,12 @@ const Navbar = () => {
                                                     subLinks.map(
                                                         (subLink, i) => (
                                                             <Link
-                                                                to={`/catalog/${subLink.name.replace("-", "").toLowerCase()}`}
+                                                                to={`/catalog/${subLink.name
+                                                                    .replace(
+                                                                        "-",
+                                                                        ""
+                                                                    )
+                                                                    .toLowerCase()}`}
                                                                 key={i}
                                                             >
                                                                 <p>
@@ -120,10 +127,12 @@ const Navbar = () => {
                                 className="relative text-richblack-5 hover:text-richblack-100 text-xl"
                             >
                                 <AiOutlineShoppingCart />
-                                {totalItems && (
-                                    <span className="absolute right-[-5px] top-[-5px] text-yellow-25 text-xs bg-pink-600 rounded-full w-4 h-4 flex items-center justify-center">
+                                {totalItems > 0 ? (
+                                    <div className=" bg-pink-300 rounded-full flex items-center justify-center h-3 w-3 absolute -top-1 text-xs -right-1">
                                         {totalItems}
-                                    </span>
+                                    </div>
+                                ) : (
+                                    ""
                                 )}
                             </Link>
                         )

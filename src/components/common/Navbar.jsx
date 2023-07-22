@@ -60,8 +60,8 @@ const Navbar = () => {
                         height="32px"
                     />
                 </Link>
-                <div className="text-[16px] text-richblack-5">
-                    <ul className="flex flex-row gap-3">
+                <div className="text-[16px] text-richblack-25">
+                    <ul className="flex flex-row gap-5">
                         {NavbarLinks.map((link, index) => {
                             return (
                                 <li key={index}>

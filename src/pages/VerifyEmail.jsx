@@ -56,14 +56,9 @@ const VerifyEmail = () => {
                             value={otp}
                             onChange={setOtp}
                             numInputs={6}
-                            renderSeparator={'-'}
-                            inputStyle={"bg-richblack-800 text-richblack-5 h-[4rem] w-[48px] focus:outline-yellow-5"}
-                            renderInput={(props) => (
-                                <input
-                                    placeholder="-"
-                                    {...props}
-                                />
-                            )}
+                            renderSeparator={<span>-</span>}
+                            renderInput={(props) =>
+                                <input {...props} className='h-14 focus:outline-2 focus:outline-yellow-50 aspect-square bg-richblack-800'/>}
                         />
 
                         <button

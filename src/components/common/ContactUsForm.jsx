@@ -41,9 +41,11 @@ const ContactUsForm = () => {
     return (
         <form
             onSubmit={handleSubmit(submitContactForm)}
-            className="text-[#d0342c] w-[75%]"
+            className="text-[#d0342c] w-[80%]"
         >
             <div className="flex flex-col gap-5">
+
+                {/* Name */}
                 <div className="flex w-full justify-between">
                     {/* First Name */}
                     <div className="flex w-[48%] flex-col gap-2">
@@ -123,7 +125,7 @@ const ContactUsForm = () => {
                             name="dropdown"
                             id="dropdown"
                             {...register("countrycode", { required: true })}
-                            className="w-[15.5%] rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5 shadow-[inset_0px_-1px_0px_rgba(255,255,255,0.18)]"
+                            className="w-[15%] rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5 shadow-[inset_0px_-1px_0px_rgba(255,255,255,0.18)]"
                             value="+91"
                         >
                             {CountryCode.map((element, i) => (

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import CountryCode from "../../data/countrycode.json";
-import apiConnector from "../../services/apiconnector";
+import {apiConnector} from "../../services/apiconnector";
+import { contactusEndpoint } from "../../services/apis";
 
 const ContactUsForm = () => {
     const [loading, setLoading] = useState(false);
@@ -16,8 +17,8 @@ const ContactUsForm = () => {
         console.log("Data:", data);
         try {
             setLoading(true);
-            // const response = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data )
-            const response = { status: "OK" };
+            const response = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data )
+            // const response = { status: "OK" };
             console.log("Logging response: ", response);
             setLoading(false);
         } catch (err) {
@@ -30,10 +31,10 @@ const ContactUsForm = () => {
         if (isSubmitSuccessful) {
             reset({
                 email: "",
-                firstname: "",
-                lastname: "",
+                firstName: "",
+                lastName: "",
                 message: "",
-                phonenumber: "",
+                phoneNumber: "",
             });
         }
     }, [isSubmitSuccessful, reset]);
@@ -60,7 +61,7 @@ const ContactUsForm = () => {
                             name="firstname"
                             id="firstname"
                             placeholder="Enter first name"
-                            {...register("firstname", { required: true })}
+                            {...register("firstName", { required: true })}
                             className="rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5 shadow-[inset_0px_-1px_0px_rgba(255,255,255,0.18)]"
                         />
                         {errors.firstname && (
@@ -81,7 +82,7 @@ const ContactUsForm = () => {
                             name="lastname"
                             id="lastname"
                             placeholder="Enter last name"
-                            {...register("lastname")}
+                            {...register("lastName")}
                             className="rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5 shadow-[inset_0px_-1px_0px_rgba(255,255,255,0.18)]"
                         />
                         {/* Error commented as last name is not required */}
@@ -139,7 +140,7 @@ const ContactUsForm = () => {
                             name="phonenumber"
                             id="phonenumber"
                             placeholder="12345 67890"
-                            {...register("phonenumber", {
+                            {...register("phoneNumber", {
                                 required: {
                                     value: true,
                                     message: "Please enter a Phone no.",

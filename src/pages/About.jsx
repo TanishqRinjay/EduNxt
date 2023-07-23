@@ -7,6 +7,9 @@ import FoundingStory from "../assets/Images/FoundingStory.png";
 import Quote from "../components/core/AboutPage/Quote";
 import StatsComponent from "../components/core/AboutPage/StatsComponent";
 import LearningGrid from "../components/core/AboutPage/LearningGrid";
+import ContactFormSection from "../components/core/AboutPage/ContactFormSection";
+import FooterSection from "../components/common/FooterSection"
+// import ReviewSlider from "../components/core/AboutPage/ReviewSlider";
 
 const About = () => {
     return (
@@ -125,6 +128,23 @@ const About = () => {
             {/* Section 5 */}
             <section>
                 <LearningGrid/>
+            </section>
+
+            {/* Section 6 */}
+            <section className="flex justify-center items-center w-full">
+                <ContactFormSection/>
+            </section>
+
+            {/* Section 7 */}
+            <section className="text-richblack-300 text-4xl my-[100px]">
+                <div>
+                    Reviews from other learners
+                    {/* ReviewSlider */}
+                </div>
+            </section>
+
+            <section className="w-full">
+                <FooterSection/>
             </section>
         </div>
     );

@@ -5,7 +5,6 @@ import { sidebarLinks } from "../../../data/dashboard-links";
 import SidebarLink from "../Dashboard/SidebarLink";
 import { logout } from "../../../services/operations/authAPI";
 import { useSelector } from "react-redux";
-import { ACCOUNT_TYPE } from "../../../utils/constants";
 import { VscSignOut } from "react-icons/vsc";
 import ConfirmationModal from "../../common/ConfirmationModal";
 
@@ -58,7 +57,7 @@ const SideBar = () => {
                                 btn1Text: "Logout",
                                 btn2Text: "Cancel",
                                 btn1Handler: () => {
-                                    dispatchEvent(logout(navigate));
+                                    dispatch(logout(navigate));
                                 },
                                 btn2Handler: ()=>{
                                     setConfirmationModal(null)

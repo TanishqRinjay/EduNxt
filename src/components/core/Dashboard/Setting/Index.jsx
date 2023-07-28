@@ -1,6 +1,8 @@
 import React from "react";
-import UpdateProfilePicture from "./Setting/UpdateProfilePicture";
-import UpdateProfileInfo from "./Setting/UpdateProfileInfo";
+import UpdateProfilePicture from "./UpdateProfilePicture";
+import EditProfile from "./EditProfile"
+import UpdatePassword from "./UpdatePassword";
+import DeleteAccount from "./DeleteAccount";
 
 const Setting = () => {
     return (
@@ -9,7 +11,9 @@ const Setting = () => {
                 Edit Profile
             </h1>
             <UpdateProfilePicture />
-            <UpdateProfileInfo/>
+            <EditProfile/>
+            <UpdatePassword/>
+            <DeleteAccount/>
         </div>
     );
 };

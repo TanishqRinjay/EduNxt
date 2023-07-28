@@ -11,7 +11,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import MyProfile from "./components/core/Dashboard/MyProfile";
-import Setting from "./components/core/Dashboard/Setting"
+import Setting from "./components/core/Dashboard/Setting/Index"
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Error from "./pages/Error"
 

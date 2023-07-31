@@ -150,7 +150,7 @@ const UpdateProfileInfo = () => {
                                 boxShadow:
                                     "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                             }}
-                            className="w-full focus:outline-none focus:ring-0 focus:border focus:border-yellow-50 rounded-[0.5rem] bg-richblack-700 p-[14px] border-r-[16px] border-transparent text-richblack-5"
+                            className="w-full focus:outline focus:ring-0 focus:outline-yellow-50 rounded-[0.5rem] bg-richblack-700 p-[14px] border-r-[16px] border-transparent text-richblack-5"
                             {...register("gender", {
                                 required: {
                                     value: true,

@@ -25,7 +25,7 @@ const RenderSteps = () => {
         <>
             <div className="flex justify-center mb-32">
                 {steps.map((item) => (
-                    <div className="flex justify-center items-center">
+                    <div key={item.id} className="flex justify-center items-center">
                         <div className="relative ">
                             <div
                                 key={item.id}

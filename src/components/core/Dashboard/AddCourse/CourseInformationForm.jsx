@@ -131,6 +131,8 @@ const CourseInformationForm = () => {
                 )}
             </div>
 
+            {/* Tags Input */}
+
             {/* <ChipInput
                 label="Tags"
                 name="courseTags"
@@ -140,7 +142,55 @@ const CourseInformationForm = () => {
                 setValue={setValue}
                 getValues={getValues}
             /> */}
-            
+
+            {/* Thumbnail upload Component */}
+
+            {/* <Upload
+                name={}
+                label={"Course Thumbnail"}
+                register={}
+                errors={errors}
+                setValue={setValue}
+                getValues={getValues}
+            /> */}
+
+            <div>
+                <label htmlFor="courseShortDesc">
+                Benefits of the course<sup className="text-pink-200">*</sup>
+                </label>
+                <textarea
+                    id="courseShortDesc"
+                    placeholder="Enter Benefits of the course"
+                    {...register("courseShortDesc", { required: true })}
+                    style={{
+                        boxShadow:
+                            "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                    }}
+                    className="w-full rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 min-h-[140px]"
+                />
+                {errors.courseShortDesc && (
+                    <span>Course Description is required.</span>
+                )}
+            </div>
+
+            <div>
+                <label htmlFor="courseShortDesc">
+                Requirements/Instructions<sup className="text-pink-200">*</sup>
+                </label>
+                <textarea
+                    id="courseShortDesc"
+                    placeholder="Enter Requirements for the course"
+                    {...register("courseShortDesc", { required: true })}
+                    style={{
+                        boxShadow:
+                            "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                    }}
+                    className="w-full rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 min-h-[140px]"
+                />
+                {errors.courseShortDesc && (
+                    <span>Course Description is required.</span>
+                )}
+            </div>
         </form>
     );
 };

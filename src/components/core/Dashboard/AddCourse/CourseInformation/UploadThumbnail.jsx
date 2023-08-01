@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { FiUploadCloud } from "react-icons/fi";
 import {AiOutlineRedo} from 'react-icons/ai'
+import { useSelector } from "react-redux";
 
 const UploadThumbnail = ({
     name,
@@ -11,8 +12,10 @@ const UploadThumbnail = ({
     setValue,
     getValues,
 }) => {
+    
+    const { editCourse, course } = useSelector((state) => state.course);
     const [thumbnail, setThumbnail] = useState(null);
-    const [thumbnailPreview, setThumbnailPreview] = useState(null);
+    const [thumbnailPreview, setThumbnailPreview] = useState();
 
     const handleThumbnailUpload = (e) => {
         setThumbnailPreview(URL.createObjectURL(e.target.files[0]));
@@ -20,6 +23,9 @@ const UploadThumbnail = ({
     };
 
     useEffect(()=>{
+        if(editCourse){
+            setThumbnailPreview(course?.thumbnail)
+        }
         register(name, {
             required: true,
         })

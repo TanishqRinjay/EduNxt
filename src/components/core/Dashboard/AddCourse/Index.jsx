@@ -5,14 +5,14 @@ const AddCourse = () => {
     return (
         <>
             <div className="flex flex-row justify-between text-richblack-5">
-                <div className="w-[48%] flex flex-col gap-10">
+                <div className="w-[60%] flex flex-col gap-10">
                     <h1 className=" text-3xl font-medium">Add Course</h1>
                     <div>
                         <RenderSteps />
                     </div>
                 </div>
-                <div className="w-[40%]">
-                    <div className="flex flex-col gap-2 bg-richblack-800 border border-richblack-700 p-6 rounded-lg w-full">
+                <div className="w-[38%]">
+                    <div className="flex flex-col gap-2 bg-richblack-800 border border-richblack-700 p-6 rounded-lg w-full mt-[10vh]">
                         <p className=" text-lg font-semibold">
                             ⚡Code Upload Tips
                         </p>

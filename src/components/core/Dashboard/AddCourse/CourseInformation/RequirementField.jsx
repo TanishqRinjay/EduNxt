@@ -42,12 +42,12 @@ const RequirementField = ({
     };
 
     return (
-        <div>
+        <div className="w-full">
             <label htmlFor={name} className="text-sm">
                 {label}
                 <sup className=" text-pink-200">*</sup>
             </label>
-            <div>
+            <div className="w-full">
                 <input
                     type="text"
                     id={name}
@@ -59,7 +59,7 @@ const RequirementField = ({
                     }}
                     className="w-full rounded-[0.5rem] bg-richblack-700 p-[12px] mb-2 text-richblack-5"
                 />
-                <button type='button' onClick={()=>handleAddRequirements()} className=" text-yellow-50 text-semibold">Add</button>
+                <button type='button' onClick={()=>handleAddRequirements()} className=" text-yellow-50 text-semibold text-start w-full">Add</button>
             </div>
             {
                 requirementList.length > 0 && (

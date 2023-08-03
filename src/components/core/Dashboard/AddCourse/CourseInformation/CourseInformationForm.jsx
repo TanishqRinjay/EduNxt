@@ -61,7 +61,7 @@ const CourseInformationForm = () => {
             currentValues.courseShortDesc !== course.courseDescription ||
             currentValues.coursePrice !== course.price ||
             currentValues.courseTags.toString() !== course.tag.toString() ||
-            currentValues.courseBenefits !== course.WhatYouWillLearn ||
+            currentValues.courseBenefits !== course.whatYouWillLearn ||
             currentValues.courseCategory._id !== course.category._id ||
             currentValues.courseImage !== course.thumbnailImage ||
             currentValues.courseRequirements.toString() !==
@@ -93,7 +93,7 @@ const CourseInformationForm = () => {
                 if (currentValues.coursePrice !== course.price) {
                     formData.append("price", currentValues.coursePrice);
                 }
-                if (currentValues.courseBenefits !== course.WhatYouWillLearn) {
+                if (currentValues.courseBenefits !== course.whatYouWillLearn) {
                     formData.append(
                         "whatYouWillLearn",
                         currentValues.courseBenefits
@@ -315,13 +315,13 @@ const CourseInformationForm = () => {
             />
 
             {/* Buttons */}
-            <div className="flex justify-end">
+            <div className="flex justify-end gap-4">
                 {editCourse && (
                     <button
                         onClick={() => dispatch(setStep(2))}
-                        className="flex items-center gap-x-2 bg-richblack-300"
+                        className="flex items-center gap-x-2 bg-richblack-700 rounded-lg px-5 py-2"
                     >
-                        Continue without saving.
+                        Continue without saving
                     </button>
                 )}
                 <IconBtn

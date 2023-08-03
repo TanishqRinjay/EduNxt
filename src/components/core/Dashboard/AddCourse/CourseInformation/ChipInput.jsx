@@ -51,7 +51,7 @@ const ChipInput = ({ label, name, register, setValue }) => {
             {
                 <div className="flex gap-2">
                     {chips.map((item, i) => (
-                        <span className="flex items-center justify-center text-xs gap-1 bg-yellow-50 rounded-full px-2 py-1 text-richblack-900 cursor-pointer">
+                        <span key={i} className="flex items-center justify-center text-xs gap-1 bg-yellow-50 rounded-full px-2 py-1 text-richblack-900 cursor-pointer">
                             {item}
                             <RxCross2 />
                         </span>

@@ -1,58 +1,81 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { FiUploadCloud } from "react-icons/fi";
-import {AiOutlineRedo} from 'react-icons/ai'
+import { AiOutlineRedo } from "react-icons/ai";
 import { useSelector } from "react-redux";
 
-const UploadThumbnail = ({
+const Upload = ({
     name,
     label,
     register,
     errors,
+    video = false,
     setValue,
     getValues,
+    viewData,
+    editData
 }) => {
-    
     const { editCourse, course } = useSelector((state) => state.course);
     const [thumbnail, setThumbnail] = useState(null);
-    const [thumbnailPreview, setThumbnailPreview] = useState();
-
+    const [thumbnailPreview, setThumbnailPreview] = useState(null);
     const handleThumbnailUpload = (e) => {
         setThumbnailPreview(URL.createObjectURL(e.target.files[0]));
         setThumbnail(e.target.files[0]);
     };
 
-    useEffect(()=>{
-        if(editCourse){
-            setThumbnailPreview(course?.thumbnail)
+    useEffect(() => {
+        if (editCourse) {
+            setThumbnailPreview(course?.thumbnail);
+        }
+        if(editData){
+            setThumbnailPreview(editData)
+        }
+        if(viewData){
+            setThumbnailPreview(viewData)
         }
         register(name, {
             required: true,
-        })
-    },[])
+        });
+    }, []);
 
-    useEffect(()=>{
-        setValue(name, thumbnail)
-    }, [thumbnail])
+    useEffect(() => {
+        setValue(name, thumbnail);
+    }, [thumbnail]);
 
     return (
-        <div>
+        <div className="flex flex-col gap-1">
             <h3 className="text-sm">
                 {label}
                 <sup className="text-pink-200">*</sup>
             </h3>
-            <div className=" bg-richblack-700 border border-dashed border-richblack-600 rounded-lg py-8 px-3 h-[250px]">
+            <div className=" bg-richblack-700 border border-dashed border-richblack-600 rounded-lg py-8 px-3 min-h-[300px] flex items-center justify-center">
                 <input
                     type="file"
-                    accept=".jpg, .jpeg, .png, .gif"
+                    accept={video ? ".mp4, .mkv" : ".jpg, .jpeg, .png, .gif"}
                     id={name}
                     className=" hidden"
                     onChange={handleThumbnailUpload}
                 />
                 {thumbnailPreview ? (
                     <div className="h-full w-full flex flex-col justify-start items-center gap-3">
-                        <img src={thumbnailPreview} className="h-[90%]" />
-                        <label htmlFor={name} className="flex items-center justify-center bg-richblack-5 text-yellow-900 font-medium cursor-pointer px-2 gap-1 rounded-full"><AiOutlineRedo/>Re-Upload</label>
+                        {video ? (
+                            <video className="h-[95%] rounded-lg text-caribbeangreen-25 block" controls>
+                                <source src={thumbnailPreview}></source>
+                            </video>
+                        ) : (
+                            <img src={thumbnailPreview} className="h-[95%] rounded-lg" />
+                        )}
+                        {
+                            !viewData && (
+                                <label
+                            htmlFor={name}
+                            className="flex items-center justify-center bg-richblack-5 text-yellow-900 font-medium cursor-pointer px-2 gap-1 rounded-full"
+                        >
+                            <AiOutlineRedo />
+                            Re-Upload
+                        </label>
+                            )
+                        }
                     </div>
                 ) : (
                     <div className="w-full h-full flex justify-center items-center flex-col">
@@ -83,4 +106,4 @@ const UploadThumbnail = ({
     );
 };
 
-export default UploadThumbnail;
+export default Upload;

@@ -7,7 +7,7 @@ import {
     fetchCourseCategories,
 } from "../../../../../services/operations/courseDetailsAPI";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
-import UploadThumbnail from "./UploadThumbnail";
+import Upload from "./Upload";
 import RequirementField from "./RequirementField";
 import ChipInput from "../CourseInformation/ChipInput";
 import { setStep, setCourse } from "../../../../../slices/courseSlice";
@@ -121,7 +121,10 @@ const CourseInformationForm = () => {
                     );
                 }
                 if (currentValues.courseImage !== course.thumbnailImage) {
-                    formData.append("thumbnailImage", currentValues.courseImage);
+                    formData.append(
+                        "thumbnailImage",
+                        currentValues.courseImage
+                    );
                 }
 
                 setLoading(true);
@@ -155,7 +158,7 @@ const CourseInformationForm = () => {
 
         // FORM DATA CHECKER:
         for (var pair of formData.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]);
+            console.log(pair[0] + ", " + pair[1]);
         }
 
         setLoading(true);
@@ -275,7 +278,7 @@ const CourseInformationForm = () => {
 
             {/* Thumbnail upload Component */}
 
-            <UploadThumbnail
+            <Upload
                 name={"courseImage"}
                 label={"Course Thumbnail"}
                 register={register}

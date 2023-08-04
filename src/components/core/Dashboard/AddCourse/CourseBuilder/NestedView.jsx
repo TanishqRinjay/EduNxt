@@ -31,7 +31,12 @@ const NestedView = ({ handleChangeEditSectionName }) => {
     const handleDeleteSubSection = async (subSectionId, sectionId) => {
       const result = await deleteSubSection({subSectionId, sectionId},token);
       if(result){
-        dispatch(setCourse(result))
+        // console.log("sectionId:", sectionId, "section._id:", section_.id)
+        const updatedCourseContent = course.courseContent.map((section)=>(
+            section._id===sectionId ? result:section
+        ))
+        const updatedCourse = {...course, courseContent: updatedCourseContent}
+        dispatch(setCourse(updatedCourse))
       }
       setConfirmationModal(null)
     };
@@ -80,7 +85,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
                             </div>
                         </summary>
                         <div>
-                            {section?.subSection?.map((data) => (
+                            {section?.subSections?.map((data) => (
                                 <div
                                     key={data._id}
                                     onClick={() => setViewSubSection(data)}
@@ -92,31 +97,37 @@ const NestedView = ({ handleChangeEditSectionName }) => {
                                     </div>
                                     <div className="flex items-center gap-x-3">
                                         <button
-                                            onClick={() =>
+                                            onClick={(e) =>{
+                                                e.stopPropagation()
+                                                console.log("subSection data",data)
                                                 setEditSubSection({
                                                     ...data,
                                                     sectionId: section._id,
                                                 })
                                             }
+                                            }
                                         >
                                             <MdEdit />
                                         </button>
                                         <button
-                                            onClick={() =>
-                                                setConfirmationModal({
-                                                    text1: "Delete this Sub-Section?",
-                                                    text2: "The lectures in this Sub-Section will be deleted",
-                                                    btn1Text: "Delete",
-                                                    btn1Handler: () =>
-                                                        handleDeleteSubSection(
-                                                            section._id
-                                                        ),
-                                                    btn2Text: "Cancel",
-                                                    btn2Handler: () =>
-                                                        setConfirmationModal(
-                                                            null
-                                                        ),
-                                                })
+                                            onClick={(e) =>
+                                                {
+                                                    e.stopPropagation()
+                                                    setConfirmationModal({
+                                                        text1: "Delete this Sub-Section?",
+                                                        text2: "The lectures in this Sub-Section will be deleted",
+                                                        btn1Text: "Delete",
+                                                        btn1Handler: () =>
+                                                            handleDeleteSubSection(
+                                                                data._id, section._id
+                                                            ),
+                                                        btn2Text: "Cancel",
+                                                        btn2Handler: () =>
+                                                            setConfirmationModal(
+                                                                null
+                                                            ),
+                                                    })
+                                                }
                                             }
                                         >
                                             <RiDeleteBin6Line />
@@ -124,9 +135,10 @@ const NestedView = ({ handleChangeEditSectionName }) => {
                                     </div>
                                 </div>
                             ))}
-                            <button className="flex text-yellow-50 items-center justify-center font-medium outline-2 px-2 py-1 outline mt-4 gap-x-2 outline-yellow-50 rounded-lg">
+                            <button className="flex text-yellow-50 items-center justify-center font-medium outline-2 px-2 py-1 outline mt-4 gap-x-2 outline-yellow-50 rounded-lg" 
+                            onClick={()=>{console.log("changed");setAddSubSection(section._id); console.log(section._id)}}>
                                 <AiOutlinePlus />
-                                Add Lecture
+                                <p>Add Lecture</p>
                             </button>
                         </div>
                     </details>
@@ -135,13 +147,13 @@ const NestedView = ({ handleChangeEditSectionName }) => {
             {addSubSection ? (
                 <SubSectionModal modalData={addSubSection} setModalData={setAddSubSection} add={true} />
             ) : viewSubSection ? (
-                <SubSectionModal modalData={addSubSection} setModalData={setViewSubSection} view={true} />
+                <SubSectionModal modalData={viewSubSection} setModalData={setViewSubSection} view={true} />
             ) : editSubSection ? (
-                <SubSectionModal modalData={addSubSection} setModalData={setEditSubSection} edit={true} />
+                <SubSectionModal modalData={editSubSection} setModalData={setEditSubSection} edit={true} />
             ) : (
                 <div></div>
             )}
-            {console.log("Confirmation modal: ", confirmationModal)}
+            {/* {console.log("Confirmation modal: ", confirmationModal)} */}
             {confirmationModal && <ConfirmationModal modalData={confirmationModal}/>}
         </div>
     );

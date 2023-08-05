@@ -43,7 +43,7 @@ const SubSectionModal = ({
         if (
             currentValues.lectureTitle !== modalData.title ||
             currentValues.lectureDesc !== modalData.description ||
-            currentValues.lectureVideo !== modalData.video
+            currentValues.lectureVideo !== modalData.videoUrl
         ) {
             return true;
         }
@@ -69,12 +69,12 @@ const SubSectionModal = ({
                 ? currentValues.lectureDesc
                 : modalData.description
         );
-        formData.append(
-            "videoFile",
-            currentValues.lectureVideo !== modalData.videoUrl
-                ? currentValues.lectureVideo
-                : modalData.videoUrl
-        );
+        if(currentValues.lectureVideo !== modalData.videoUrl){
+            formData.append("videoFile", currentValues.lectureVideo)
+        }else{
+            formData.append("videoUrl", modalData.videoUrl)
+        }
+        // formData.append("videoFile", currentValues.lectureVideo!==modalData.videoUrl previ)
         formData.append(
             "timeDuration",
             currentValues.lectureVideo !== modalData.videoUrl
@@ -223,7 +223,7 @@ const SubSectionModal = ({
                                     ? "loading..."
                                     : edit
                                     ? "Save Changes"
-                                    : "Save"
+                                    : "Create"
                             }
                         />
                     )}

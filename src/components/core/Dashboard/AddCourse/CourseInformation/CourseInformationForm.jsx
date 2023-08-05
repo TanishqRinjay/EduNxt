@@ -328,6 +328,7 @@ const CourseInformationForm = () => {
                     </button>
                 )}
                 <IconBtn
+                type="submit"
                     customClasses={
                         "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-2"
                     }

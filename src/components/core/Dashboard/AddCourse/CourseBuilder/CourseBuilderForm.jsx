@@ -29,6 +29,8 @@ const CourseBuilderForm = () => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
 
+    // dispatch(setStep(2));
+
     const OnSubmit = async (data) => {
         setLoading(true);
         let result;
@@ -60,13 +62,14 @@ const CourseBuilderForm = () => {
     };
 
     const goToNext = () => {
+        console.log(course);
         if (course.courseContent.length === 0) {
             toast.error("Please create atleast one section");
             return;
         }
         if (
             course.courseContent.some(
-                (section) => section.subSection.length === 0
+                (section) => section.subSections.length === 0
             )
         ) {
             toast.error(
@@ -81,6 +84,7 @@ const CourseBuilderForm = () => {
         setEditSectionName(null);
         setValue("sectionName", "");
     };
+
     const handleChangeEditSectionName = (sectionId, sectionName) => {
         if (editSectionName === sectionId) {
             cancelEdit();

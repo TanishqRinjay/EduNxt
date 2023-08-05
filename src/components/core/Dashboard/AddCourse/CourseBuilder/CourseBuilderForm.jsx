@@ -29,7 +29,7 @@ const CourseBuilderForm = () => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
 
-    const onSubmit = async (data) => {
+    const OnSubmit = async (data) => {
         setLoading(true);
         let result;
         if (editSectionName) {
@@ -37,18 +37,15 @@ const CourseBuilderForm = () => {
                 {
                     sectionName: data.sectionName,
                     sectionId: editSectionName,
-                    courseId: course?._id,
+                    courseId: course._id,
                 },
                 token
             );
-            setValue("sectionName", "");
-            setEditSectionName(false);
         } else {
             result = await createSection(
                 { sectionName: data.sectionName, courseId: course?._id },
                 token
             );
-            console.log("result", result);
         }
         if (result) {
             dispatch(setCourse(result));
@@ -57,7 +54,6 @@ const CourseBuilderForm = () => {
         }
         setLoading(false);
     };
-
     const goBack = () => {
         dispatch(setEditCourse(true));
         dispatch(setStep(1));
@@ -82,23 +78,22 @@ const CourseBuilderForm = () => {
     };
 
     const cancelEdit = () => {
-        setEditSectionName("");
+        setEditSectionName(null);
         setValue("sectionName", "");
     };
-
     const handleChangeEditSectionName = (sectionId, sectionName) => {
         if (editSectionName === sectionId) {
             cancelEdit();
             return;
         }
-        setEditSectionName(sectionId);
         setValue("sectionName", sectionName);
+        setEditSectionName(sectionId);
     };
 
     return (
         <div className="flex justify-start flex-col w-[80%]">
             <h2>Course Builder</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(OnSubmit)}>
                 <div className="w-full flex flex-col">
                     <label htmlFor="sectionName" className="text-sm mt-6">
                         Section Name<sup className="text-pink-200">*</sup>
@@ -114,12 +109,13 @@ const CourseBuilderForm = () => {
                         placeholder="Add section name"
                         {...register("sectionName", { required: true })}
                     />
-                    {errors.sectionValue && (
+                    {errors.sectionName && (
                         <span>Section name is required.</span>
                     )}
                 </div>
                 <div className="flex items-end mt-10 gap-4">
                     <IconBtn
+                        type="submit"
                         text={
                             editSectionName
                                 ? "Save Section Name"
@@ -133,15 +129,15 @@ const CourseBuilderForm = () => {
                     />
                     {editSectionName && (
                         <button
+                            type="button"
                             className="text-sm text-richblack-300 underline"
-                            onClick={() => cancelEdit()}
+                            onClick={cancelEdit}
                         >
                             Cancel Edit
                         </button>
                     )}
                 </div>
             </form>
-            {console.log("Course:", course)}
             {course?.courseContent?.length > 0 && (
                 <NestedView
                     handleChangeEditSectionName={handleChangeEditSectionName}

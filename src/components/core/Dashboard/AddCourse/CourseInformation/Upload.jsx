@@ -19,6 +19,7 @@ const Upload = ({
     const [thumbnail, setThumbnail] = useState(null);
     const [thumbnailPreview, setThumbnailPreview] = useState(null);
     const handleThumbnailUpload = (e) => {
+        console.log(e.target.files[0])
         setThumbnailPreview(URL.createObjectURL(e.target.files[0]));
         setThumbnail(e.target.files[0]);
     };
@@ -48,7 +49,7 @@ const Upload = ({
                 {label}
                 <sup className="text-pink-200">*</sup>
             </h3>
-            <div className=" bg-richblack-700 border border-dashed border-richblack-600 rounded-lg py-8 px-3 min-h-[300px] flex items-center justify-center">
+            <div className=" bg-richblack-700 border border-dashed border-richblack-600 rounded-lg p-3 h-[330px] flex items-center justify-center">
                 <input
                     type="file"
                     accept={video ? ".mp4, .mkv" : ".jpg, .jpeg, .png, .gif"}
@@ -57,10 +58,9 @@ const Upload = ({
                     onChange={handleThumbnailUpload}
                 />
                 {thumbnailPreview ? (
-                    <div className="h-full w-full flex flex-col justify-start items-center gap-3">
+                    <div className="h-[90%] w-full flex flex-col justify-start items-center gap-3">
                         {video ? (
-                            <video className="h-[95%] rounded-lg text-caribbeangreen-25 block" controls>
-                                <source src={thumbnailPreview}></source>
+                            <video className="h-[95%] rounded-lg text-caribbeangreen-25 block" src={thumbnailPreview} autoPlay loop muted controls>
                             </video>
                         ) : (
                             <img src={thumbnailPreview} className="h-[95%] rounded-lg" />
@@ -95,7 +95,7 @@ const Upload = ({
                             </label>{" "}
                             Max 6MB each (12MB for videos)
                         </p>
-                        <ul className="text-xs font-semibold text-richblack-400 list-disc flex gap-12 mt-12">
+                        <ul className="text-xs font-semibold text-richblack-400 list-disc flex gap-12 mt-12 justify-center px-5">
                             <li>Aspect ratio 16:9</li>
                             <li>Recommended size 1024x576</li>
                         </ul>

@@ -56,30 +56,52 @@ const SubSectionModal = ({
 
         formData.append("sectiodId", modalData.sectionId);
         formData.append("subSectionId", modalData._id);
-        if (currentValues.lectureTitle !== modalData.title) {
-            formData.append("title", currentValues.lectureTitle);
-        }
-        if (currentValues.lectureDesc !== modalData.description) {
-            formData.append("description", currentValues.lectureDesc);
-        }
-        if (currentValues.lectureVideo !== modalData.videoUrl) {
-            formData.append("videoFile", currentValues.lectureVideo);
-            formData.append("timeDuration", currentValues.lectureVideo.duration);
-        }
+        formData.append(
+            "title",
+            currentValues.lectureTitle !== modalData.title
+                ? currentValues.lectureTitle
+                : modalData.title
+        );
+
+        formData.append(
+            "description",
+            currentValues.lectureDesc !== modalData.description
+                ? currentValues.lectureDesc
+                : modalData.description
+        );
+        formData.append(
+            "videoFile",
+            currentValues.lectureVideo !== modalData.videoUrl
+                ? currentValues.lectureVideo
+                : modalData.videoUrl
+        );
+        formData.append(
+            "timeDuration",
+            currentValues.lectureVideo !== modalData.videoUrl
+                ? currentValues.lectureVideo.duration
+                : modalData.videoUrl.duration
+        );
         setLoading(true);
         const result = await updateSubSection(formData, token);
-        const updatedSubSections = course.courseContent.map((section)=>(
-            section.map((subSection)=>(
-                subSection._id === modalData._id ? result: subSection
-            ))
-        ))
-        const updatedCourseContent = course.courseContent.map((section)=>(
-            section._id===modalData? updatedSubSections:section
-        ))
-        const updatedCourse = {...course, courseContent: updatedCourseContent}
+        setLoading(false);
+
+        //Tried using nested map, but it was creating nested array inside an object as it was double mapped, 1 map = 1 arary, hence nested array was created, so instead that i just pushed values inside an empy array and then changed course content
+
+        let updatedSubSectionArray = [];
+        course.courseContent.map((section) =>
+            section.subSections.map((subSection) =>
+                subSection._id === modalData._id ? updatedSubSectionArray.push(result) : updatedSubSectionArray.push(subSection)
+            )
+        );
+        const updatedCourseContent = course.courseContent.map((section) =>
+            section._id === modalData.sectionId ? {...section, subSections: updatedSubSectionArray} : section
+        );
+        const updatedCourse = {
+            ...course,
+            courseContent: updatedCourseContent,
+        };
         dispatch(setCourse(updatedCourse));
         setModalData(null);
-        setLoading(false);
     };
 
     const OnSubmit = async (data) => {
@@ -104,19 +126,21 @@ const SubSectionModal = ({
         setLoading(true);
         const result = await createSubSection(formData, token);
         if (result) {
-            const updatedCourseContent = course.courseContent.map((section)=>(
-                section._id===modalData ? result:section
-            ))
-            const updatedCourse = {...course, courseContent:updatedCourseContent}
+            const updatedCourseContent = course.courseContent.map((section) =>
+                section._id === modalData ? result : section
+            );
+            const updatedCourse = {
+                ...course,
+                courseContent: updatedCourseContent,
+            };
             dispatch(setCourse(updatedCourse));
-            setModalData(null)
+            setModalData(null);
         }
-        setLoading(false)
+        setLoading(false);
     };
 
     return (
         <div className="h-[100vh] w-[100vw] bg-opacity-75 bg-richblack-900 absolute -top-[3.5rem] left-0 flex justify-center items-center">
-            
             <div className=" bg-richblack-800 rounded-lg w-[35%]">
                 <div className=" flex justify-between bg-richblack-700 rounded-t-lg py-2 px-4">
                     <p>
@@ -124,11 +148,14 @@ const SubSectionModal = ({
                         {edit && "Editing"}
                         {add && "Adding"} Lecture
                     </p>
-                    <button onClick={()=>!loading && setModalData(null)}>
+                    <button onClick={() => !loading && setModalData(null)}>
                         <RxCross1 />
                     </button>
                 </div>
-                <form onSubmit={handleSubmit(OnSubmit)} className="flex flex-col gap-4 p-5">
+                <form
+                    onSubmit={handleSubmit(OnSubmit)}
+                    className="flex flex-col gap-4 p-5"
+                >
                     <Upload
                         name="lectureVideo"
                         label="Lecture Video"
@@ -141,7 +168,10 @@ const SubSectionModal = ({
                         editData={edit ? modalData.videoUrl : null}
                     />
                     <div className="flex flex-col gap-1">
-                        <label htmlFor="lectureTitle" className="text-sm">Lecture Title<span className=" text-pink-200">*</span></label>
+                        <label htmlFor="lectureTitle" className="text-sm">
+                            Lecture Title
+                            <span className=" text-pink-200">*</span>
+                        </label>
                         <input
                             type="text"
                             id="lectureTitle"
@@ -151,14 +181,20 @@ const SubSectionModal = ({
                                 boxShadow:
                                     "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                             }}
-                            className="w-full rounded-[0.5rem] bg-richblack-600 py-2 px-3 pr-12 text-richblack-5 text-sm"
+                            className={`w-full rounded-[0.5rem] bg-richblack-600 py-2 px-3 pr-12 text-richblack-5 text-sm ${
+                                view && "outline-none"
+                            }`}
+                            readOnly={view}
                         />
                         {errors.lectureTitle && (
                             <span>Please enter lecture title.</span>
                         )}
                     </div>
                     <div className="flex flex-col gap-1">
-                        <label htmlFor="lectureDesc" className=" text-sm">Course Description<span className=" text-pink-200">*</span></label>
+                        <label htmlFor="lectureDesc" className=" text-sm">
+                            Course Description
+                            <span className=" text-pink-200">*</span>
+                        </label>
                         <textarea
                             id="lectureDesc"
                             placeholder="Enter Lecture Description"
@@ -167,7 +203,10 @@ const SubSectionModal = ({
                                 boxShadow:
                                     "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                             }}
-                            className="w-full rounded-[0.5rem] bg-richblack-600 py-2 px-3 pr-12 text-richblack-5 min-h-[130px] text-sm"
+                            className={`w-full rounded-[0.5rem] bg-richblack-600 py-2 px-3 pr-12 text-richblack-5 min-h-[130px] text-sm ${
+                                view && "outline-none resize-none"
+                            }`}
+                            readOnly={view}
                         />
                         {errors.lectureDesc && (
                             <span>Please enter lecture description</span>

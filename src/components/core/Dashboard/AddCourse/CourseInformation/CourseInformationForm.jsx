@@ -21,7 +21,6 @@ const CourseInformationForm = () => {
         handleSubmit,
         setValue,
         getValues,
-        setFile,
         formState: { errors },
     } = useForm();
     const dispatch = useDispatch();
@@ -45,7 +44,7 @@ const CourseInformationForm = () => {
             setValue("courseShortDesc", course.courseDescription);
             setValue("coursePrice", course.price);
             setValue("courseTags", course.tag);
-            setValue("courseBenefits", course.WhatYouWillLearn);
+            setValue("courseBenefits", course.whatYouWillLearn);
             setValue("courseCategory", course.category);
             setValue("courseImage", course.thumbnailImage);
             setValue("courseRequirements", course.instructions);

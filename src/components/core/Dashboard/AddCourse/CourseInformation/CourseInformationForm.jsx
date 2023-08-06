@@ -73,59 +73,65 @@ const CourseInformationForm = () => {
     };
 
     const onSubmit = async (data) => {
+        console.log("Course",course)
         if (editCourse) {
             if (isFormUpdated) {
                 const currentValues = getValues();
                 const formData = new FormData();
                 formData.append("courseId", course._id);
-                if (currentValues.courseTitle !== course.courseName) {
-                    formData.append("courseName", currentValues.courseTitle);
-                }
-                if (
+                formData.append(
+                    "courseName",
+                    currentValues.courseTitle !== course.courseName
+                        ? currentValues.courseTitle
+                        : course.courseName
+                );
+                formData.append(
+                    "courseDescription",
                     currentValues.courseShortDesc !== course.courseDescription
-                ) {
-                    formData.append(
-                        "courseDescription",
-                        currentValues.courseShortDesc
-                    );
-                }
-                if (currentValues.coursePrice !== course.price) {
-                    formData.append("price", currentValues.coursePrice);
-                }
-                if (currentValues.courseBenefits !== course.whatYouWillLearn) {
-                    formData.append(
-                        "whatYouWillLearn",
-                        currentValues.courseBenefits
-                    );
-                }
-                if (currentValues.courseCategory !== course.category) {
-                    formData.append("category", currentValues.courseCategory);
-                }
-                if (
+                        ? currentValues.courseShortDesc
+                        : course.courseDescription
+                );
+                formData.append(
+                    "price",
+                    currentValues.coursePrice !== course.price
+                        ? currentValues.coursePrice
+                        : course.price
+                );
+                formData.append(
+                    "whatYouWillLearn",
+                    currentValues.courseBenefits !== course.whatYouWillLearn
+                        ? currentValues.courseBenefits
+                        : course.whatYouWillLearn
+                );
+                formData.append(
+                    "category",
+                    currentValues.courseCategory !== course.category
+                        ? currentValues.courseCategory._id
+                        : course.category._id
+                );
+                formData.append(
+                    "instructions",
                     currentValues.courseRequirements.toString() !==
-                    course.instructions.toString()
-                ) {
-                    formData.append(
-                        "instructions",
-                        JSON.stringify(currentValues.courseRequirements)
-                    );
-                }
-                if (
+                        course.instructions.toString()
+                        ? JSON.stringify(currentValues.courseRequirements)
+                        : JSON.stringify(course.instructions)
+                );
+                formData.append(
+                    "tag",
                     currentValues.courseTags.toString() !==
-                    course.tag.toString()
-                ) {
-                    formData.append(
-                        "tag",
-                        JSON.stringify(currentValues.courseTags)
-                    );
+                        course.tag.toString()
+                        ? JSON.stringify(currentValues.courseTags)
+                        : JSON.stringify(course.tag)
+                );
+                formData.append(
+                    "thumbnailImage",
+                    currentValues.courseImage !== course.thumbnailImage
+                        ? currentValues.courseImage
+                        : course.thumbnailImage
+                );
+                for (var pair of formData.entries()) {
+                    console.log(pair[0] + ", " + pair[1]);
                 }
-                if (currentValues.courseImage !== course.thumbnailImage) {
-                    formData.append(
-                        "thumbnailImage",
-                        currentValues.courseImage
-                    );
-                }
-
                 setLoading(true);
                 const result = await editCourseDetails(formData, token);
                 setLoading(false);
@@ -320,6 +326,7 @@ const CourseInformationForm = () => {
             <div className="flex justify-end gap-4">
                 {editCourse && (
                     <button
+                        type="button"
                         onClick={() => dispatch(setStep(2))}
                         className="flex items-center gap-x-2 bg-richblack-700 rounded-lg px-5 py-2"
                     >
@@ -327,7 +334,11 @@ const CourseInformationForm = () => {
                     </button>
                 )}
                 <IconBtn
-                type="submit"
+                    onclick={() => {
+                        console.log("clicked");
+                        onSubmit();
+                    }}
+                    type="submit"
                     customClasses={
                         "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-2"
                     }

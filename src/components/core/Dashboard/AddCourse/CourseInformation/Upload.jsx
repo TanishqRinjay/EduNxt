@@ -13,13 +13,13 @@ const Upload = ({
     setValue,
     getValues,
     viewData,
-    editData
+    editData,
 }) => {
     const { editCourse, course } = useSelector((state) => state.course);
     const [thumbnail, setThumbnail] = useState(null);
     const [thumbnailPreview, setThumbnailPreview] = useState(null);
     const handleThumbnailUpload = (e) => {
-        console.log(e.target.files[0])
+        console.log(e.target.files[0]);
         setThumbnailPreview(URL.createObjectURL(e.target.files[0]));
         setThumbnail(e.target.files[0]);
     };
@@ -28,11 +28,11 @@ const Upload = ({
         if (editCourse) {
             setThumbnailPreview(course?.thumbnail);
         }
-        if(editData){
-            setThumbnailPreview(editData)
+        if (editData) {
+            setThumbnailPreview(editData);
         }
-        if(viewData){
-            setThumbnailPreview(viewData)
+        if (viewData) {
+            setThumbnailPreview(viewData);
         }
         register(name, {
             required: true,
@@ -49,7 +49,7 @@ const Upload = ({
                 {label}
                 <sup className="text-pink-200">*</sup>
             </h3>
-            <div className=" bg-richblack-700 border border-dashed border-richblack-600 rounded-lg p-3 h-[330px] flex items-center justify-center">
+            <div className=" bg-richblack-700 border-2 border-dotted border-richblack-600 rounded-lg p-3 h-[330px] flex items-center justify-center">
                 <input
                     type="file"
                     accept={video ? ".mp4, .mkv" : ".jpg, .jpeg, .png, .gif"}
@@ -58,24 +58,31 @@ const Upload = ({
                     onChange={handleThumbnailUpload}
                 />
                 {thumbnailPreview ? (
-                    <div className="h-[90%] w-full flex flex-col justify-start items-center gap-3">
+                    <div className="h-[95%] w-full flex flex-col justify-start items-center gap-3">
                         {video ? (
-                            <video className="h-[95%] rounded-lg text-caribbeangreen-25 block" src={thumbnailPreview} autoPlay loop muted controls>
-                            </video>
+                            <video
+                                className="h-[90%] rounded-lg text-caribbeangreen-25 block"
+                                src={thumbnailPreview}
+                                autoPlay
+                                loop
+                                muted
+                                controls
+                            ></video>
                         ) : (
-                            <img src={thumbnailPreview} className="h-[95%] rounded-lg" />
+                            <img
+                                src={thumbnailPreview}
+                                className="h-[90%] rounded-lg"
+                            />
                         )}
-                        {
-                            !viewData && (
-                                <label
-                            htmlFor={name}
-                            className="flex items-center justify-center bg-richblack-5 text-yellow-900 font-medium cursor-pointer px-2 gap-1 rounded-full"
-                        >
-                            <AiOutlineRedo />
-                            Re-Upload
-                        </label>
-                            )
-                        }
+                        {!viewData && (
+                            <label
+                                htmlFor={name}
+                                className="flex items-center justify-center bg-richblack-5 text-yellow-900 font-medium cursor-pointer px-2 gap-1 rounded-full"
+                            >
+                                <AiOutlineRedo />
+                                Re-Upload
+                            </label>
+                        )}
                     </div>
                 ) : (
                     <div className="w-full h-full flex justify-center items-center flex-col">

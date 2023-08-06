@@ -90,7 +90,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
                                 <div
                                     key={data?._id}
                                     onClick={() => setViewSubSection(data)}
-                                    className="flex items-center ml-6 justify-between gap-x-3 border-b-2"
+                                    className="flex items-center ml-6 justify-between gap-x-3 border-b-2 border-richblack-5"
                                 >
                                     <div className="flex items-center gap-2">
                                         <RxDropdownMenu />

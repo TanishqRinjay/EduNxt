@@ -9,7 +9,9 @@ const MyProfile = () => {
     const navigate = useNavigate();
     return (
         <div className="text-richblack-5 w-full h-full flex items-center justify-center flex-col gap-5">
-            <h1 className="text-3xl text-richblack-5 flex justify-start w-[80%] mb-5 font-medium">My Profile</h1>
+            <h1 className="text-3xl text-richblack-5 flex justify-start w-[80%] mb-5 font-medium">
+                My Profile
+            </h1>
             {/* Section 1 */}
             <div className="flex flex-row justify-between w-[80%] items-center bg-richblack-800 p-6 border-richblack-700 border rounded-lg">
                 <div className="flex items-center gap-4">
@@ -117,14 +119,14 @@ const MyProfile = () => {
                         <p className=" text-sm text-richblack-600">Gender</p>
                         <p className="text-sm">
                             {user?.additionalDetails?.gender ?? (
-                                <p className="text-richblack-300">
-                                    Add gender
-                                </p>
+                                <p className="text-richblack-300">Add gender</p>
                             )}
                         </p>
                     </div>
                     <div className="w-[50%]">
-                        <p className=" text-sm text-richblack-600">Date of Birth</p>
+                        <p className=" text-sm text-richblack-600">
+                            Date of Birth
+                        </p>
                         <p className="text-sm text-richblack-5">
                             {user?.additionalDetails?.dateOfBirth ?? (
                                 <p className="text-richblack-300">

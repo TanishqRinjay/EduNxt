@@ -26,7 +26,6 @@ const RequirementField = ({
     }, []);
 
     useEffect(() => {
-        console.log(requirementList);
         setValue(name, requirementList);
     }, [requirementList]);
 
@@ -81,7 +80,7 @@ const RequirementField = ({
                 </button>
             </div>
             {requirementList.length > 0 && (
-                <ul className="">
+                <ul>
                     {requirementList.map((item, i) => (
                         <li
                             key={i}
@@ -99,7 +98,7 @@ const RequirementField = ({
                 </ul>
             )}
 
-            {errors[name] && <span>{label} is required.</span>}
+            {errors[name] && <span>{label} are required.</span>}
         </div>
     );
 };

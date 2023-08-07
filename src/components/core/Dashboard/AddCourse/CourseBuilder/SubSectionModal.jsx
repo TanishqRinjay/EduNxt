@@ -28,8 +28,10 @@ const SubSectionModal = ({
     } = useForm();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    const { course } = useSelector((state) => state.course);
+    const { editCourse, course } = useSelector((state) => state.course);
     const { token } = useSelector((state) => state.auth);
+
+    console.log("edit course modal", editCourse)
 
     useEffect(() => {
         if (view || edit) {

@@ -10,7 +10,11 @@ import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import Upload from "./Upload";
 import RequirementField from "./RequirementField";
 import ChipInput from "../CourseInformation/ChipInput";
-import { setStep, setCourse } from "../../../../../slices/courseSlice";
+import {
+    setStep,
+    setCourse,
+    setEditCourse,
+} from "../../../../../slices/courseSlice";
 import IconBtn from "../../../../common/IconBtn";
 import { toast } from "react-hot-toast";
 import { COURSE_STATUS } from "../../../../../utils/constants";
@@ -38,7 +42,6 @@ const CourseInformationForm = () => {
             }
             setLoading(false);
         };
-
         if (editCourse) {
             setValue("courseTitle", course.courseName);
             setValue("courseShortDesc", course.courseDescription);
@@ -46,13 +49,13 @@ const CourseInformationForm = () => {
             setValue("courseTags", course.tag);
             setValue("courseBenefits", course.whatYouWillLearn);
             setValue("courseCategory", course.category);
-            setValue("courseImage", course.thumbnailImage);
+            setValue("courseImage", course.thumbnail);
             setValue("courseRequirements", course.instructions);
         }
-
+        
         getCategories();
     }, []);
-
+    
     const isFormUpdated = () => {
         const currentValues = getValues();
         if (
@@ -62,10 +65,10 @@ const CourseInformationForm = () => {
             currentValues.courseTags.toString() !== course.tag.toString() ||
             currentValues.courseBenefits !== course.whatYouWillLearn ||
             currentValues.courseCategory._id !== course.category._id ||
-            currentValues.courseImage !== course.thumbnailImage ||
+            currentValues.courseImage !== course.thumbnail ||
             currentValues.courseRequirements.toString() !==
-                course.instructions.toString()
-        ) {
+            course.instructions.toString()
+            ) {
             return true;
         } else {
             return false;
@@ -73,9 +76,8 @@ const CourseInformationForm = () => {
     };
 
     const onSubmit = async (data) => {
-        console.log("Course",course)
         if (editCourse) {
-            if (isFormUpdated) {
+            if (isFormUpdated()) {
                 const currentValues = getValues();
                 const formData = new FormData();
                 formData.append("courseId", course._id);
@@ -107,7 +109,7 @@ const CourseInformationForm = () => {
                     "category",
                     currentValues.courseCategory !== course.category
                         ? currentValues.courseCategory._id
-                        : course.category._id
+                        : course.category
                 );
                 formData.append(
                     "instructions",
@@ -127,10 +129,10 @@ const CourseInformationForm = () => {
                     "thumbnailImage",
                     currentValues.courseImage !== course.thumbnailImage
                         ? currentValues.courseImage
-                        : course.thumbnailImage
+                        : course.thumbnail
                 );
                 for (var pair of formData.entries()) {
-                    console.log(pair[0] + ", " + pair[1]);
+                    console.log(pair[0]+ ', ' + pair[1]); 
                 }
                 setLoading(true);
                 const result = await editCourseDetails(formData, token);
@@ -138,11 +140,12 @@ const CourseInformationForm = () => {
                 if (result) {
                     dispatch(setStep(2));
                     dispatch(setCourse(result));
-                    toast.success("Course Updated Successfully");
                 }
             } else {
-                toast.error("No changes made in the course");
+                toast.error("No changes were made in the course");
+                dispatch(setStep(2));
             }
+            dispatch(setEditCourse(false));
             return;
         }
 
@@ -160,11 +163,6 @@ const CourseInformationForm = () => {
         formData.append("status", COURSE_STATUS.DRAFT);
         formData.append("tag", JSON.stringify(data.courseTags));
         formData.append("thumbnailImage", data.courseImage);
-
-        // FORM DATA CHECKER:
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ", " + pair[1]);
-        }
 
         setLoading(true);
         const result = await addCourseDetails(formData, token);
@@ -335,7 +333,6 @@ const CourseInformationForm = () => {
                 )}
                 <IconBtn
                     onclick={() => {
-                        console.log("clicked");
                         onSubmit();
                     }}
                     type="submit"

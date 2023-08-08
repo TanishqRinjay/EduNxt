@@ -38,6 +38,7 @@ const RequirementField = ({
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
+            //Used prevent default as in default, pressing enter was call "OnSubmit function, did same in Tags"
             e.preventDefault();
             handleAddRequirements();
         }

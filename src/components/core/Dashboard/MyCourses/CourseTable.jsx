@@ -98,7 +98,7 @@ const CourseTable = ({ courses, setCourses }) => {
                                         <button
                                             disabled={loading}
                                             className=" cursor-pointer text-richblack-100"
-                                            onClick={()=>navigate(`dashboard/edit-course/${course?._id}`)}
+                                            onClick={()=>navigate(`/dashboard/edit-course/${course?._id}`)}
                                         >
                                             <MdEdit />
                                         </button>

@@ -52,7 +52,6 @@ const PublishCourse = () => {
         }
         setLoading(false);
     };
-
     return (
         <div>
                 <form
@@ -71,6 +70,7 @@ const PublishCourse = () => {
                                 <input
                                     id="public"
                                     type="checkbox"
+                                    checked
                                     className="before:content[''] peer relative h-6 w-6 cursor-pointer appearance-none rounded-md border border-richblack-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-yellow-50 checked:bg-yellow-50 checked:before:bg-yellow-50 hover:before:opacity-10"
                                     {...register("public", { required: false })}
                                 />

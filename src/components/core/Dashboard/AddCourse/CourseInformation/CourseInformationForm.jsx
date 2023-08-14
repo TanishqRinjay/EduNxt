@@ -52,10 +52,10 @@ const CourseInformationForm = () => {
             setValue("courseImage", course.thumbnail);
             setValue("courseRequirements", course.instructions);
         }
-        
+
         getCategories();
     }, []);
-    
+
     const isFormUpdated = () => {
         const currentValues = getValues();
         if (
@@ -67,8 +67,8 @@ const CourseInformationForm = () => {
             currentValues.courseCategory._id !== course.category._id ||
             currentValues.courseImage !== course.thumbnail ||
             currentValues.courseRequirements.toString() !==
-            course.instructions.toString()
-            ) {
+                course.instructions.toString()
+        ) {
             return true;
         } else {
             return false;
@@ -132,7 +132,7 @@ const CourseInformationForm = () => {
                         : course.thumbnail
                 );
                 for (var pair of formData.entries()) {
-                    console.log(pair[0]+ ', ' + pair[1]); 
+                    console.log(pair[0] + ", " + pair[1]);
                 }
                 setLoading(true);
                 const result = await editCourseDetails(formData, token);
@@ -142,7 +142,7 @@ const CourseInformationForm = () => {
                     dispatch(setCourse(result));
                 }
             } else {
-                toast.error("No changes were made in the course");
+                toast.error("No changes made");
                 dispatch(setStep(2));
             }
             dispatch(setEditCourse(false));
@@ -150,6 +150,9 @@ const CourseInformationForm = () => {
         }
 
         //If new Course is created
+
+        console.log("data: ",  data)
+
         const formData = new FormData();
         formData.append("courseName", data.courseTitle);
         formData.append("courseDescription", data.courseShortDesc);
@@ -164,6 +167,9 @@ const CourseInformationForm = () => {
         formData.append("tag", JSON.stringify(data.courseTags));
         formData.append("thumbnailImage", data.courseImage);
 
+        // for (var key of formData.entries()) {
+        //     console.log(key[0] + ", " + key[1]);
+        // }
         setLoading(true);
         const result = await addCourseDetails(formData, token);
         if (result) {
@@ -184,7 +190,6 @@ const CourseInformationForm = () => {
                     Course Title<sup className=" text-pink-200">*</sup>
                 </label>
                 <input
-                    type="courseTitle"
                     placeholder="Enter Course Title"
                     {...register("courseTitle", { required: true })}
                     style={{
@@ -326,15 +331,13 @@ const CourseInformationForm = () => {
                     <button
                         type="button"
                         onClick={() => dispatch(setStep(2))}
+                        disabled={loading}
                         className="flex items-center gap-x-2 bg-richblack-700 rounded-lg px-5 py-2"
                     >
                         Continue without saving
                     </button>
                 )}
                 <IconBtn
-                    onclick={() => {
-                        onSubmit();
-                    }}
                     type="submit"
                     customClasses={
                         "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-2"

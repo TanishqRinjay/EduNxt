@@ -19,7 +19,7 @@ const Upload = ({
     const [thumbnail, setThumbnail] = useState(null);
     const [thumbnailPreview, setThumbnailPreview] = useState(null);
     const handleThumbnailUpload = (e) => {
-        console.log(e.target.files[0]);
+        // console.log(e.target.files[0]);
         setThumbnailPreview(URL.createObjectURL(e.target.files[0]));
         setThumbnail(e.target.files[0]);
     };

@@ -63,7 +63,6 @@ const RequirementField = ({
                     value={requirement}
                     onChange={(e) => {
                         setRequirement(e.target.value);
-                        console.log(e.target.value);
                     }}
                     onKeyDown={handleKeyDown}
                     style={{

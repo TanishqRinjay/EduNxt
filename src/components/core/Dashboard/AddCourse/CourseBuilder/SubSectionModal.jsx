@@ -31,8 +31,6 @@ const SubSectionModal = ({
     const { editCourse, course } = useSelector((state) => state.course);
     const { token } = useSelector((state) => state.auth);
 
-    console.log("edit course modal", editCourse)
-
     useEffect(() => {
         if (view || edit) {
             setValue("lectureTitle", modalData.title);

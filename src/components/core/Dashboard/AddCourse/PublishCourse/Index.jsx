@@ -24,7 +24,7 @@ const PublishCourse = () => {
 
     const goToCourse = () => {
         dispatch(resetCourseState());
-        navigate("/dashboard/my-profile");
+        navigate("/dashboard/my-courses");
     };
 
     const OnSubmit = async () => {

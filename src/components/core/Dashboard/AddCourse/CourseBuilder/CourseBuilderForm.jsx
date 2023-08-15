@@ -28,7 +28,6 @@ const CourseBuilderForm = () => {
     const { editCourse, course } = useSelector((state) => state.course);
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    console.log("edit course course builder", editCourse)
     const OnSubmit = async (data) => {
         setLoading(true);
         let result;

@@ -10,41 +10,32 @@ import ProfileDropdown from "../core/Auth/ProfileDropdown";
 import { apiConnector } from "../../services/apiconnector";
 import { categories } from "../../services/apis";
 
-// const allSubLinks = [
-//     {
-//         title: "Python",
-//         link: "/python",
-//     },
-//     {
-//         title: "Web-Dev",
-//         link: "/web-development",
-//     },
-// ];
-
 const Navbar = () => {
     const { token } = useSelector((state) => state.auth);
     const { user } = useSelector((state) => state.profile);
     const { totalItems } = useSelector((state) => state.cart);
     // FOR TESTING CHANGE totalItems from "const" to "let"
     // totalItems = 1
-
     const [subLinks, setSubLinks] = useState([]);
+    const location = useLocation();
+    const [loading, setLoading] = useState(false);
 
     const fetchSubLinks = async () => {
+        setLoading(true);
         try {
             const result = await apiConnector("GET", categories.CATEGORIES_API);
             console.log("Printing sublinks: ", result.data.data);
-            setSubLinks(result.data.data);
+            setSubLinks(result?.data?.data);
         } catch (err) {
             console.log(err);
         }
+        setLoading(false);
     };
 
     useEffect(() => {
         fetchSubLinks();
     }, []);
 
-    const location = useLocation();
     const matchRoute = (route) => {
         return matchPath({ path: route }, location.pathname);
     };
@@ -69,16 +60,24 @@ const Navbar = () => {
                                         <div className="group cursor-pointer flex flex-row items-center justify-center relative">
                                             <p>{link.title}</p>
                                             <IoMdArrowDropdown />
-                                            <div className="invisible absolute left-[50%] top-[50%] flex flex-col gap-3 rounded-md bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all group-hover:visible group-hover:opacity-100 lg:w-[250px] translate-x-[-50%] translate-y-[20%] z-10">
-                                                <div className="absolute left-[50%] translate-y-[-15%] translate-x-[72%] top-0 h-6 w-6 rotate-45 bg-richblack-5"></div>
-                                                {subLinks.length ? (
-                                                    subLinks.map(
-                                                        (subLink, i) => (
+                                            <div className="invisible absolute left-[50%] top-[55%] flex flex-col gap-3 rounded-md bg-richblack-5 px-4 py-2 text-richblack-900 opacity-0 transition-all group-hover:visible group-hover:opacity-100 lg:w-[250px] translate-x-[-50%] translate-y-[20%] z-10">
+                                                <div className="absolute left-[50%] translate-y-[-5%] translate-x-[72%] top-0 h-6 w-6 rotate-45 bg-richblack-5"></div>
+                                                {loading ? (
+                                                    <p>Loading...</p>
+                                                ) : subLinks.length ? (
+                                                    <>
+                                                    {subLinks
+                                                        ?.filter(
+                                                            (subLink) =>
+                                                                subLink?.courses
+                                                                    ?.length > 0
+                                                        )
+                                                        ?.map((subLink, i) => (
                                                             <Link
                                                                 to={`/catalog/${subLink.name
                                                                     .replace(
-                                                                        "-",
-                                                                        ""
+                                                                        " ",
+                                                                        "-"
                                                                     )
                                                                     .toLowerCase()}`}
                                                                 key={i}
@@ -89,8 +88,8 @@ const Navbar = () => {
                                                                     }
                                                                 </p>
                                                             </Link>
-                                                        )
-                                                    )
+                                                        ))}
+                                                        </>
                                                 ) : (
                                                     <div></div>
                                                 )}

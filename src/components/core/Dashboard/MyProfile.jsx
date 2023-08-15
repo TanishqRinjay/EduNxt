@@ -105,35 +105,35 @@ const MyProfile = () => {
                     </div>
                     <div className="w-[50%]">
                         <p className=" text-sm text-richblack-600">Phone no.</p>
-                        <p className="text-sm text-richblack-5">
+                        <div className="text-sm text-richblack-5">
                             {user?.additionalDetails?.contactNumber ?? (
                                 <p className="text-richblack-300">
                                     Add Contact no.
                                 </p>
                             )}
-                        </p>
+                        </div>
                     </div>
                 </div>
                 <div className="flex justify-between w-full">
                     <div className="w-[50%]">
                         <p className=" text-sm text-richblack-600">Gender</p>
-                        <p className="text-sm">
+                        <div className="text-sm">
                             {user?.additionalDetails?.gender ?? (
                                 <p className="text-richblack-300">Add gender</p>
                             )}
-                        </p>
+                        </div>
                     </div>
                     <div className="w-[50%]">
                         <p className=" text-sm text-richblack-600">
                             Date of Birth
                         </p>
-                        <p className="text-sm text-richblack-5">
+                        <div className="text-sm text-richblack-5">
                             {user?.additionalDetails?.dateOfBirth ?? (
                                 <p className="text-richblack-300">
                                     Add Date of Birth
                                 </p>
                             )}
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>

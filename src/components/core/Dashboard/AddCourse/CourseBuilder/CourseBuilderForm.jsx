@@ -93,7 +93,7 @@ const CourseBuilderForm = () => {
 
     return (
         <div className="flex justify-start flex-col w-[80%]">
-            <h2>Course Builder</h2>
+            <h2 className=" text-2xl font-semibold">Course Builder</h2>
             <form onSubmit={handleSubmit(OnSubmit)}>
                 <div className="w-full flex flex-col">
                     <label htmlFor="sectionName" className="text-sm mt-6">

@@ -56,13 +56,13 @@ const MyProfile = () => {
                         }}
                     ></IconBtn>
                 </div>
-                <p className="flex justify-start w-full text-sm text-richblack-5">
+                <div className="flex justify-start w-full text-sm text-richblack-5">
                     {user?.additionalDetails?.about ?? (
                         <p className="text-richblack-300">
                             Write something about yourself
                         </p>
                     )}
-                </p>
+                </div>
             </div>
 
             {/* Section 3 */}

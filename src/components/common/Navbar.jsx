@@ -24,7 +24,6 @@ const Navbar = () => {
         setLoading(true);
         try {
             const result = await apiConnector("GET", categories.CATEGORIES_API);
-            console.log("Printing sublinks: ", result.data.data);
             setSubLinks(result?.data?.data);
         } catch (err) {
             console.log(err);
@@ -60,8 +59,8 @@ const Navbar = () => {
                                         <div className="group cursor-pointer flex flex-row items-center justify-center relative">
                                             <p>{link.title}</p>
                                             <IoMdArrowDropdown />
-                                            <div className="invisible absolute left-[50%] top-[8px] flex flex-col gap-3 rounded-md bg-richblack-5 px-4 py-2 text-richblack-900 opacity-0 transition-all group-hover:visible group-hover:opacity-100 lg:w-[250px] translate-x-[-50%] translate-y-[20%] z-10">
-                                                <div className="absolute left-[50%] translate-y-[-5%] translate-x-[72%] top-0 h-6 w-6 rotate-45 bg-richblack-5"></div>
+                                            <div className="invisible absolute left-[50%] -top-[10%] flex flex-col gap-3 rounded-md bg-richblack-5 px-4 py-2 text-richblack-900 opacity-0 transition-all group-hover:visible group-hover:opacity-100 lg:w-[250px] translate-x-[-50%] translate-y-[3em] group-hover:translate-y-[1.65em] z-10">
+                                                <div className="absolute left-[50%] translate-y-[-10%] translate-x-[72%] top-0 h-6 w-6 rotate-45 -z-10 select-none bg-richblack-5"></div>
                                                 {loading ? (
                                                     <p>Loading...</p>
                                                 ) : subLinks.length ? (

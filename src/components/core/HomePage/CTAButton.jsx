@@ -12,7 +12,7 @@ const CTAButton = ({ children, active, linkto, shadow=true }) => {
                 } hover:scale-95 transition-all duration-200 hover:shadow-none ${
                     active
                         ? "shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)]"
-                        : "shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)]"
+                        : "shadow-[2px_2px_0px_0px_rgba(0,0,0,0.18)]"
                 } ${shadow?"":"shadow-none"}`}
             >
                 {children}

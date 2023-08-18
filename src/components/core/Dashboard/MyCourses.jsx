@@ -38,33 +38,6 @@ const MyCourses = () => {
                 ></IconBtn>
             </div>
             <CourseTable courses={courses} setCourses={setCourses}/>
-            {/* <div className="w-full flex flex-col rounded-lg border-[1px] border-richblack-700">
-                <div className="flex justify-between uppercase font-medium text-richblack-100 text-sm border-b-[1px] border-richblack-700 px-4 py-4">
-                    <p>Courses</p>
-                    <div className="flex gap-8">
-                        <p>Duration</p>
-                        <p>Price</p>
-                        <p>Actions</p>
-                    </div>
-                </div>
-                <div className="m-4">
-                    {courses.length ? (
-                        <CourseTable
-                            courses={courses}
-                            setCourses={setCourses}
-                        />
-                    ) : (
-                        <div className="text-richblack-5 flex flex-col items-end">
-                            <p className=" text-lg">
-                                You did not have created any course.
-                            </p>
-                            <p className=" text-yellow-25">
-                                Click on New on the top-right to create one.
-                            </p>
-                        </div>
-                    )}
-                </div>
-            </div> */}
         </div>
     );
 };

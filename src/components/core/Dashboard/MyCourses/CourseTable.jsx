@@ -44,7 +44,7 @@ const CourseTable = ({ courses, setCourses }) => {
                         <Th className="p-4 text-start">Actions</Th>
                     </Tr>
                 </Thead>
-                <Tbody className="">
+                <Tbody>
                     {courses.length === 0 ? (
                         <Tr>
                             <Td className="p-4 text-start">No Courses Found.<br/>Click on New to create new course.</Td>

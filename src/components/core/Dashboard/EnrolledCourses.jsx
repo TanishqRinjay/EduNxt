@@ -2,66 +2,112 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import { SlOptionsVertical } from "react-icons/sl";
 
 const EnrolledCourses = () => {
-
     const [enrolledCourses, setEnrolledCourses] = useState(null);
     const { token } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-    
-    const getEnrolledCourses = async()=>{
-        try{
-            const response = getUserEnrolledCourses(token)
-            setEnrolledCourses(response)
-        }catch(e){
-            console.log("Error: ", e)
+
+    const getEnrolledCourses = async () => {
+        try {
+            const response = await getUserEnrolledCourses(token);
+            setEnrolledCourses(response);
+        } catch (e) {
+            console.log("Error: ", e);
         }
-    }
+    };
 
-
-    useEffect(()=>{
-        getEnrolledCourses()
-    }, [])
+    useEffect(() => {
+        getEnrolledCourses();
+    }, []);
 
     return (
-        <div className="text-richblack-5 w-full h-full flex items-center justify-center flex-col gap-5">
-            <h2 className="w-[80%] text-3xl text-richblack-5 flex justify-start mb-5 font-medium">
+        <div className="text-richblack-5 w-full h-full flex flex-col items-center justify-center gap-5">
+            <p className="w-full justify-start text-sm text-richblack-300">Home / Dashboard / <span className=" text-yellow-50 text-sm font-medium">Enrolled Courses</span></p>
+            <h2 className="w-full text-3xl text-richblack-5 flex justify-start mb-5 font-medium">
                 Enrolled Courses
             </h2>
-            {!enrolledCourses? (<div>Loading...</div>):(
-                !enrolledCourses.length? (<div>You haven't enrolled in any course</div>):(
-                    <div>
-                        <div>
-                            <p>Course Name</p>
-                            <p>Duration</p>
-                            <p>Progress</p>
-                        </div>
-                        <div>
-                        {enrolledCourses.map((course, i)=>(
-                            <div>
-                                <div>
-                                    <img src={course?.thumbnail} />
-                                    <div>
-                                        <p>{course?.courseName}</p>
-                                        <p>{(course?.courseDescription).subStr(0, 10)}</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    {course?.totalDuration}
-                                </div>
-                                <div>
-                                    <p>Progress: {course.progressPercentage || 0}%</p>
-                                    <ProgressBar
-                                        completed={course.progressPercentage || 0}
-                                        height="8px"
-                                        isLabelVisible={false}
-                                    />
-                                </div>
-                            </div>
-                        ))}
-                        </div>
-                    </div>
-                )
+            {!enrolledCourses ? (
+                <div>Loading...</div>
+            ) : (
+                <div className="border border-richblack-700 rounded-lg w-full h-full overflow-hidden">
+                    <Table>
+                        <Thead className=" bg-richblack-700">
+                            <Tr className="text-sm">
+                                <Th className="text-start font-medium px-4 py-4">
+                                    Course Name
+                                </Th>
+                                <Th className="text-start font-medium px-6 py-4">
+                                    Duration
+                                </Th>
+                                <Th className="text-start font-medium px-6 py-4">
+                                    Progress
+                                </Th>
+                            </Tr>
+                        </Thead>
+                        <Tbody>
+                            {!enrolledCourses.length ? (
+                                <Tr>
+                                    <Td>You haven't enrolled in any course</Td>
+                                </Tr>
+                            ) : (
+                                enrolledCourses.map((course, i) => (
+                                    <Tr
+                                        className={`${
+                                            i != enrolledCourses.length - 1
+                                                ? "border-b  border-richblack-700"
+                                                : ""
+                                        }`}
+                                    >
+                                        <Td className="flex gap-3 p-4">
+                                            <div className="w-[52px] h-[52px] object-fill ">
+                                                <img
+                                                    src={course?.thumbnail}
+                                                    className="rounded-md object-cover w-full h-full"
+                                                />
+                                            </div>
+                                            <div>
+                                                <p className=" font-medium">{course?.courseName}</p>
+                                                <p className=" text-richblack-300">
+                                                    {course?.courseDescription.length>50? (`${(course?.courseDescription).substring(
+                                                        0,
+                                                        50
+                                                    )}...`): (course?.courseDescription)}
+                                                </p>
+                                            </div>
+                                        </Td>
+                                        <Td>{course?.totalDuration}</Td>
+                                        <Td className="">
+                                            <div className="flex items-center justify-start p-4 gap-2 max-w-[250px] mr-0">
+                                                <div className="flex flex-col gap-2 w-[90%]">
+                                                    <p className=" text-xs text-richblack-50 font-semibold">
+                                                        Progress:{" "}
+                                                        {course.progressPercentage ||
+                                                            0}
+                                                        %
+                                                    </p>
+                                                    <ProgressBar
+                                                        completed={
+                                                            course.progressPercentage ||
+                                                            0
+                                                        }
+                                                        height="8px"
+                                                        isLabelVisible={false}
+                                                    />
+                                                </div>
+                                                <button className=" text-xl text-richblack-50">
+                                                    <SlOptionsVertical className="" />
+                                                </button>
+                                            </div>
+                                        </Td>
+                                    </Tr>
+                                ))
+                            )}
+                        </Tbody>
+                    </Table>
+                </div>
             )}
         </div>
     );

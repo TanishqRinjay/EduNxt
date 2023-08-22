@@ -8,16 +8,18 @@ import RatingStars from "../components/common/RatingStars";
 import getAvgRating from "../utils/avgRating";
 import { BiTime } from "react-icons/bi";
 import CourseContent from "../components/core/CourseDetails/CourseContent";
-import ConfirmationModal from "../components/common/ConfirmationModal"
-import formatDate from "../utils/formatDate"
-import Error from "./Error";
+import ConfirmationModal from "../components/common/ConfirmationModal";
+import formatDate from "../utils/formatDate";
+import { ACCOUNT_TYPE } from "../utils/constants";
+import { toast } from "react-hot-toast";
+import { addToCart } from "../slices/cartSlice";
 
 const CourseDetails = () => {
     const { courseId } = useParams();
     const { token } = useSelector((state) => state.auth);
     const { user } = useSelector((state) => state.profile);
-    const {loading} = useSelector((state)=>state.profile)
-    const {paymenLoading} = useSelector((state) => state.course)
+    const { loading } = useSelector((state) => state.profile);
+    const { paymenLoading } = useSelector((state) => state.course);
     const [course, setCourse] = useState(null);
     const [avgReviewCount, setAvgReviewCount] = useState(0);
     const [confirmationModal, setConfirmationModal] = useState(null);
@@ -25,12 +27,12 @@ const CourseDetails = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         const getCourse = async () => {
-            try{
-                const result = await fetchCourseDetails(courseId)
+            try {
+                const result = await fetchCourseDetails(courseId);
                 setCourse(result.data);
-                console.log(result)
-            }catch(e){
-                console.log("Error, unable to fetch details")
+                console.log(result);
+            } catch (e) {
+                console.log("Error, unable to fetch details");
             }
         };
         getCourse();
@@ -51,11 +53,28 @@ const CourseDetails = () => {
             text2: "Please login to continue",
             btn1Text: "Login",
             btn2Text: "Cancel",
-            btn1Handler: ()=>navigate("/login"),
-            btn2Handler: ()=>setConfirmationModal(null)
-        })
+            btn1Handler: () => navigate("/login"),
+            btn2Handler: () => setConfirmationModal(null),
+        });
     };
-    const handleAddToCart = () => {};
+    const handleAddToCart = () => {
+        if (user && user.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
+            toast.error("Instructor cannot buy any course");
+            return;
+        }
+        if (token) {
+            dispatch(addToCart(course.courseDetails));
+            return;
+        }
+        setConfirmationModal({
+            text1: "You are not logged in",
+            text2: "Please login to Add to Cart",
+            btn1Text: "Login",
+            btn2Text: "Cancel",
+            btn1Handler: () => navigate("/login"),
+            btn2Handler: () => setConfirmationModal(null),
+        });
+    };
 
     if (loading || !course) {
         return (
@@ -97,11 +116,18 @@ const CourseDetails = () => {
                                         Review_Count={avgReviewCount}
                                     />
                                     <span className=" text-richblack-400">
-                                        ({course?.courseDetails?.ratingAndReviews?.length}{" "}
+                                        (
+                                        {
+                                            course?.courseDetails
+                                                ?.ratingAndReviews?.length
+                                        }{" "}
                                         Reviews)
                                     </span>
                                     <span className=" text-richblack-100">
-                                        {course?.courseDetails?.studentsEnrolled?.length}{" "}
+                                        {
+                                            course?.courseDetails
+                                                ?.studentsEnrolled?.length
+                                        }{" "}
                                         Student(s) Enrolled
                                     </span>
                                 </div>
@@ -111,7 +137,9 @@ const CourseDetails = () => {
                                 </div>
                                 <div className="flex gap-1 items-center text-sm text-richblack-100">
                                     <BiTime />
-                                    {formatDate(course?.courseDetails?.createdAt)}
+                                    {formatDate(
+                                        course?.courseDetails?.createdAt
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -131,9 +159,15 @@ const CourseDetails = () => {
                     <p>{course?.whatYouWillLearn}</p>
                 </div>
             </div>
-            {/* {console.log("Yeh:",course.courseDetails)} */}
-            <CourseContent course={course?.courseDetails} totalDuration={course?.totalDurationInSeconds} />
-            {confirmationModal && <ConfirmationModal modalData={confirmationModal}></ConfirmationModal>}
+            <CourseContent
+                course={course?.courseDetails}
+                totalDuration={course?.totalDurationInSeconds}
+            />
+            {confirmationModal && (
+                <ConfirmationModal
+                    modalData={confirmationModal}
+                ></ConfirmationModal>
+            )}
         </div>
     );
 };

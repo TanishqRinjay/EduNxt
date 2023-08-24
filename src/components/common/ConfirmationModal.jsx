@@ -4,7 +4,7 @@ import IconBtn from "./IconBtn";
 const ConfirmationModal = ({ modalData }) => {
     return (
         <div className=" bg-[rgba(255,255,255,0.5)] top-[-3.5rem] left-0 z-10 h-[100vh] w-[100vw] absolute flex justify-center items-center">
-            <div className="flex justify-center flex-col gap-4 p-6 rounded-lg bg-richblack-900 text-richblack-800 font-semibold border-2 shadow-md border-richblack-25">
+            <div className="flex justify-center flex-col gap-4 p-6 rounded-lg bg-richblack-900 text-richblack-800 font-semibold border shadow-md border-richblack-25">
                 <p className=" text-xl text-richblack-5">{modalData.text1}</p>
                 <p className=" font-normal text-richblack-300">{modalData.text2}</p>
                 <div className="w-full flex gap-4">

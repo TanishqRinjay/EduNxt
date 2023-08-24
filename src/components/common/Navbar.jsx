@@ -9,6 +9,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import ProfileDropdown from "../core/Auth/ProfileDropdown";
 import { apiConnector } from "../../services/apiconnector";
 import { categories } from "../../services/apis";
+import { ACCOUNT_TYPE } from "../../utils/constants";
 
 const Navbar = () => {
     const { token } = useSelector((state) => state.auth);
@@ -63,7 +64,7 @@ const Navbar = () => {
                                                 <div className="absolute left-[50%] translate-y-[-10%] translate-x-[72%] top-0 h-6 w-6 rotate-45 -z-10 select-none bg-richblack-5"></div>
                                                 {loading ? (
                                                     <p>Loading...</p>
-                                                ) : subLinks.length ? (
+                                                ) : subLinks.length>0 ? (
                                                     <>
                                                     {subLinks
                                                         ?.filter(
@@ -90,7 +91,7 @@ const Navbar = () => {
                                                         ))}
                                                         </>
                                                 ) : (
-                                                    <div></div>
+                                                    <div>No options available</div>
                                                 )}
                                             </div>
                                         </div>
@@ -115,18 +116,18 @@ const Navbar = () => {
 
                 {/* Login/SignUp/Dashboard */}
 
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-row items-center gap-6">
                     {
                         //Cart is only available for Students and userType[2] consists of type="student"
                         // FOR CHECKING: userType[2].type === "student" &&
-                        user && user?.accountType === userType[2].type && (
+                        user && user?.accountType === ACCOUNT_TYPE.STUDENT && (
                             <Link
                                 to="/dashboard/cart"
-                                className="relative text-richblack-5 hover:text-richblack-100 text-xl"
+                                className="relative text-richblack-5 hover:text-richblack-100 text-[22px]"
                             >
                                 <AiOutlineShoppingCart />
                                 {totalItems > 0 ? (
-                                    <div className=" bg-pink-300 rounded-full flex items-center justify-center h-3 w-3 absolute -top-1 text-xs -right-1">
+                                    <div className="text-richblack-5 bg-pink-300 rounded-full flex items-center justify-center h-3 w-3 absolute text-[10px] -top-1 -right-1">
                                         {totalItems}
                                     </div>
                                 ) : (

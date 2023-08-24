@@ -60,6 +60,7 @@ const EnrolledCourses = () => {
                                                 ? "border-b  border-richblack-700"
                                                 : ""
                                         }`}
+                                        key={i}
                                     >
                                         <Td className="flex gap-3 p-4">
                                             <div className="w-[52px] h-[52px] object-fill ">

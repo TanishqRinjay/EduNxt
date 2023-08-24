@@ -5,19 +5,20 @@ import RenderTotalAmount from "./RenderTotalAmount";
 
 const Cart = () => {
     const { total, totalItems } = useSelector((state) => state.cart);
-
+    console.log("Total: ", total)
+    console.log("TotalItems: ", totalItems)
     return (
-        <div className="text-richblack-5">
-            <h1>Courses</h1>
-            <p>{totalItems} Courses are in your Cart</p>
+        <div className="text-richblack-5 flex flex-col gap-4">
+            <h1 className=" font-medium text-3xl">Checkout:</h1>
+            <p className=" text-richblack-100 border-b border-richblack-50">Order Summary ( {totalItems} Item(s) ):</p>
             {
                 total > 0 ?
-                (<div>
+                (<div className="flex md:flex-row flex-col md:justify-between justify-center md:items-start items-center">
                     <RenderCartCourses/>
                     <RenderTotalAmount/>
                 </div>)
                 :
-                (<p>Your Cart is empty.</p>)
+                (<p className="text-3xl flex justify-center my-10">Your Cart is empty</p>)
             }
         </div>
     );

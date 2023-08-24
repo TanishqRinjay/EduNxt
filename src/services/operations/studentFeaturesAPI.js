@@ -130,7 +130,7 @@ const verifyPayment = async (bodyData, token, navigate, dispatch) => {
         }
         toast.success("Payment successful, course purchased!");
         navigate("/dashboard/enrolled-courses");
-        dispatch(resetCart());
+        bodyData.courses.length>1 && dispatch(resetCart()) ;
     } catch (err) {
         console.log("Error in verifying payment: ", err);
         toast.error("Could not verify payment");

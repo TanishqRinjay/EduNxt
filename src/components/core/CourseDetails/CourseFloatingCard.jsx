@@ -1,24 +1,46 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import IconBtn from "../../common/IconBtn";
 import { FaShareSquare } from "react-icons/fa";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import copy from "copy-to-clipboard";
+import { useSelector } from "react-redux";
 
 const CourseFloatingCard = ({
     course,
     handleAddToCart,
     handleBuyCourse,
-    user,
     courseId,
+    user,
 }) => {
     const navigate = useNavigate();
+    const { cart } = useSelector((state) => state.cart);
+    const [inCartStatus, setInCartStatus] = useState(false)
 
     const handleShare = () => {
         copy(window.location.href);
         toast.success("Link copied to Clipboard");
     };
+
+    // console.log("cart dekh lo: ", cart[1]._id)
+    // console.log("Course dekh lo: ", course._id)
+    
+    const isInCart = ()=>{
+        if(cart.length<1){
+            return
+        }
+        cart.forEach(item => {
+            if(item._id == course._id){
+                setInCartStatus(true)
+                console.log("true")
+                return
+            }
+        });
+    }
+    useEffect(()=>{
+        isInCart()
+    },[])
 
     return (
         <div className="w-[32%] relative">
@@ -58,17 +80,21 @@ const CourseFloatingCard = ({
                                 onclick={handleBuyCourse}
                                 text={"Buy Now"}
                             />
-                            <IconBtn
-                                customClasses={
-                                    "bg-richblack-800 text-richblack-5 font-medium flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.28)] hover:scale-95 transition-all duration-200 hover:shadow-none"
-                                }
-                                onclick={handleAddToCart}
-                                text={"Add to cart"}
-                            />
+                            {inCartStatus ? (
+                                ""
+                            ) : (
+                                <IconBtn
+                                    customClasses={
+                                        "bg-richblack-800 text-richblack-5 font-medium flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.28)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                                    }
+                                    onclick={()=>{handleAddToCart(); isInCart()}}
+                                    text={"Add to cart"}
+                                />
+                            )}
                         </React.Fragment>
                     )}
                     <div>
-                        <p className="flex justify-center text-sm text-richblack-50">
+                        <p className="flex justify-center text-sm text-richblack-50 git">
                             30-Days Money-Back Guarantee
                         </p>
                     </div>

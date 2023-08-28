@@ -23,6 +23,7 @@ import MyCourses from "./components/core/Dashboard/MyCourses";
 import EditCourse from "./components/core/Dashboard/EditCourse/Index";
 import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
+import ViewCourse from "./pages/ViewCourse";
 
 function App() {
     const { user } = useSelector((state) => state.profile);
@@ -34,6 +35,23 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/catalog/:catalogName" element={<Catalog />} />
                 <Route path="/courses/:courseId" element={<CourseDetails />} />
+                <Route
+                    element={
+                        <PrivateRoute>
+                            <ViewCourse />
+                        </PrivateRoute>
+                    }
+                >
+                    {
+                        user?.accountType === ACCOUNT_TYPE.STUDENT && (
+                            <>
+                                <Route path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                                element={<ViewCourse/>}
+                                />
+                            </>
+                        )
+                    }
+                </Route>
                 <Route
                     path="/login"
                     element={
@@ -104,8 +122,14 @@ function App() {
                                 path="/dashboard/add-course"
                                 element={<AddCourse />}
                             />
-                            <Route path="/dashboard/my-courses" element={<MyCourses />} />
-                            <Route path="/dashboard/edit-course/:courseId" element={<EditCourse />} />
+                            <Route
+                                path="/dashboard/my-courses"
+                                element={<MyCourses />}
+                            />
+                            <Route
+                                path="/dashboard/edit-course/:courseId"
+                                element={<EditCourse />}
+                            />
                         </>
                     )}
                 </Route>

@@ -4,10 +4,12 @@ import { getUserEnrolledCourses } from "../../../services/operations/profileAPI"
 import ProgressBar from "@ramonak/react-progress-bar";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import { SlOptionsVertical } from "react-icons/sl";
+import { useNavigate } from "react-router-dom";
 
 const EnrolledCourses = () => {
     const [enrolledCourses, setEnrolledCourses] = useState(null);
     const { token } = useSelector((state) => state.auth);
+    const navigate = useNavigate()
     const dispatch = useDispatch();
 
     const getEnrolledCourses = async () => {
@@ -55,12 +57,15 @@ const EnrolledCourses = () => {
                             ) : (
                                 enrolledCourses.map((course, i) => (
                                     <Tr
-                                        className={`${
+                                        className={` cursor-pointer ${
                                             i != enrolledCourses.length - 1
                                                 ? "border-b  border-richblack-700"
                                                 : ""
                                         }`}
                                         key={i}
+                                        onClick={()=>{
+                                            navigate(`/view-course/${course?._id}/section/${course?.courseContent?.[0]._id}/sub-section/${course?.courseContent?.[0]?.subSection?.[0]?._id}`)
+                                        }}
                                     >
                                         <Td className="flex gap-3 p-4">
                                             <div className="w-[52px] h-[52px] object-fill ">

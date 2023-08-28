@@ -31,11 +31,11 @@ const CourseReviewModal = ({ setReviewModal }) => {
             },
             token
         );
-        setReviewModal(null);
+        setReviewModal(false);
     };
 
     return (
-        <div>
+        <div className="w-screen h-screen">
             <div>
                 <div>
                     {/* Modal Heading */}
@@ -94,7 +94,7 @@ const CourseReviewModal = ({ setReviewModal }) => {
                             <button
                                 type="button"
                                 className="bg-richblack-800 text-richblack-5 font-medium flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.28)] hover:scale-95 transition-all duration-200 hover:shadow-none"
-                                onClick={setReviewModal(null)}
+                                onClick={setReviewModal(false)}
                             >
                                 Cancel
                             </button>

@@ -64,7 +64,7 @@ const EnrolledCourses = () => {
                                         }`}
                                         key={i}
                                         onClick={()=>{
-                                            navigate(`/view-course/${course?._id}/section/${course?.courseContent?.[0]._id}/sub-section/${course?.courseContent?.[0]?.subSection?.[0]?._id}`)
+                                            navigate(`/view-course/${course?._id}/section/${course?.courseContent?.[0]._id}/sub-section/${course?.courseContent?.[0]?.subSections?.[0]?._id}`)
                                         }}
                                     >
                                         <Td className="flex gap-3 p-4">

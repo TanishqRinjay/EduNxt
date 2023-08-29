@@ -18,7 +18,7 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
         totalNoOfLectures,
         completedLectures,
     } = useSelector((state) => state.viewCourse);
-
+    // console.log("Course Entire data: ", courseEntireData)
     useEffect(() => {
         (() => {
             if (!courseSectionData.length) return;
@@ -27,9 +27,9 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
             );
             const currentSubSectionIndex = courseSectionData?.[
                 currentSectionIndex
-            ]?.subSection.findIndex((data) => data._id === subSectionId);
+            ]?.subSections.findIndex((data) => data._id === subSectionId);
             const activeSubSectionId =
-                courseSectionData[currentSectionIndex]?.subSection[
+                courseSectionData[currentSectionIndex]?.subSections[
                     currentSubSectionIndex
                 ]._id;
             //Setting current section here
@@ -40,8 +40,8 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
     }, [courseSectionData, courseEntireData, location.pathname]);
 
     return (
-        <div className="">
-            <div className="flex min-w-[222px] flex-col border-r-[1px] border-r-richblack-700 h-[calc(100vh-3.5rem)] bg-richblack-800 py-10">
+        <div className=" text-richblack-5">
+            <div className="flex min-w-[222px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10">
                 {/* For buttons and heading */}
                 <div>
                     {/* for Buttons */}
@@ -88,20 +88,40 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                                 )}
                             </div>
                             <div>
-                                {activeStatus === section?._id && <div>
-                                    {
-                                        section?.subSection((lecture, i)=>(
-                                            <div className={` flex justify-between p-4 ${videoBarActive === lecture._id? "bg-yellow-200 text-richblack-900" :" bg-richblack-900 text-richblack-5"}`} key={i} onClick={()=>{
-                                                navigate(`/view-course/${courseEntireData?._id}/section/${section?._id}/sub-section/${lecture._id}`)
-                                                setVideoBarActive(lecture?._id)
-                                            }}>
-                                                <input type="checkbox" checked={completedLectures.includes(lecture._id)} onChange={()=>{}} />
-                                                <span>{lecture.title}</span>
-                                            </div>
-                                        ))
-                                    }
+                                {activeStatus === section?._id && (
+                                    <div>
+                                        {section?.subSections.map(
+                                            (lecture, i) => (
+                                                <div
+                                                    className={` flex justify-between p-4 ${
+                                                        videoBarActive ===
+                                                        lecture._id
+                                                            ? "bg-yellow-200 text-richblack-900"
+                                                            : " bg-richblack-900 text-richblack-5"
+                                                    }`}
+                                                    key={i}
+                                                    onClick={() => {
+                                                        navigate(
+                                                            `/view-course/${courseEntireData?._id}/section/${section?._id}/sub-section/${lecture._id}`
+                                                        );
+                                                        setVideoBarActive(
+                                                            lecture?._id
+                                                        );
+                                                    }}
+                                                >
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={completedLectures.includes(
+                                                            lecture._id
+                                                        )}
+                                                        onChange={() => {}}
+                                                    />
+                                                    <span>{lecture.title}</span>
+                                                </div>
+                                            )
+                                        )}
                                     </div>
-                                    }
+                                )}
                             </div>
                         </div>
                     ))}

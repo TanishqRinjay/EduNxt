@@ -18,7 +18,6 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
         totalNoOfLectures,
         completedLectures,
     } = useSelector((state) => state.viewCourse);
-    // console.log("Course Entire data: ", courseEntireData)
     useEffect(() => {
         (() => {
             if (!courseSectionData.length) return;
@@ -35,7 +34,7 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
             //Setting current section here
             setActiveStatus(courseSectionData?.[currentSectionIndex]?._id);
             //Setting current SubSection here
-            setVideoBarActive(courseSectionData?.[activeSubSectionId]);
+            setVideoBarActive(activeSubSectionId);
         })();
     }, [courseSectionData, courseEntireData, location.pathname]);
 

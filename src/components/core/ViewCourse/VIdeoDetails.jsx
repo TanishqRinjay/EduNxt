@@ -6,6 +6,7 @@ import { updateCompletedLectures } from "../../../slices/viewCourseSlice";
 import { Player } from "video-react";
 import { FaPlay } from "react-icons/fa";
 import IconBtn from "../../common/IconBtn";
+import { markLectureAsComplete } from "../../../services/operations/courseDetailsAPI";
 import "video-react/dist/video-react.css";
 
 const VideoDetails = () => {
@@ -14,7 +15,7 @@ const VideoDetails = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     const playerRef = useRef();
-    const token = useSelector((state) => state.auth);
+    const {token} = useSelector((state) => state.auth);
     const { courseSectionData, courseEntireData, completedLectures } =
         useSelector((state) => state.viewCourse);
 
@@ -33,7 +34,7 @@ const VideoDetails = () => {
                 const filteredData = courseSectionData.filter(
                     (section) => section._id === sectionId
                 );
-                const filteredVideoData = filteredData.filter(
+                const filteredVideoData = filteredData?.[0].subSections.filter(
                     (subSection) => subSection._id === subSectionId
                 );
                 setVideoData(filteredVideoData[0]);
@@ -117,12 +118,12 @@ const VideoDetails = () => {
         const noOfSubSections =
             courseSectionData[currentSectionIndex].subSections.length;
         if (currentSubSectionIndex !== 0) {
-            //Same section ki next video
+            //Same section ki prev video
             const prevSubSectionId =
                 courseSectionData[currentSectionIndex].subSections[
-                    currentSectionIndex - 1
+                    currentSubSectionIndex - 1
                 ]._id;
-            //Navigating to next video
+            //Navigating to prev video
             navigate(
                 `/view-course/${courseId}/section/${sectionId}/sub-section/${prevSubSectionId}`
             );
@@ -137,88 +138,93 @@ const VideoDetails = () => {
                 ]._id;
             navigate(
                 `/view-course/${courseId}/section/${prevSectionId}/sub-section/${lastSubSectionId}`
-            );
-        }
-    };
+                );
+            }
+        };
     const handleLectureCompletion = async () => {
         // we are writing dummy code that needs to be replaced later on
         setLoading(true);
 
-        // const res = await markLectureAsComplete(
-        //     {
-        //         courseId: courseId,
-        //         subSectionId: subSectionId,
-        //     },
-        //     token
-        // );
+        const res = await markLectureAsComplete(
+            {
+                courseId: courseId,
+                subSectionId: subSectionId,
+            },
+            token
+        );
 
-        // if (res) {
-        //     dispatch(updateCompletedLectures(subSectionId));
-        // }
+        if (res) {
+            dispatch(updateCompletedLectures(subSectionId));
+        }
         setLoading(false);
     };
-
     return (
         <div className=" text-richblack-5">
             {!videoData ? (
                 <div>No video found</div>
             ) : (
-                <div>
-                    <Player
-                        ref={playerRef}
-                        // aspectRatio="16:9"
-                        playsInline
-                        onEnded={() => setVideoEnded(true)}
-                        src={videoData?.videoUrl}
-                    >
-                        <FaPlay />
-                        {videoEnded && (
-                            <div>
-                                {!completedLectures.includes(subSectionId) && (
-                                    <IconBtn
-                                        customClasses={
-                                            "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
-                                        }
-                                        disabled={loading}
-                                        onclick={handleLectureCompletion}
-                                        text={loading? "Mark as completed" : "Loading..."}
-                                    />
-                                )}
+                <Player
+                    ref={playerRef}
+                    aspectRatio="16:9"
+                    playsInline
+                    onEnded={() => setVideoEnded(true)}
+                    src={videoData?.videoUrl}
+                >
+                    <FaPlay />
+                    {videoEnded && (
+                        <div>
+                            {!completedLectures.includes(subSectionId) && (
                                 <IconBtn
-                                        customClasses={
-                                            "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
-                                        }
+                                    customClasses={
+                                        "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                                    }
+                                    disabled={loading}
+                                    onclick={()=>handleLectureCompletion()}
+                                    text={
+                                        loading
+                                            ? "Loading..."
+                                            : "Mark as completed"
+                                    }
+                                />
+                            )}
+                            <IconBtn
+                                customClasses={
+                                    "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                                }
+                                disabled={loading}
+                                onclick={() => {
+                                    if (playerRef?.current) {
+                                        playerRef.current?.seek(0);
+                                        setVideoEnded(false);
+                                    }
+                                }}
+                                text={"Rewatch"}
+                            />
+                            <div>
+                                {!isFirstVideo() && (
+                                    <button
                                         disabled={loading}
-                                        onclick={()=>{
-                                            if(playerRef?.current){
-                                                playerRef.current?.seek(0)
-                                                setVideoEnded(false)
-                                            }
-                                        }}
-                                        text={"Rewatch"}
-                                    />
-                                    <div>
-                                        {
-                                            !isFirstVideo() && (
-                                                <button disabled={loading} onClick={goToPrevVideo} className=" bg-richblack-800">
-                                                    Prev
-                                                </button>
-                                            )
-                                        }
-                                    </div>
-                                    <div>
-                                        {
-                                            !isLastVideo() && (
-                                                <button disabled={loading} onClick={goToNextVideo} className=" bg-richblack-800">
-                                                    Next
-                                                </button>
-                                            )
-                                        }
-                                    </div>
+                                        onClick={goToPrevVideo}
+                                        className=" bg-richblack-800"
+                                    >
+                                        Prev
+                                    </button>
+                                )}
                             </div>
-                        )}
-                    </Player>
-                </div>
+                            <div>
+                                {!isLastVideo() && (
+                                    <button
+                                        disabled={loading}
+                                        onClick={goToNextVideo}
+                                        className=" bg-richblack-800"
+                                    >
+                                        Next
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </Player>
             )}
             <h1>{videoData?.title}</h1>
             <p>{videoData?.description}</p>

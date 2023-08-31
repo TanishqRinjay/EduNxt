@@ -8,7 +8,7 @@ import VideoDetailsSidebar from "../components/core/ViewCourse/VideoDetailsSideb
 import CourseReviewModal from "../components/core/ViewCourse/CourseReviewModal";
 
 const ViewCourse = () => {
-    const [reviewModal, setReviewModal] = useState(null);
+    const [reviewModal, setReviewModal] = useState(false);
     const courseId = useParams();
     const {token} = useSelector((state)=>state.auth)
     const dispatch = useDispatch()
@@ -36,7 +36,7 @@ const ViewCourse = () => {
                 </div>
             </div>
             {
-                // reviewModal && <CourseReviewModal setReviewModal={setReviewModal}/>
+                reviewModal && <CourseReviewModal setReviewModal={setReviewModal}/>
             }
         </div>
     );

@@ -35,12 +35,12 @@ const CourseReviewModal = ({ setReviewModal }) => {
     };
 
     return (
-        <div className="w-screen h-screen">
+        <div className="w-screen h-screen text-white">
             <div>
                 <div>
                     {/* Modal Heading */}
                     <p>Add a Review</p>
-                    <button onClick={setReviewModal(false)}>
+                    <button onClick={()=>setReviewModal(false)}>
                         <MdClose />
                     </button>
                 </div>
@@ -81,7 +81,7 @@ const CourseReviewModal = ({ setReviewModal }) => {
                                 {...register("courseExperience", {
                                     required: true,
                                 })}
-                                className="min-h-[130px] w-full"
+                                className="min-h-[130px] w-full text-black"
                             />
                             {errors.courseExperience && (
                                 <span>Please add your experience</span>
@@ -94,7 +94,7 @@ const CourseReviewModal = ({ setReviewModal }) => {
                             <button
                                 type="button"
                                 className="bg-richblack-800 text-richblack-5 font-medium flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.28)] hover:scale-95 transition-all duration-200 hover:shadow-none"
-                                onClick={setReviewModal(false)}
+                                onClick={()=>setReviewModal(false)}
                             >
                                 Cancel
                             </button>

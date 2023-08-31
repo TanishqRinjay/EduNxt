@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const EnrolledCourses = () => {
     const [enrolledCourses, setEnrolledCourses] = useState(null);
     const { token } = useSelector((state) => state.auth);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const getEnrolledCourses = async () => {
@@ -27,7 +27,12 @@ const EnrolledCourses = () => {
 
     return (
         <div className="text-richblack-5 w-full h-full flex flex-col items-center justify-center gap-5">
-            <p className="w-full justify-start text-sm text-richblack-300">Home / Dashboard / <span className=" text-yellow-50 text-sm font-medium">Enrolled Courses</span></p>
+            <p className="w-full justify-start text-sm text-richblack-300">
+                Home / Dashboard /{" "}
+                <span className=" text-yellow-50 text-sm font-medium">
+                    Enrolled Courses
+                </span>
+            </p>
             <h2 className="w-full text-3xl text-richblack-5 flex justify-start mb-5 font-medium">
                 Enrolled Courses
             </h2>
@@ -51,9 +56,13 @@ const EnrolledCourses = () => {
                         </Thead>
                         <Tbody>
                             {!enrolledCourses.length ? (
-                                <Tr>
-                                    <Td>You haven't enrolled in any course</Td>
-                                </Tr>
+                                <div className="p-3">
+                                    <Tr>
+                                        <Td>
+                                            You haven't enrolled in any course
+                                        </Td>
+                                    </Tr>
+                                </div>
                             ) : (
                                 enrolledCourses.map((course, i) => (
                                     <Tr
@@ -63,8 +72,10 @@ const EnrolledCourses = () => {
                                                 : ""
                                         }`}
                                         key={i}
-                                        onClick={()=>{
-                                            navigate(`/view-course/${course?._id}/section/${course?.courseContent?.[0]._id}/sub-section/${course?.courseContent?.[0]?.subSections?.[0]?._id}`)
+                                        onClick={() => {
+                                            navigate(
+                                                `/view-course/${course?._id}/section/${course?.courseContent?.[0]._id}/sub-section/${course?.courseContent?.[0]?.subSections?.[0]?._id}`
+                                            );
                                         }}
                                     >
                                         <Td className="flex gap-3 p-4">
@@ -75,12 +86,17 @@ const EnrolledCourses = () => {
                                                 />
                                             </div>
                                             <div>
-                                                <p className=" font-medium">{course?.courseName}</p>
+                                                <p className=" font-medium">
+                                                    {course?.courseName}
+                                                </p>
                                                 <p className=" text-richblack-300">
-                                                    {course?.courseDescription.length>50? (`${(course?.courseDescription).substring(
-                                                        0,
-                                                        50
-                                                    )}...`): (course?.courseDescription)}
+                                                    {course?.courseDescription
+                                                        .length > 50
+                                                        ? `${(course?.courseDescription).substring(
+                                                              0,
+                                                              50
+                                                          )}...`
+                                                        : course?.courseDescription}
                                                 </p>
                                             </div>
                                         </Td>

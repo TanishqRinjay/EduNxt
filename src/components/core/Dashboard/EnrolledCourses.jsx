@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
-import { SlOptionsVertical } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
 
 const EnrolledCourses = () => {
     const [enrolledCourses, setEnrolledCourses] = useState(null);
     const { token } = useSelector((state) => state.auth);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const getEnrolledCourses = async () => {
         try {
@@ -100,7 +98,7 @@ const EnrolledCourses = () => {
                                                 </p>
                                             </div>
                                         </Td>
-                                        <Td>{course?.totalDuration}</Td>
+                                        <Td><p className="px-6 py-4">{course?.totalDuration}</p></Td>
                                         <Td className="">
                                             <div className="flex items-center justify-start p-4 gap-2 max-w-[250px] mr-0">
                                                 <div className="flex flex-col gap-2 w-[90%]">
@@ -119,9 +117,6 @@ const EnrolledCourses = () => {
                                                         isLabelVisible={false}
                                                     />
                                                 </div>
-                                                <button className=" text-xl text-richblack-50">
-                                                    <SlOptionsVertical className="" />
-                                                </button>
                                             </div>
                                         </Td>
                                     </Tr>

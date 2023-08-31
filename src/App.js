@@ -25,6 +25,7 @@ import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
 import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
+import Contact from "./pages/Contact";
 
 function App() {
     const { user } = useSelector((state) => state.profile);
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/catalog/:catalogName" element={<Catalog />} />
                 <Route path="/courses/:courseId" element={<CourseDetails />} />
+                <Route path="/contact" element={<Contact/>}/>
                 <Route
                     element={
                         <PrivateRoute>

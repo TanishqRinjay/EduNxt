@@ -1,10 +1,8 @@
 import React from "react";
-// import Swiper from 'swiper'
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-// import {FreeMode, Pagination} from "swiper"
 import { Keyboard, Scrollbar, Autoplay, Pagination, Navigation } from "swiper/modules";
 import CourseCard from "./CourseCard";
 

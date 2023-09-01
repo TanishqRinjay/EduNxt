@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import IconBtn from "../../common/IconBtn";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
-import { IoIosArrowDown, IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowDown,  IoIosArrowForward } from "react-icons/io";
+import { updateCompletedLectures } from "../../../slices/viewCourseSlice";
+import { markLectureAsComplete } from "../../../services/operations/courseDetailsAPI";
 import CourseReviewModal from "./CourseReviewModal";
+import { toast } from "react-hot-toast";
 
 const VideoDetailsSidebar = ({ setReviewModal }) => {
+    const {token} = useSelector((state)=>state.auth)
+    const [loading, setLoading] = useState(false)
     const [activeStatus, setActiveStatus] = useState("");
     const [videoBarActive, setVideoBarActive] = useState("");
+    const dispatch = useDispatch()
     const navigate = useNavigate();
     const location = useLocation();
-    const { sectionId, subSectionId } = useParams();
+    const {courseId, sectionId, subSectionId } = useParams();
     const {
         courseSectionData,
         courseEntireData,
@@ -39,22 +45,22 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
     }, [courseSectionData, courseEntireData, location.pathname]);
 
     return (
-        <div className=" text-richblack-5">
-            <div className="flex min-w-[222px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10">
+        <div className="flex min-w-[222px] flex-col border-r-[1px] border-r-richblack-700 h-[calc(100vh-3.5rem)] bg-richblack-800 py-2 text-white">
+            <div className="flex flex-col">
                 {/* For buttons and heading */}
-                <div>
+                <div className="flex flex-col gap-2">
                     {/* for Buttons */}
-                    <div>
+                    <div className="flex justify-between pr-4">
                         <button
                             onClick={() =>
                                 navigate("/dashboard/enrolled-courses")
                             }
                         >
-                            <IoChevronBackCircleSharp />
+                            <IoChevronBackCircleSharp className=" text-4xl" />
                         </button>
                         <IconBtn
                             customClasses={
-                                "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                                "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-3 py-2 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
                             }
                             onclick={() => {
                                 setReviewModal(true);
@@ -63,9 +69,9 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                         />
                     </div>
                     {/* for heading and title */}
-                    <div>
-                        <p>{courseEntireData?.courseName}</p>
-                        <p>
+                    <div className="p-1">
+                        <p className=" text-xl font-medium">{courseEntireData?.courseName}</p>
+                        <p className=" text-sm text-end">
                             {completedLectures?.length}/{totalNoOfLectures}
                         </p>
                     </div>
@@ -77,14 +83,15 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                         <div
                             onClick={() => setActiveStatus(section._id)}
                             key={index}
+                            className=" cursor-pointer"
                         >
-                            <div>
-                                <div>{section?.sectionName}</div>
+                            <div className="flex justify-between items-center bg-richblack-900 px-5 py-4 border-y border-richblack-700 font-medium">
                                 {activeStatus === section?._id ? (
-                                    <IoIosArrowDown />
+                                    <IoIosArrowDown className="text-lg" />
                                 ) : (
-                                    <IoIosArrowBack />
+                                    <IoIosArrowForward className="text-lg" />
                                 )}
+                                <div className=" bg-richblack-900">{section?.sectionName}</div>
                             </div>
                             <div>
                                 {activeStatus === section?._id && (
@@ -92,11 +99,11 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                                         {section?.subSections.map(
                                             (lecture, i) => (
                                                 <div
-                                                    className={` flex justify-between p-4 ${
+                                                    className={` flex justify-between p-3 border-y border-richblack-900 text-sm ${
                                                         videoBarActive ===
                                                         lecture._id
                                                             ? "bg-yellow-200 text-richblack-900"
-                                                            : " bg-richblack-900 text-richblack-5"
+                                                            : " bg-richblack-700 text-richblack-5"
                                                     }`}
                                                     key={i}
                                                     onClick={() => {
@@ -113,7 +120,6 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                                                         checked={completedLectures.includes(
                                                             lecture._id
                                                         )}
-                                                        onChange={() => {}}
                                                     />
                                                     <span>{lecture.title}</span>
                                                 </div>

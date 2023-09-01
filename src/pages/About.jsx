@@ -9,7 +9,7 @@ import StatsComponent from "../components/core/AboutPage/StatsComponent";
 import LearningGrid from "../components/core/AboutPage/LearningGrid";
 import ContactFormSection from "../components/core/AboutPage/ContactFormSection";
 import FooterSection from "../components/common/FooterSection"
-// import ReviewSlider from "../components/core/AboutPage/ReviewSlider";
+import ReviewSection from "../components/core/HomePage/ReviewSection";
 
 const About = () => {
     return (
@@ -49,7 +49,7 @@ const About = () => {
             </section>
 
             {/* Section 3 */}
-            <section className="">
+            <section>
                 <div>
                     {/* Founding Story div */}
                     <div className="flex flex-row justify-center gap-32 h-full py-[90px]">
@@ -136,10 +136,10 @@ const About = () => {
             </section>
 
             {/* Section 7 */}
-            <section className="text-richblack-300 text-4xl my-[100px]">
-                <div>
-                    Reviews from other learners
-                    {/* ReviewSlider */}
+            <section className="text-richblack-300 text-4xl my-[100px] w-11/12">
+                <div className="w-full flex items-center flex-col gap-8">
+                    <p>Reviews from other learners</p>
+                    <ReviewSection/>
                 </div>
             </section>
 

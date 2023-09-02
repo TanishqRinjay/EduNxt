@@ -2,22 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import IconBtn from "../../common/IconBtn";
-import { IoChevronBackCircleSharp } from "react-icons/io5";
-import { IoIosArrowDown,  IoIosArrowForward } from "react-icons/io";
-import { updateCompletedLectures } from "../../../slices/viewCourseSlice";
-import { markLectureAsComplete } from "../../../services/operations/courseDetailsAPI";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
+import { IoIosArrowDown,  IoIosArrowBack } from "react-icons/io";
 import CourseReviewModal from "./CourseReviewModal";
-import { toast } from "react-hot-toast";
 
 const VideoDetailsSidebar = ({ setReviewModal }) => {
-    const {token} = useSelector((state)=>state.auth)
-    const [loading, setLoading] = useState(false)
     const [activeStatus, setActiveStatus] = useState("");
     const [videoBarActive, setVideoBarActive] = useState("");
-    const dispatch = useDispatch()
     const navigate = useNavigate();
     const location = useLocation();
-    const {courseId, sectionId, subSectionId } = useParams();
+    const {sectionId, subSectionId } = useParams();
     const {
         courseSectionData,
         courseEntireData,
@@ -45,22 +39,29 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
     }, [courseSectionData, courseEntireData, location.pathname]);
 
     return (
-        <div className="flex min-w-[222px] flex-col border-r-[1px] border-r-richblack-700 h-[calc(100vh-3.5rem)] bg-richblack-800 py-2 text-white">
+        <div className="flex min-w-[222px] flex-col border-r-[1px] border-r-richblack-700 h-[calc(100vh-3.5rem)] bg-richblack-800 text-white">
             <div className="flex flex-col">
                 {/* For buttons and heading */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 p-4">
                     {/* for Buttons */}
-                    <div className="flex justify-between pr-4">
+                    <div className="flex flex-col gap-2 justify-between pr-4">
                         <button
                             onClick={() =>
                                 navigate("/dashboard/enrolled-courses")
                             }
                         >
-                            <IoChevronBackCircleSharp className=" text-4xl" />
+                            <MdOutlineKeyboardBackspace className=" text-3xl text-yellow-50 " />
                         </button>
+                    {/* for heading and title */}
+                    <div className="flex items-center gap-4 p-1">
+                        <p className=" text-xl font-medium">{courseEntireData?.courseName}</p>
+                        <p className=" text-caribbeangreen-200 text-sm text-end">
+                            {completedLectures?.length}/{totalNoOfLectures}
+                        </p>
+                    </div>
                         <IconBtn
                             customClasses={
-                                "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-3 py-2 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                                "bg-yellow-50 text-richblack-900 font-medium flex items-center justify-center gap-2 rounded-lg px-3 py-2 hover:scale-95 transition-all duration-200 hover:shadow-none w-[70%]"
                             }
                             onclick={() => {
                                 setReviewModal(true);
@@ -68,16 +69,10 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                             text={"Add Review"}
                         />
                     </div>
-                    {/* for heading and title */}
-                    <div className="p-1">
-                        <p className=" text-xl font-medium">{courseEntireData?.courseName}</p>
-                        <p className=" text-sm text-end">
-                            {completedLectures?.length}/{totalNoOfLectures}
-                        </p>
-                    </div>
+                        <div className="my-3 h-[1.5px] bg-richblack-700"></div>
                 </div>
                 {/* For Sections and Sub Sections */}
-                <div>
+                <div className="flex flex-col gap-2">
                     {/* We're mapping for creating sections */}
                     {courseSectionData?.map((section, index) => (
                         <div
@@ -85,13 +80,13 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                             key={index}
                             className=" cursor-pointer"
                         >
-                            <div className="flex justify-between items-center bg-richblack-900 px-5 py-4 border-y border-richblack-700 font-medium">
+                            <div className="flex justify-between items-center bg-richblack-700 px-5 py-4 border-y border-richblack-700 font-medium">
+                                <div className=" bg-richblack-700">{section?.sectionName}</div>
                                 {activeStatus === section?._id ? (
                                     <IoIosArrowDown className="text-lg" />
                                 ) : (
-                                    <IoIosArrowForward className="text-lg" />
+                                    <IoIosArrowBack className="text-lg" />
                                 )}
-                                <div className=" bg-richblack-900">{section?.sectionName}</div>
                             </div>
                             <div>
                                 {activeStatus === section?._id && (
@@ -99,11 +94,11 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                                         {section?.subSections.map(
                                             (lecture, i) => (
                                                 <div
-                                                    className={` flex justify-between p-3 border-y border-richblack-900 text-sm ${
+                                                    className={` flex gap-4 p-3 border-y border-richblack-900 text-sm ${
                                                         videoBarActive ===
                                                         lecture._id
                                                             ? "bg-yellow-200 text-richblack-900"
-                                                            : " bg-richblack-700 text-richblack-5"
+                                                            : " bg-richblack-800 text-richblack-5"
                                                     }`}
                                                     key={i}
                                                     onClick={() => {

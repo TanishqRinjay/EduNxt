@@ -54,7 +54,7 @@ const About = () => {
                     {/* Founding Story div */}
                     <div className="flex flex-row justify-center gap-32 h-full py-[90px]">
                         <div className="flex flex-col text-richblack-300 w-[35%] gap-4 h-full">
-                            <h2 className="text-4xl font-semibold mb-4">
+                            <h2 className="text-4xl font-semibold mb-4 redHighlightText">
                                 Our Founding Story
                             </h2>
                             <p>
@@ -89,7 +89,7 @@ const About = () => {
                     {/* Vision and Mission div */}
                     <div className="flex flex-row gap-32 text-richblack-300 justify-center items-center py-[90px]">
                         <div className="w-[35%] flex flex-col gap-14">
-                            <h2 className="text-4xl font-semibold">
+                            <h2 className="text-4xl font-semibold orangeHighlightText">
                                 Our Vision
                             </h2>
                             <p className=" text-richblack-300">
@@ -105,7 +105,7 @@ const About = () => {
                         </div>
                         <div className="w-[35%] flex flex-col gap-14">
                             <h2 className="text-4xl font-semibold">
-                                Our Mission
+                                <HighlightText text={"Our Mission"}/>
                             </h2>
                             <p className=" text-richblack-300">
                                 our mission goes beyond just delivering courses

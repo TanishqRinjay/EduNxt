@@ -42,15 +42,16 @@ const ReviewSection = () => {
     };
 
     return (
-        <div className="text-richblack-5 lg:w-[80%] w-full">
+        <div className="text-richblack-5 lg:w-[80%]">
             <div className=" h-[190px] max-w-maxContent">
                 <Swiper
-                    slidesPerView={4}
+                    slidesPerView={3}
                     spaceBetween={24}
                     loop={true}
                     freeMode={true}
                     autoplay={{
-                        delay: 4000,
+                        delay: 2500,
+                        disableOnInteraction:false
                     }}
                     modules={[FreeMode, Pagination, Autoplay]}
                     className="w-full"

@@ -121,16 +121,16 @@ const Home = () => {
                         linkto: "/login",
                         active: false,
                     }}
-                    codeblock={`<!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <title>Document</title>
-                    </head>
-                    <body>
-                        <h1>Let's Learn</h1>
-                        <h2>HTML</h2>
-                    </body>
-                    </html>`}
+                    codeblock={`const App = () => {
+                        const [isModal,setModal] = useState(false);
+                        return (
+                          <>
+                            <button onClick={()=>setModal()}>Click</button>
+                            <Modal onClose={()=>setModal(false)} />
+                            <GenerateCodeAnimation />
+                          </>
+                        );
+                      };`}
                     codeColor="text-blue-25"
                 ></CodeBlocks>
 

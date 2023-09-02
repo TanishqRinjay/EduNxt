@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getFullDetailsOfCourse } from "../../../../services/operations/courseDetailsAPI";
 import { setCourse, setEditCourse } from "../../../../slices/courseSlice";
 import RenderSteps from "../AddCourse/RenderSteps";
+import LoadingSpinner from "../../../common/LoadingSpinner";
 
 const EditCourse = () => {
     const { courseId } = useParams();
@@ -26,7 +27,7 @@ const EditCourse = () => {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <LoadingSpinner/>;
     }
     console.log(course)
     return (

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { getPasswordResetToken } from "../services/operations/authAPI";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const ForgotPassword = () => {
     const dispatch = useDispatch()
@@ -18,7 +19,7 @@ const ForgotPassword = () => {
     return (
         <div className=" h-screen flex justify-center items-center font-inter">
             {loading ? (
-                <div>loading...</div>
+                <LoadingSpinner/>
             ) : (
                 <div className=" text-richblack-5 h-full w-[25%] flex justify-center items-start flex-col gap-7">
                     <h1 className=" text-3xl font-semibold">

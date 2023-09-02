@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { sendOtp, signUp } from "../services/operations/authAPI";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const VerifyEmail = () => {
     const { signupData, loading } = useSelector((state) => state.auth);
@@ -43,7 +44,7 @@ const VerifyEmail = () => {
     return (
         <div className="text-richblack-5 flex items-center justify-center w-full h-[80vh]">
             {loading ? (
-                <div>Loading...</div>
+                <LoadingSpinner/>
             ) : (
                 <div className="w-[23%] flex flex-col gap-2 justify-center items-start">
                     <h1 className=" text-3xl">Verify Email</h1>

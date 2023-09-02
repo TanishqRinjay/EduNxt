@@ -4,6 +4,7 @@ import { getUserEnrolledCourses } from "../../../services/operations/profileAPI"
 import ProgressBar from "@ramonak/react-progress-bar";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../common/LoadingSpinner";
 
 const EnrolledCourses = () => {
     const [enrolledCourses, setEnrolledCourses] = useState(null);
@@ -35,7 +36,7 @@ const EnrolledCourses = () => {
                 Enrolled Courses
             </h2>
             {!enrolledCourses ? (
-                <div>Loading...</div>
+                <LoadingSpinner/>
             ) : (
                 <div className="border border-richblack-700 rounded-lg w-full h-full overflow-hidden">
                     <Table>

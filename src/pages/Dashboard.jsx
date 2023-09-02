@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import SideBar from "../components/core/Dashboard/SideBar"
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const Dashboard = () => {
     const { loading: authLoading } = useSelector((state) => state.auth);
@@ -9,9 +10,7 @@ const Dashboard = () => {
 
     if (authLoading || profileLoading) {
         return (
-            <div className="flex items-center justify-center w-full h-full">
-                <div className="spinner">loading...</div>
-            </div>
+                <LoadingSpinner/>
         );
     }
 

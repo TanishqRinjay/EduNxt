@@ -14,6 +14,7 @@ import { ACCOUNT_TYPE } from "../utils/constants";
 import { toast } from "react-hot-toast";
 import { addToCart } from "../slices/cartSlice";
 import FooterSection from "../components/common/FooterSection"
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const CourseDetails = () => {
     const { courseId } = useParams();
@@ -82,9 +83,7 @@ const CourseDetails = () => {
 
     if (loading || !course) {
         return (
-            <div className="flex h-full w-full items-center justify-center text-2xl text-richblack-5">
-                Loading...
-            </div>
+            <LoadingSpinner/>
         );
     }
     // if(!course.success){

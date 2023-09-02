@@ -6,6 +6,7 @@ import { updateCompletedLectures } from "../../../slices/viewCourseSlice";
 import { Player } from "video-react";
 import { FaPlay } from "react-icons/fa";
 import IconBtn from "../../common/IconBtn";
+import {IoIosArrowForward, IoIosArrowBack} from "react-icons/io"
 import { markLectureAsComplete } from "../../../services/operations/courseDetailsAPI";
 import "video-react/dist/video-react.css";
 
@@ -166,75 +167,83 @@ const VideoDetails = () => {
                 </div>
             ) : (
                 <div className="flex flex-col gap-6">
-                    <Player
-                        ref={playerRef}
-                        aspectRatio="16:9"
-                        playsInline
-                        onEnded={() => setVideoEnded(true)}
-                        src={videoData?.videoUrl}
-                    >
-                        <FaPlay className="w-full h-full flex items-center justify-center" />
-                        {videoEnded && (
-                            <div>
-                                {!completedLectures.includes(subSectionId) && (
+                    <div className="relative">
+                        <Player
+                            ref={playerRef}
+                            aspectRatio="16:9"
+                            playsInline
+                            onEnded={() => setVideoEnded(true)}
+                            src={videoData?.videoUrl}
+                            className="flex items-center justify-center"
+                        >
+                            <FaPlay className="w-full h-full z-[1000px] flex items-center justify-center" />
+                            {videoEnded && (
+                                <div className="flex gap-3 items-center justify-center w-full absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-30 bg-richblack-900 p-4 rounded max-w-max">
+                                        <div>
+                                            {!isFirstVideo() && (
+                                                <button
+                                                    disabled={loading}
+                                                    onClick={goToPrevVideo}
+                                                    className=" text-2xl text-white"
+                                                >
+                                                    <IoIosArrowBack/>
+                                                </button>
+                                            )}
+                                        </div>
+                                    {!completedLectures.includes(
+                                        subSectionId
+                                    ) && (
+                                        <IconBtn
+                                            customClasses={
+                                                "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[1px_1px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                                            }
+                                            disabled={loading}
+                                            onclick={() =>
+                                                handleLectureCompletion()
+                                            }
+                                            text={
+                                                loading
+                                                    ? "loading..."
+                                                    : "Mark as completed"
+                                            }
+                                        />
+                                    )}
                                     <IconBtn
                                         customClasses={
-                                            "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                                            "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[1px_1px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
                                         }
                                         disabled={loading}
-                                        onclick={() =>
-                                            handleLectureCompletion()
-                                        }
-                                        text={
-                                            loading
-                                                ? "Loading..."
-                                                : "Mark as completed"
-                                        }
+                                        onclick={() => {
+                                            if (playerRef?.current) {
+                                                playerRef.current?.seek(0);
+                                                playerRef.current.play()
+                                                setVideoEnded(false);
+                                            }
+                                        }}
+                                        text={"Rewatch"}
                                     />
-                                )}
-                                <IconBtn
-                                    customClasses={
-                                        "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
-                                    }
-                                    disabled={loading}
-                                    onclick={() => {
-                                        if (playerRef?.current) {
-                                            playerRef.current?.seek(0);
-                                            setVideoEnded(false);
-                                        }
-                                    }}
-                                    text={"Rewatch"}
-                                />
-                                <div>
-                                    {!isFirstVideo() && (
-                                        <button
-                                            disabled={loading}
-                                            onClick={goToPrevVideo}
-                                            className=" bg-richblack-800"
-                                        >
-                                            Prev
-                                        </button>
-                                    )}
+                                    <div>
+                                        {!isLastVideo() && (
+                                            <button
+                                                disabled={loading}
+                                                onClick={goToNextVideo}
+                                                className="text-2xl text-white"
+                                            >
+                                                <IoIosArrowForward/>
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
-                                <div>
-                                    {!isLastVideo() && (
-                                        <button
-                                            disabled={loading}
-                                            onClick={goToNextVideo}
-                                            className=" bg-richblack-800"
-                                        >
-                                            Next
-                                        </button>
-                                    )}
-                                </div>
-                            </div>
-                        )}
-                    </Player>
+                            )}
+                        </Player>
+                    </div>
                     <div className="flex flex-col gap-2">
                         <h1 className=" text-2xl font-bold">
                             {videoData?.title}
                         </h1>
-                        <p className="text-lg text-richblack-200">{videoData?.description}</p>
+                        <p className="text-lg text-richblack-200">
+                            {videoData?.description}
+                        </p>
                     </div>
                 </div>
             )}

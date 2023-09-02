@@ -28,7 +28,7 @@ const PublishCourse = () => {
     };
 
     const OnSubmit = async () => {
-        console.log("value: ", getValues("public"));
+        //console.log("value: ", getValues("public"));
         if (
             (course?.status === COURSE_STATUS.PUBLISHED &&
                 getValues("public") === true) ||

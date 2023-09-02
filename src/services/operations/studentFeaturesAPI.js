@@ -54,7 +54,7 @@ export async function buyCourse(
         if (!orderResponse.data.success) {
             throw new Error(orderResponse.data.message);
         }
-        console.log(orderResponse);
+        //console.log(orderResponse);
         //Create options
         const options = {
             key: process.env.RAZORPAY_KEY,
@@ -85,10 +85,10 @@ export async function buyCourse(
         paymentObject.open();
         paymentObject.on("payment.failed", function (response) {
             toast.error("Oops! payment failed");
-            console.log(response.error);
+            //console.log(response.error);
         });
     } catch (err) {
-        console.log("Payment error: ", err);
+        //console.log("Payment error: ", err);
         toast.error("Couldn't make payment");
     }
     toast.dismiss(toastId);
@@ -109,7 +109,7 @@ const sendPaymentSuccessEmail = async (response, amount, token) => {
             }
         );
     } catch (err) {
-        console.log("Payment success email error: ", err);
+        //console.log("Payment success email error: ", err);
     }
 };
 
@@ -132,7 +132,7 @@ const verifyPayment = async (bodyData, token, navigate, dispatch) => {
         navigate("/dashboard/enrolled-courses");
         bodyData.courses.length>1 && dispatch(resetCart()) ;
     } catch (err) {
-        console.log("Error in verifying payment: ", err);
+        //console.log("Error in verifying payment: ", err);
         toast.error("Could not verify payment");
     }
     toast.dismiss(toastId);

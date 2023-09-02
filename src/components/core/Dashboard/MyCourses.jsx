@@ -20,7 +20,7 @@ const MyCourses = () => {
         };
         fetchCourses();
     }, []);
-    console.log("Course: ", courses);
+    //console.log("Course: ", courses);
 
     return (
         <div className="text-richblack-5 w-full h-full flex items-center justify-center flex-col gap-5">

@@ -24,7 +24,7 @@ const UpdateProfilePicture = () => {
             return
         }
         try {
-            console.log("uploading...");
+            // console.log("uploading...");
             setLoading(true);
             const formData = new FormData();
             formData.append("displayPicture", displayPicture);

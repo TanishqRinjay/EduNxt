@@ -32,10 +32,6 @@ const CourseDetails = () => {
             try {
                 const result = await fetchCourseDetails(courseId);
                 setCourse(result.data);
-                console.log(
-                    "HI:",
-                    course?.courseDetails?.instructor?.additionalDetails?.about
-                );
             } catch (e) {
                 console.log("Error, unable to fetch details");
             }

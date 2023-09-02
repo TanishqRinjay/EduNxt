@@ -59,7 +59,7 @@ const CourseBuilderForm = () => {
     };
 
     const goToNext = () => {
-        console.log(course);
+        //console.log(course);
         if (course.courseContent.length === 0) {
             toast.error("Please create atleast one section");
             return;

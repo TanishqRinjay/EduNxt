@@ -5,8 +5,6 @@ import RenderTotalAmount from "./RenderTotalAmount";
 
 const Cart = () => {
     const { total, totalItems } = useSelector((state) => state.cart);
-    console.log("Total: ", total)
-    console.log("TotalItems: ", totalItems)
     return (
         <div className="text-richblack-5 flex flex-col gap-4">
             <h1 className=" font-medium text-3xl">Checkout:</h1>

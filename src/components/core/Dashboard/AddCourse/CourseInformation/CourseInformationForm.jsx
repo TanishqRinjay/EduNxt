@@ -131,9 +131,6 @@ const CourseInformationForm = () => {
                         ? currentValues.courseImage
                         : course.thumbnail
                 );
-                for (var pair of formData.entries()) {
-                    console.log(pair[0] + ", " + pair[1]);
-                }
                 setLoading(true);
                 const result = await editCourseDetails(formData, token);
                 setLoading(false);
@@ -151,7 +148,7 @@ const CourseInformationForm = () => {
 
         //If new Course is created
 
-        console.log("data: ",  data)
+        // console.log("data: ",  data)
 
         const formData = new FormData();
         formData.append("courseName", data.courseTitle);

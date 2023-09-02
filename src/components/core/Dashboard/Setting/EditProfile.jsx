@@ -11,7 +11,7 @@ const UpdateProfileInfo = () => {
     const { token } = useSelector((state) => state.auth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    console.log(user.additionalDetails.dateOfBirth);
+    //console.log(user.additionalDetails.dateOfBirth);
 
     const date = new Date();
     const todaysDate = `${date.getFullYear().toString()}-0${date

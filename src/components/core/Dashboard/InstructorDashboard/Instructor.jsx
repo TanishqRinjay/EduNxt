@@ -91,7 +91,7 @@ const Instructor = () => {
                         <div className="flex gap-4">
                             {courses.slice(0, 3).map((course, i) => (
                                 <div key={i} className="w-[350px]">
-                                    {console.log(course)}
+                                    {/* {console.log(course)} */}
                                     <img
                                         src={course.thumbnail}
                                         alt="courseImage"

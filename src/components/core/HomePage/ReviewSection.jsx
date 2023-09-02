@@ -30,7 +30,7 @@ const ReviewSection = () => {
             if (data?.success) {
                 setReviews(data.data);
             }
-            console.log("reviews: ", reviews);
+            // console.log("reviews: ", reviews);
         };
         fetchAllReviews();
     }, []);

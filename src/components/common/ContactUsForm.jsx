@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import CountryCode from "../../data/countrycode.json";
 import {apiConnector} from "../../services/apiconnector";
 import { contactusEndpoint } from "../../services/apis";
+import { toast } from "react-hot-toast";
 
 const ContactUsForm = () => {
     const [loading, setLoading] = useState(false);
@@ -14,15 +15,16 @@ const ContactUsForm = () => {
     } = useForm();
 
     const submitContactForm = async (data) => {
-        console.log("Data:", data);
+        //console.log("Data:", data);
         try {
             setLoading(true);
             const response = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data )
             // const response = { status: "OK" };
-            console.log("Logging response: ", response);
+            //console.log("Logging response: ", response);
             setLoading(false);
         } catch (err) {
-            console.log("Error:", err);
+            //console.log("Error:", err);
+            toast.error("Error in submitting form")
             setLoading(false);
         }
     };

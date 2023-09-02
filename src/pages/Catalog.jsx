@@ -46,7 +46,7 @@ const Catalog = () => {
     const changeCourses = (name) => {
         setCoursesType(name);
     };
-    console.log("loading: ", loading);
+    // console.log("loading: ", loading);
     return (
         <div>
             {loading ? (

@@ -35,7 +35,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
         const updatedCourseContent = course.courseContent.map((section)=>(
             section._id===sectionId ? result:section
         ))
-        console.log("updatedCourseContent:", updatedCourseContent)
+        //console.log("updatedCourseContent:", updatedCourseContent)
         const updatedCourse = {...course, courseContent: updatedCourseContent}
         dispatch(setCourse(updatedCourse))
       }

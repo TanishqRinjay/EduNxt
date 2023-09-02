@@ -12,7 +12,7 @@ export const getCatalogPageData = async(categoryId) => {
     }
     result = response?.data
   }catch(err){
-    console.log("CATALOG PAGE DATA API ERROR...", err)
+    //console.log("CATALOG PAGE DATA API ERROR...", err)
     toast.error(err.message)
     result = err.response?.data
   }

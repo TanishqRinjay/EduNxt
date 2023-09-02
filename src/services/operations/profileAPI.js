@@ -15,7 +15,7 @@ export function getUserDetails(token, navigate) {
       const response = await apiConnector("GET", GET_USER_DETAILS_API, null, {
         Authorization: `Bearer ${token}`,
       })
-      console.log("GET_USER_DETAILS API RESPONSE............", response)
+      //console.log("GET_USER_DETAILS API RESPONSE............", response)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -26,7 +26,7 @@ export function getUserDetails(token, navigate) {
       dispatch(setUser({ ...response.data.data, image: userImage }))
     } catch (error) {
       dispatch(logout(navigate))
-      console.log("GET_USER_DETAILS API ERROR............", error)
+      //console.log("GET_USER_DETAILS API ERROR............", error)
       toast.error("Could Not Get User Details")
     }
     toast.dismiss(toastId)
@@ -51,7 +51,7 @@ export async function getUserEnrolledCourses(token) {
       throw new Error(response.data.message)
     }
     result = response.data.data
-    console.log(result)
+    //console.log(result)
   } catch (error) {
     toast.error("Could Not Get Enrolled Courses")
   }
@@ -65,10 +65,10 @@ export async function getInstructorData(token){
     const response = await apiConnector("GET", GET_INSTRUCTOR_STATS_API, null, {
       Authorization: `Bearer ${token}`,
     })
-    console.log("GET_INSTRUCTOR_API_RESULT: ", response)
+    //console.log("GET_INSTRUCTOR_API_RESULT: ", response)
     result = response?.data?.courses
   }catch(err){
-    console.log("GET_INSTRUCTOR_STATS_API_ERROR ", err)
+    //console.log("GET_INSTRUCTOR_STATS_API_ERROR ", err)
     toast.error("Could not get instructor data")
   }
   return result

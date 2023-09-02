@@ -29,7 +29,7 @@ const EditCourse = () => {
     if (loading) {
         return <LoadingSpinner/>;
     }
-    console.log(course)
+    //console.log(course)
     return (
         <div className="flex flex-col text-richblack-5 mx-auto w-full">
             <h1 className=" text-3xl font-medium mb-8">Edit Course</h1>

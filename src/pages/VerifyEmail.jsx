@@ -44,7 +44,7 @@ const VerifyEmail = () => {
     return (
         <div className="text-richblack-5 flex items-center justify-center w-full h-[80vh]">
             {loading ? (
-                <LoadingSpinner/>
+                <LoadingSpinner />
             ) : (
                 <div className="w-[23%] flex flex-col gap-2 justify-center items-start">
                     <h1 className=" text-3xl">Verify Email</h1>
@@ -52,14 +52,29 @@ const VerifyEmail = () => {
                         A verification code has been sent to your email. Enter
                         that code below:
                     </p>
-                    <form onSubmit={submitHandler} className="w-full flex flex-col justify-center items-center mt-5 text-richblack-5">
+                    <form
+                        onSubmit={submitHandler}
+                        className="w-full flex flex-col justify-center items-center mt-5 text-richblack-5"
+                    >
                         <OtpInput
                             value={otp}
                             onChange={setOtp}
                             numInputs={6}
-                            renderSeparator={<span>-</span>}
-                            renderInput={(props) =>
-                                <input {...props} className='h-14 w-5 focus:outline-2 focus:outline-yellow-50 aspect-square bg-richblack-800 px-2 text-richblack-5'/>}
+                            renderInput={(props) => (
+                                <input
+                                    {...props}
+                                    placeholder="-"
+                                    style={{
+                                        boxShadow:
+                                            "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                                    }}
+                                    className="w-[48px] lg:w-[60px] border-0 bg-richblack-800 rounded-[0.5rem] text-richblack-5 aspect-square text-center focus:border-0 focus:outline-2 focus:outline-yellow-50"
+                                />
+                            )}
+                            containerStyle={{
+                                justifyContent: "space-between",
+                                gap: "0 6px",
+                            }}
                         />
 
                         <button

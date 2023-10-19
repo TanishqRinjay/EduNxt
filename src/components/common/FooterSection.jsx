@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LogoLight from "../../assets/Logo/Logo-Full-Light.png";
-import { FaGoogle, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import {BiLogoGmail} from "react-icons/bi"
 import { FooterLinks } from "../../data/footer-links";
 
 // Footer Link creation
@@ -54,11 +55,19 @@ const FooterSection = () => {
                                     );
                                 })}
                             </div>
-                            <div className="flex flex-row gap-3">
-                                <FaInstagram />
-                                <FaGoogle />
-                                <FaTwitter />
-                                <FaLinkedinIn />
+                            <div className="flex flex-row gap-3 items-end">
+                                <a href="https://www.instagram.com/tanishq.rj/" target="_blank">
+                                    <FaInstagram className=" cursor-pointer hover:text-pink-100 transition-all duration-200"/>
+                                </a>
+                                <a href="https://twitter.com/TanishqRinjay" target="_blank">
+                                    <FaTwitter className="cursor-pointer hover:text-blue-100 transition-all duration-200"/>
+                                </a>
+                                <a href="mailto:tanishqbaranwal@gmail.com" target="_blank">
+                                    <BiLogoGmail className="cursor-pointer text-lg hover:text-pink-400 transition-all duration-200"/>
+                                </a>
+                                <a href="https://www.linkedin.com/in/tanishq-rinjay-2885411a5/" target="_blank">
+                                <FaLinkedinIn className="cursor-pointer hover:text-blue-300 transition-all duration-200"/>
+                                </a>
                             </div>
                         </div>
                         {/* Resources and support */}

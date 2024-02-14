@@ -68,6 +68,7 @@ export function signUp(
             toast.success("Signup Successful");
             navigate("/login");
         } catch (error) {
+            console.log(error)
             toast.error("Signup Failed");
             navigate("/signup");
         }

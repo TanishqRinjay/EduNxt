@@ -6,9 +6,11 @@ import { updateCompletedLectures } from "../../../slices/viewCourseSlice";
 import { Player } from "video-react";
 import { FaPlay } from "react-icons/fa";
 import IconBtn from "../../common/IconBtn";
-import {IoIosArrowForward, IoIosArrowBack} from "react-icons/io"
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { markLectureAsComplete } from "../../../services/operations/courseDetailsAPI";
 import "video-react/dist/video-react.css";
+import ChatModal from "./ChatModal";
+import Chatgptmodal from "./Chatgptmodal";
 
 const VideoDetails = () => {
     const { courseId, sectionId, subSectionId } = useParams();
@@ -23,6 +25,10 @@ const VideoDetails = () => {
     const [videoData, setVideoData] = useState([]);
     const [videoEnded, setVideoEnded] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    // Chat GPT modal
+    const [showChatModal, setShowChatModal] = useState(false);
+    const [showChatGPTModal, setShowChatGPTModal] = useState(false);
 
     useEffect(() => {
         const setVideoSpecificDetails = async () => {
@@ -39,6 +45,7 @@ const VideoDetails = () => {
                     (subSection) => subSection._id === subSectionId
                 );
                 setVideoData(filteredVideoData[0]);
+                console.log("filteredVideoData", filteredVideoData[0]);
                 setVideoEnded(false);
             }
         };
@@ -179,17 +186,17 @@ const VideoDetails = () => {
                             <FaPlay className="w-full h-full z-[1000px] flex items-center justify-center" />
                             {videoEnded && (
                                 <div className="flex gap-3 items-center justify-center w-full absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-30 bg-richblack-900 p-4 rounded max-w-max">
-                                        <div>
-                                            {!isFirstVideo() && (
-                                                <button
-                                                    disabled={loading}
-                                                    onClick={goToPrevVideo}
-                                                    className=" text-2xl text-white"
-                                                >
-                                                    <IoIosArrowBack/>
-                                                </button>
-                                            )}
-                                        </div>
+                                    <div>
+                                        {!isFirstVideo() && (
+                                            <button
+                                                disabled={loading}
+                                                onClick={goToPrevVideo}
+                                                className=" text-2xl text-white"
+                                            >
+                                                <IoIosArrowBack />
+                                            </button>
+                                        )}
+                                    </div>
                                     {!completedLectures.includes(
                                         subSectionId
                                     ) && (
@@ -216,7 +223,7 @@ const VideoDetails = () => {
                                         onclick={() => {
                                             if (playerRef?.current) {
                                                 playerRef.current?.seek(0);
-                                                playerRef.current.play()
+                                                playerRef.current.play();
                                                 setVideoEnded(false);
                                             }
                                         }}
@@ -229,7 +236,7 @@ const VideoDetails = () => {
                                                 onClick={goToNextVideo}
                                                 className="text-2xl text-white"
                                             >
-                                                <IoIosArrowForward/>
+                                                <IoIosArrowForward />
                                             </button>
                                         )}
                                     </div>
@@ -247,6 +254,16 @@ const VideoDetails = () => {
                     </div>
                 </div>
             )}
+            <ChatModal
+                showChatModal={showChatModal}
+                setShowChatModal={setShowChatModal}
+                lectureURL={videoData?.videoUrl}
+            />
+            <Chatgptmodal
+                className="translate-x-10"
+                showChatGPTModal={showChatGPTModal}
+                setShowChatGPTModal={setShowChatGPTModal}
+            />
         </div>
     );
 };

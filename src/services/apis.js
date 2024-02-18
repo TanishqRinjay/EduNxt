@@ -71,3 +71,13 @@ export const settingsEndpoints = {
     CHANGE_PASSWORD_API: BASE_URL + "/auth/changepassword",
     DELETE_PROFILE_API: BASE_URL + "/profile/deleteProfile",
 };
+
+// TRANSCRIBE API
+export const transcribeEndpoints = {
+    TRANSCRIBE_API: BASE_URL + "/openai/transcribe",
+};
+
+// OPENAI API
+export const openAIEndpoints = {
+    CHAT_API: BASE_URL + "/openai/chat",
+};

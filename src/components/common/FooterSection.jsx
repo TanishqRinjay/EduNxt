@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LogoLight from "../../assets/Logo/Logo-Full-Light.png";
 import { FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import {BiLogoGmail} from "react-icons/bi"
+import { BiLogoGmail } from "react-icons/bi";
 import { FooterLinks } from "../../data/footer-links";
 
 // Footer Link creation
@@ -31,12 +31,8 @@ const FooterSection = () => {
                     <div className="flex flex-col lg:flex-row gap-3 w-[60%]">
                         {/* Company and Resources */}
                         <div className="flex flex-col gap-3 w-[50%] text-richblack-400 leading-[22px]">
-                            <div className=" md:h-[32px] md:w-[160px] h-[26px] w-[130px]">
-                                <img
-                                    src={LogoLight}
-                                    alt="logo"
-                                    className=" h-[100%] w-[100%] "
-                                />
+                            <div className=" md:h-[32px] md:w-[160px] h-[26px] w-[130px] text-3xl font-[cursive] text-richblack-5 font-bold">
+                                <span className=" text-yellow-50">Edu</span>Nxt
                             </div>
                             <h2 className=" font-semibold text-richblack-100">
                                 Company
@@ -56,17 +52,29 @@ const FooterSection = () => {
                                 })}
                             </div>
                             <div className="flex flex-row gap-3 items-end">
-                                <a href="https://www.instagram.com/tanishq.rj/" target="_blank">
-                                    <FaInstagram className=" cursor-pointer hover:text-pink-100 transition-all duration-200"/>
+                                <a
+                                    href="https://www.instagram.com/tanishq.rj/"
+                                    target="_blank"
+                                >
+                                    <FaInstagram className=" cursor-pointer hover:text-pink-100 transition-all duration-200" />
                                 </a>
-                                <a href="https://twitter.com/TanishqRinjay" target="_blank">
-                                    <FaTwitter className="cursor-pointer hover:text-blue-100 transition-all duration-200"/>
+                                <a
+                                    href="https://twitter.com/TanishqRinjay"
+                                    target="_blank"
+                                >
+                                    <FaTwitter className="cursor-pointer hover:text-blue-100 transition-all duration-200" />
                                 </a>
-                                <a href="mailto:tanishqbaranwal@gmail.com" target="_blank">
-                                    <BiLogoGmail className="cursor-pointer text-lg hover:text-pink-400 transition-all duration-200"/>
+                                <a
+                                    href="mailto:tanishqbaranwal@gmail.com"
+                                    target="_blank"
+                                >
+                                    <BiLogoGmail className="cursor-pointer text-lg hover:text-pink-400 transition-all duration-200" />
                                 </a>
-                                <a href="https://www.linkedin.com/in/tanishq-rinjay-2885411a5/" target="_blank">
-                                <FaLinkedinIn className="cursor-pointer hover:text-blue-300 transition-all duration-200"/>
+                                <a
+                                    href="https://www.linkedin.com/in/tanishq-rinjay-2885411a5/"
+                                    target="_blank"
+                                >
+                                    <FaLinkedinIn className="cursor-pointer hover:text-blue-300 transition-all duration-200" />
                                 </a>
                             </div>
                         </div>
@@ -232,7 +240,7 @@ const FooterSection = () => {
                     })}
                 </div>
                 <div>
-                    <p>Mady by Tanishq © 2023 Studynotion</p>
+                    <p>Mady by RNS Team @ EduNxt</p>
                 </div>
             </div>
         </div>

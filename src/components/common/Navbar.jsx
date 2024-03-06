@@ -44,12 +44,15 @@ const Navbar = () => {
         <div className="h-14 w-full border-b border-richblack-700 bg-richblack-900 flex justify-center items-center">
             <div className="w-11/12 flex justify-between px-[70px] items-center h-8">
                 <Link to="/">
-                    <img
+                    <p className=" text-richblack-5 text-2xl font-bold font-[cursive]">
+                        <span className=" text-yellow-50">Edu</span>Nxt
+                    </p>
+                    {/* <img
                         src={logoFullLight}
                         alt="Logo"
                         width="160px"
                         height="32px"
-                    />
+                    /> */}
                 </Link>
                 <div className="text-base text-richblack-25">
                     <ul className="flex flex-row gap-5">
@@ -64,34 +67,43 @@ const Navbar = () => {
                                                 <div className="absolute left-[50%] translate-y-[-10%] translate-x-[72%] top-0 h-6 w-6 rotate-45 -z-10 select-none bg-richblack-5"></div>
                                                 {loading ? (
                                                     <p>Loading...</p>
-                                                ) : subLinks.length>0 ? (
+                                                ) : subLinks.length > 0 ? (
                                                     <>
-                                                    {subLinks
-                                                        ?.filter(
-                                                            (subLink) =>
-                                                                subLink?.courses
-                                                                    ?.length > 0
-                                                        )
-                                                        ?.map((subLink, i) => (
-                                                            <Link
-                                                                to={`/catalog/${subLink.name
-                                                                    .replace(
-                                                                        " ",
-                                                                        "-"
-                                                                    )
-                                                                    .toLowerCase()}`}
-                                                                key={i}
-                                                            >
-                                                                <p>
-                                                                    {
-                                                                        subLink.name
-                                                                    }
-                                                                </p>
-                                                            </Link>
-                                                        ))}
-                                                        </>
+                                                        {subLinks
+                                                            ?.filter(
+                                                                (subLink) =>
+                                                                    subLink
+                                                                        ?.courses
+                                                                        ?.length >
+                                                                    0
+                                                            )
+                                                            ?.map(
+                                                                (
+                                                                    subLink,
+                                                                    i
+                                                                ) => (
+                                                                    <Link
+                                                                        to={`/catalog/${subLink.name
+                                                                            .replace(
+                                                                                " ",
+                                                                                "-"
+                                                                            )
+                                                                            .toLowerCase()}`}
+                                                                        key={i}
+                                                                    >
+                                                                        <p>
+                                                                            {
+                                                                                subLink.name
+                                                                            }
+                                                                        </p>
+                                                                    </Link>
+                                                                )
+                                                            )}
+                                                    </>
                                                 ) : (
-                                                    <div>No options available</div>
+                                                    <div>
+                                                        No options available
+                                                    </div>
                                                 )}
                                             </div>
                                         </div>

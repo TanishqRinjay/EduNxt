@@ -88,7 +88,7 @@ function Chatgptmodal({ showChatGPTModal, setShowChatGPTModal }) {
                                             }
                                             value={query}
                                             className=" bg-white w-[80%] h-[35px] rounded-md outline-none p-1 overflow-y-auto text-sm text-richblack-900"
-                                            // onKeyDown={handleEnter}
+                                            onKeyDown={handleEnter}
                                         />
                                         <button
                                             className=" w-8 h-8 rounded-full bg-richblack-900 flex justify-center items-center"

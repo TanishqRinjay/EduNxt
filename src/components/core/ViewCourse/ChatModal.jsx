@@ -16,7 +16,7 @@ const ChatModal = ({ showChatModal, setShowChatModal, lectureURL }) => {
     useEffect(() => {
         setInitialContent("");
         setShowChatModal(false);
-    },[lectureURL])
+    }, [lectureURL]);
 
     const handleSubmit = async () => {
         if (loading === true) return;
@@ -25,6 +25,7 @@ const ChatModal = ({ showChatModal, setShowChatModal, lectureURL }) => {
             ...conversations,
             { role: "user", content: query },
         ];
+        setQuery("");
         setConversations(updatedConversations);
         const response = await apiConnector("POST", openAIEndpoints.CHAT_API, {
             content: initialContent,
@@ -39,7 +40,6 @@ const ChatModal = ({ showChatModal, setShowChatModal, lectureURL }) => {
                 content: response.data.answer[0].message.content,
             },
         ]);
-        setQuery("");
     };
     const modalOpen = async () => {
         setShowChatModal(!showChatModal);
@@ -98,7 +98,7 @@ const ChatModal = ({ showChatModal, setShowChatModal, lectureURL }) => {
                                 <p>EduNxt Helper</p>
                                 <button
                                     onClick={handleDownload}
-                                    className=" font-[poppins] text-base border-2 border-yellow-100 rounded-md p-1 bg-yellow-100 hover:bg-yellow-200 hover:text-black transition-all duration-300 ease-in-out text-richblack-700"
+                                    className=" font-[poppins] text-base border-2 border-yellow-100 rounded-md p-1 bg-yellow-100 hover:bg-yellow-200 hover:text-black transition-all duration-300 ease-in-out text-blue-200 underline"
                                 >
                                     Download brief lecture notes
                                 </button>

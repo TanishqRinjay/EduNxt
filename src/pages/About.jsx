@@ -8,7 +8,7 @@ import Quote from "../components/core/AboutPage/Quote";
 import StatsComponent from "../components/core/AboutPage/StatsComponent";
 import LearningGrid from "../components/core/AboutPage/LearningGrid";
 import ContactFormSection from "../components/core/AboutPage/ContactFormSection";
-import FooterSection from "../components/common/FooterSection"
+import FooterSection from "../components/common/FooterSection";
 import ReviewSection from "../components/core/HomePage/ReviewSection";
 
 const About = () => {
@@ -23,7 +23,7 @@ const About = () => {
                     </header>
                 </div>
                 <p className=" text-richblack-300 w-[50%]">
-                    Studynotion is at the forefront of driving innovation in
+                    EduNxt is at the forefront of driving innovation in
                     online education. We're passionate about creating a brighter
                     future by offering cutting-edge courses, leveraging emerging
                     technologies, and nurturing a vibrant learning community.
@@ -105,7 +105,7 @@ const About = () => {
                         </div>
                         <div className="w-[35%] flex flex-col gap-14">
                             <h2 className="text-4xl font-semibold">
-                                <HighlightText text={"Our Mission"}/>
+                                <HighlightText text={"Our Mission"} />
                             </h2>
                             <p className=" text-richblack-300">
                                 our mission goes beyond just delivering courses
@@ -127,24 +127,24 @@ const About = () => {
 
             {/* Section 5 */}
             <section>
-                <LearningGrid/>
+                <LearningGrid />
             </section>
 
             {/* Section 6 */}
             <section className="flex justify-center items-center w-full">
-                <ContactFormSection/>
+                <ContactFormSection />
             </section>
 
             {/* Section 7 */}
             <section className="text-richblack-300 text-4xl my-[100px] w-11/12">
                 <div className="w-full flex items-center flex-col gap-8">
                     <p>Reviews from other learners</p>
-                    <ReviewSection/>
+                    <ReviewSection />
                 </div>
             </section>
 
             <section className="w-full">
-                <FooterSection/>
+                <FooterSection />
             </section>
         </div>
     );

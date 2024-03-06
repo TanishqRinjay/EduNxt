@@ -9,7 +9,7 @@ const LearningGrid = () => {
             heading: "World-Class Learning for",
             highlightText: "Anyone, Anywhere",
             description:
-                "Studynotion partners with more than 275+ leading universities and companies to bring flexible, affordable, job-relevant online learning to individuals and organizations worldwide.",
+                "EduNxt partners with more than 275+ leading universities and companies to bring flexible, affordable, job-relevant online learning to individuals and organizations worldwide.",
             BtnText: "Learn More",
             BtnLink: "/",
         },
@@ -23,25 +23,25 @@ const LearningGrid = () => {
             order: 2,
             heading: "Our Learning Methods",
             description:
-                "Studynotion partners with more than 275+ leading universities and companies to bring",
+                "EduNxt partners with more than 275+ leading universities and companies to bring",
         },
         {
             order: 3,
             heading: "Certification",
             description:
-                "Studynotion partners with more than 275+ leading universities and companies to bring",
+                "EduNxt partners with more than 275+ leading universities and companies to bring",
         },
         {
             order: 4,
             heading: `Rating "Auto-grading"`,
             description:
-                "Studynotion partners with more than 275+ leading universities and companies to bring",
+                "EduNxt partners with more than 275+ leading universities and companies to bring",
         },
         {
             order: 5,
             heading: "Ready to Work",
             description:
-                "Studynotion partners with more than 275+ leading universities and companies to bring",
+                "EduNxt partners with more than 275+ leading universities and companies to bring",
         },
     ];
 
@@ -64,7 +64,9 @@ const LearningGrid = () => {
                                 {card.heading}
                                 <HighlightText text={card.highlightText} />
                             </div>
-                            <p className="text-richblack-300">{card.description}</p>
+                            <p className="text-richblack-300">
+                                {card.description}
+                            </p>
                             <div className="w-fit">
                                 <CTAButton
                                     className=""

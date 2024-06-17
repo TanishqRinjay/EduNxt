@@ -13,7 +13,7 @@ const DeleteAccount = () => {
 
     const deleteHandler = () => {
         setConfirmationModal({
-            text1: "Are you sure ? ( irreversible action )",
+            text1: "Are you sure ? ( Irreversible action )",
             text2: "Your Account will be permanently deleted.",
             btn1Text: "Delete",
             btn2Text: "Cancel",

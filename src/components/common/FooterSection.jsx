@@ -240,7 +240,7 @@ const FooterSection = () => {
                     })}
                 </div>
                 <div>
-                    <p>Mady by RNS Team @ EduNxt</p>
+                    <p>Mady by Tanishq Rinjay @ EduNxt</p>
                 </div>
             </div>
         </div>

@@ -32,8 +32,33 @@ export async function buyCourse(
     navigate,
     dispatch
 ) {
+    // const toastId = toast.loading("Loading...");
+    // try {
+    //     const orderResponse = await apiConnector(
+    //         "POST",
+    //         COURSE_PAYMENT_API,
+    //         { courses },
+    //         {
+    //             Authorization: `Bearer ${token}`,
+    //         }
+    //     );
+    //     if (!orderResponse.data.success) {
+    //         throw new Error(orderResponse.data.message);
+    //     }
+    //     toast.success("Payment successful, course purchased!");
+    //     resetCart();
+    // } catch (err) {
     const toastId = toast.loading("Loading...");
     try {
+        //load script
+        const res = await loadScripts(
+            "https://checkout.razorpay.com/v1/checkout.js"
+        );
+        if (!res) {
+            toast.error("RazorPay SDK failed to load");
+            return;
+        }
+        //initiate the order
         const orderResponse = await apiConnector(
             "POST",
             COURSE_PAYMENT_API,
@@ -45,64 +70,42 @@ export async function buyCourse(
         if (!orderResponse.data.success) {
             throw new Error(orderResponse.data.message);
         }
-        toast.success("Payment successful, course purchased!");
-        resetCart();
+        //Create options
+        console.log(orderResponse);
+        const options = {
+            key: process.env.RAZORPAY_KEY,
+            currency: orderResponse.data.data.currency,
+            amount: orderResponse.data.data.amount,
+            order_id: orderResponse.data.data.id,
+            name: "EduNxt",
+            description: "Thank you for purchasing the Course(s)",
+            image: rzpLogo,
+            prefill: {
+                name: userDetails.firstName,
+                email: userDetails.email,
+            },
+            handler: function (res) {
+                //verify payment
+                verifyPayment({ ...res, courses }, token, navigate, dispatch);
+
+                //Send successful payment data
+                sendPaymentSuccessEmail(
+                    res,
+                    orderResponse.data.data.amount,
+                    token
+                );
+            },
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+        paymentObject.on("payment.failed", function (response) {
+            toast.error("Oops! payment failed");
+            //console.log(response.error);
+        });
     } catch (err) {
-        // const toastId = toast.loading("Loading...");
-        // try {
-        //     //load script
-        //     const res = await loadScripts(
-        //         "https://checkout.razorpay.com/v1/checkout.js"
-        //     );
-        //     if (!res) {
-        //         toast.error("RazorPay SDK failed to load");
-        //         return;
-        //     }
-        //     //initiate the order
-        //     const orderResponse = await apiConnector(
-        //         "POST",
-        //         COURSE_PAYMENT_API,
-        //         { courses },
-        //         {
-        //             Authorization: `Bearer ${token}`,
-        //         }
-        //     );
-        //     if (!orderResponse.data.success) {
-        //         throw new Error(orderResponse.data.message);
-        //     }
-        //     //Create options
-        //     const options = {
-        //         key: process.env.RAZORPAY_KEY,
-        //         currency: orderResponse.data.data.currency,
-        //         amount: orderResponse.data.data.amount,
-        //         order_id: orderResponse.data.data.id,
-        //         name: "EduNxt",
-        //         description: "Thank you for purchasing the Course(s)",
-        //         image: rzpLogo,
-        //         prefill: {
-        //             name: userDetails.firstName,
-        //             email: userDetails.email,
-        //         },
-        //         handler: function (res) {
-        //             //Send successful payment data
-        //             sendPaymentSuccessEmail(
-        //                 res,
-        //                 orderResponse.data.data.amount,
-        //                 token
-        //             );
-
-        //             //verify payment
-        //             verifyPayment({ ...res, courses }, token, navigate, dispatch);
-        //         },
-        //     };
-
-        //     const paymentObject = new window.Razorpay(options);
-        //     paymentObject.open();
-        //     paymentObject.on("payment.failed", function (response) {
-        //         toast.error("Oops! payment failed");
-        //         //console.log(response.error);
-        //     });
-        //console.log("Payment error: ", err);
+        toast.error("Couldn't make payment");
+        console.log("Payment error: ", err);
         toast.error("Couldn't make payment");
     }
     toast.dismiss(toastId);

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LogoLight from "../../assets/Logo/Logo-Full-Light.png";
 import { FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 import { FooterLinks } from "../../data/footer-links";

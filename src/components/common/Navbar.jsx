@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import logoFullLight from "../../assets/Logo/Logo-Full-Light.png";
 import { Link, useLocation, matchPath } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links";
 import { useSelector } from "react-redux";
-import { userType } from "../../data/userType";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoMdArrowDropdown } from "react-icons/io";
 import ProfileDropdown from "../core/Auth/ProfileDropdown";

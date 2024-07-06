@@ -63,7 +63,7 @@ const ChatModal = ({ showChatModal, setShowChatModal, lectureURL }) => {
 
     const handleDownload = async () => {
         const response = await fetch(
-            "http://localhost:4000/api/v1/openai/download"
+            `${process.env.REACT_APP_BASE_URL}/openai/download`
         );
         const blob = await response.blob();
         const downloadUrl = window.URL.createObjectURL(blob);

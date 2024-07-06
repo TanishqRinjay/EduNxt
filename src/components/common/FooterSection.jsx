@@ -55,24 +55,28 @@ const FooterSection = () => {
                                 <a
                                     href="https://www.instagram.com/tanishq.rj/"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     <FaInstagram className=" cursor-pointer hover:text-pink-100 transition-all duration-200" />
                                 </a>
                                 <a
                                     href="https://twitter.com/TanishqRinjay"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     <FaTwitter className="cursor-pointer hover:text-blue-100 transition-all duration-200" />
                                 </a>
                                 <a
                                     href="mailto:tanishqbaranwal@gmail.com"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     <BiLogoGmail className="cursor-pointer text-lg hover:text-pink-400 transition-all duration-200" />
                                 </a>
                                 <a
                                     href="https://www.linkedin.com/in/tanishq-rinjay-2885411a5/"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     <FaLinkedinIn className="cursor-pointer hover:text-blue-300 transition-all duration-200" />
                                 </a>

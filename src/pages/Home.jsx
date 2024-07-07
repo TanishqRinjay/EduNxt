@@ -48,14 +48,14 @@ const Home = () => {
                     </CTAButton>
                 </div>
 
-                <div className="mt-16 shadow-[0px_-5px_40px_-7px_#4299e1]">
+                <div className="mt-16 shadow-[0px_-5px_40px_-7px_#4299e1] h-[90%] w-[90%]">
                     <video
                         muted
                         autoPlay
                         loop
                         src={Banner}
                         type="video/mp4"
-                        // className="h-fit shadow-[20px_20px_0px_0px_#F5F5F5]"
+                        className="h-fit shadow-[20px_20px_0px_0px_#F5F5F5]"
                     ></video>
                 </div>
 

@@ -18,6 +18,7 @@ export const profileEndpoints = {
 
 // STUDENTS ENDPOINTS
 export const studentEndpoints = {
+    ENROLL_IN_COURSE_API: BASE_URL + "/course/enroll",
     COURSE_PAYMENT_API: BASE_URL + "/payment/capturePayment",
     COURSE_VERIFY_API: BASE_URL + "/payment/verifyPayment",
     SEND_PAYMENT_SUCCESS_EMAIL_API:
@@ -70,4 +71,14 @@ export const settingsEndpoints = {
     UPDATE_PROFILE_API: BASE_URL + "/profile/updateProfile",
     CHANGE_PASSWORD_API: BASE_URL + "/auth/changepassword",
     DELETE_PROFILE_API: BASE_URL + "/profile/deleteProfile",
+};
+
+// TRANSCRIBE API
+export const transcribeEndpoints = {
+    TRANSCRIBE_API: BASE_URL + "/openai/transcribe",
+};
+
+// OPENAI API
+export const openAIEndpoints = {
+    CHAT_API: BASE_URL + "/openai/chat",
 };

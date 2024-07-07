@@ -32,6 +32,22 @@ export async function buyCourse(
     navigate,
     dispatch
 ) {
+    // const toastId = toast.loading("Loading...");
+    // try {
+    //     const orderResponse = await apiConnector(
+    //         "POST",
+    //         COURSE_PAYMENT_API,
+    //         { courses },
+    //         {
+    //             Authorization: `Bearer ${token}`,
+    //         }
+    //     );
+    //     if (!orderResponse.data.success) {
+    //         throw new Error(orderResponse.data.message);
+    //     }
+    //     toast.success("Payment successful, course purchased!");
+    //     resetCart();
+    // } catch (err) {
     const toastId = toast.loading("Loading...");
     try {
         //load script
@@ -54,14 +70,14 @@ export async function buyCourse(
         if (!orderResponse.data.success) {
             throw new Error(orderResponse.data.message);
         }
-        //console.log(orderResponse);
         //Create options
+        console.log(orderResponse);
         const options = {
             key: process.env.RAZORPAY_KEY,
             currency: orderResponse.data.data.currency,
             amount: orderResponse.data.data.amount,
             order_id: orderResponse.data.data.id,
-            name: "StudyNotion",
+            name: "EduNxt",
             description: "Thank you for purchasing the Course(s)",
             image: rzpLogo,
             prefill: {
@@ -69,15 +85,15 @@ export async function buyCourse(
                 email: userDetails.email,
             },
             handler: function (res) {
+                //verify payment
+                verifyPayment({ ...res, courses }, token, navigate, dispatch);
+
                 //Send successful payment data
                 sendPaymentSuccessEmail(
                     res,
                     orderResponse.data.data.amount,
                     token
                 );
-
-                //verify payment
-                verifyPayment({ ...res, courses }, token, navigate, dispatch);
             },
         };
 
@@ -88,7 +104,8 @@ export async function buyCourse(
             //console.log(response.error);
         });
     } catch (err) {
-        //console.log("Payment error: ", err);
+        toast.error("Couldn't make payment");
+        console.log("Payment error: ", err);
         toast.error("Couldn't make payment");
     }
     toast.dismiss(toastId);
@@ -130,7 +147,7 @@ const verifyPayment = async (bodyData, token, navigate, dispatch) => {
         }
         toast.success("Payment successful, course purchased!");
         navigate("/dashboard/enrolled-courses");
-        bodyData.courses.length>1 && dispatch(resetCart()) ;
+        bodyData.courses.length > 1 && dispatch(resetCart());
     } catch (err) {
         //console.log("Error in verifying payment: ", err);
         toast.error("Could not verify payment");

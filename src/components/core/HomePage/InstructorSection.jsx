@@ -12,18 +12,20 @@ const Instructor = () => {
                     <img
                         src={instructor}
                         alt="instructorImage"
-                        className=" shadow-[-20px_-20px_0px_0px_#FFF]"
+                        // className=" shadow-[-20px_20px_0px_0px_#FFF]"
+                        className=" border-[20px] border-richblack-25"
+                        width={450}
                     />
                 </div>
                 <div className=" flex flex-col lg:w-[50%] w-[80%] justify-center gap-10">
                     <div className=" md:text-4xl text-3xl font-semibold justify-center">
                         <h2>Become an</h2>
-                        <HighlightText text={"instructor"}></HighlightText>
+                        <HighlightText text={"Instructor"}></HighlightText>
                     </div>
                     <p className=" text-richblack-300 font-medium w-[82%]">
                         Instructors from around the world teach millions of
-                        students on StudyNotion. We provide the tools and skills
-                        to teach what you love.
+                        students on EduNxt. We provide the tools and skills to
+                        teach what you love.
                     </p>
                     <div className="w-fit mt-2">
                         <CTAButton

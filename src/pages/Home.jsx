@@ -27,8 +27,8 @@ const Home = () => {
                     </div>
                 </Link>
                 <div className=" text-center md:text-4xl text-3xl font-semibold mt-7">
-                    Empower Your Future with
-                    <HighlightText text={"Coding Skills"}></HighlightText>
+                    Education for
+                    <HighlightText text={"Next Generation"}></HighlightText>
                 </div>
 
                 <div className=" text-richblack-300 md:text-lg text-base font-medium w-[90%] mt-4 text-center">
@@ -48,7 +48,7 @@ const Home = () => {
                     </CTAButton>
                 </div>
 
-                <div className="mt-16 shadow-[0px_-5px_40px_-7px_#4299e1]">
+                {/* <div className="mt-16 shadow-[0px_-5px_40px_-7px_#4299e1]">
                     <video
                         muted
                         autoPlay
@@ -57,7 +57,7 @@ const Home = () => {
                         type="video/mp4"
                         className="h-fit shadow-[20px_20px_0px_0px_#F5F5F5]"
                     ></video>
-                </div>
+                </div> */}
 
                 {/* CodeBlock 1 */}
                 <CodeBlocks
@@ -172,9 +172,9 @@ const Home = () => {
                         </div>
                         <div className="flex flex-col gap-10 lg:w-[40%] items-start">
                             <div className=" text-[16px] ">
-                                The modern StudyNotion is the dictates its own
-                                terms. Today, to be a competitive specialist
-                                requires more than professional skills.
+                                The modern EduNxt is the dictates its own terms.
+                                Today, to be a competitive specialist requires
+                                more than professional skills.
                             </div>
                             <CTAButton
                                 shadow={false}
@@ -186,12 +186,12 @@ const Home = () => {
                         </div>
                     </div>
                     <TimelineSection />
-                    <LearningLanguageSection />
+                    {/* <LearningLanguageSection /> */}
                 </div>
             </div>
 
             {/* Section 3 */}
-            <div className="w-11/12 mx-auto max-w-maxContent flex flex-col items-center justify-center text-white gap-40">
+            <div className="w-11/12 mx-auto max-w-maxContent flex flex-col items-center justify-center text-white gap-40 mt-20">
                 <InstructorSection />
                 <ReviewSection />
             </div>

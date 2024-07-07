@@ -1,1 +1,1 @@
-Check here: https://studynotion-woad.vercel.app/
+Check here: https://edunxt.vercel.app/

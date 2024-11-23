@@ -25,6 +25,11 @@ export const studentEndpoints = {
         BASE_URL + "/payment/sendPaymentSuccessEmail",
 };
 
+// ADMIN ENDPOINTS
+export const adminEndpoints = {
+    GET_LOGS: BASE_URL + "/admin/logs",
+}
+
 // COURSE ENDPOINTS
 export const courseEndpoints = {
     GET_ALL_COURSE_API: BASE_URL + "/course/getAllCourses",

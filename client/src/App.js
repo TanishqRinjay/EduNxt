@@ -27,6 +27,7 @@ import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Contact from "./pages/Contact";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
+import LogTable from "./components/core/Dashboard/LogTable";
 
 function App() {
     const { user } = useSelector((state) => state.profile);
@@ -117,6 +118,14 @@ function App() {
                                 element={<EnrolledCourses />}
                             />
                             <Route path="/dashboard/cart" element={<Cart />} />
+                        </>
+                    )}
+                    {user?.accountType === ACCOUNT_TYPE.ADMIN && (
+                        <>
+                            <Route
+                                path="/dashboard/logs"
+                                element={<LogTable />}
+                            />
                         </>
                     )}
 

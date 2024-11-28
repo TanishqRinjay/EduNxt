@@ -10,7 +10,6 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { markLectureAsComplete } from "../../../services/operations/courseDetailsAPI";
 import "video-react/dist/video-react.css";
 import ChatModal from "./ChatModal";
-import Chatgptmodal from "./Chatgptmodal";
 
 const VideoDetails = () => {
     const { courseId, sectionId, subSectionId } = useParams();
@@ -28,7 +27,6 @@ const VideoDetails = () => {
 
     // Chat GPT modal
     const [showChatModal, setShowChatModal] = useState(false);
-    const [showChatGPTModal, setShowChatGPTModal] = useState(false);
 
     useEffect(() => {
         const setVideoSpecificDetails = async () => {
@@ -258,11 +256,6 @@ const VideoDetails = () => {
                 showChatModal={showChatModal}
                 setShowChatModal={setShowChatModal}
                 lectureURL={videoData?.videoUrl}
-            />
-            <Chatgptmodal
-                className="translate-x-10"
-                showChatGPTModal={showChatGPTModal}
-                setShowChatGPTModal={setShowChatGPTModal}
             />
         </div>
     );

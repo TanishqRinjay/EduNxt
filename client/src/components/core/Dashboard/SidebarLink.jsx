@@ -16,14 +16,14 @@ const SidebarLink = ({ link, iconName }) => {
             to={link.path}
             className={`relative px-8 py-2 text-sm font-medium text-richblack-300 ${
                 matchRoute(link.path)
-                    ? "bg-yellow-800 border-l border-l-yellow-50 text-yellow-50"
+                    ? "bg-blue-800 border-l border-l-[#024CAA] text-[#487afa]"
                     : "bg-transparent"
             }`}
         >
             {" "}
             {/* onClick event addition */}
             <span
-                className={`absolute left-0 top-0 h-full w-[0.2rem] bg-yellow-50 ${
+                className={`absolute left-0 top-0 h-full w-[0.2rem] bg-[#024CAA] ${
                     matchRoute(link.path) ? "opacity-100" : "opacity-0"
                 }`}
             ></span>

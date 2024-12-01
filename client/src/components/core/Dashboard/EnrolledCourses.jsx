@@ -28,7 +28,7 @@ const EnrolledCourses = () => {
         <div className="text-richblack-5 w-full h-full flex flex-col items-center justify-center gap-5">
             <p className="w-full justify-start text-sm text-richblack-300">
                 Home / Dashboard /{" "}
-                <span className=" text-yellow-50 text-sm font-medium">
+                <span className=" text-[#024CAA] text-sm font-medium">
                     Enrolled Courses
                 </span>
             </p>

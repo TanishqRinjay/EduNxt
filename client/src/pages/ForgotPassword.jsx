@@ -52,7 +52,7 @@ const ForgotPassword = () => {
                         )}
                         <button
                             type="submit"
-                            className="text-center px-[24px] w-full py-[12px] rounded-[8px] font-semibold max-w-maxContent  bg-yellow-50 text-black hover:scale-95 transition-all duration-200 hover:shadow-none shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)]"
+                            className="text-center px-[24px] w-full py-[12px] rounded-[8px] font-semibold max-w-maxContent  bg-[#024CAA] text-richblack-5 hover:scale-95 transition-all duration-200 hover:shadow-none shadow-[2px_2px_0px_0px_rgba(243,243,224,0.8)]"
                         >
                             {!emailSent ? "Submit" : "Resend Email"}
                         </button>

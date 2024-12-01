@@ -198,7 +198,7 @@ const Home = () => {
 
             {/* Footer */}
             <div className="flex bg-richblack-800 justify-center items-center">
-                <FooterSection />
+                {/* <FooterSection /> */}
             </div>
         </div>
     );

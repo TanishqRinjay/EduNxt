@@ -200,7 +200,7 @@ const VideoDetails = () => {
                                     ) && (
                                         <IconBtn
                                             customClasses={
-                                                "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[1px_1px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                                                "bg-[#024CAA] text-richblack-5 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[1px_1px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
                                             }
                                             disabled={loading}
                                             onclick={() =>
@@ -215,7 +215,7 @@ const VideoDetails = () => {
                                     )}
                                     <IconBtn
                                         customClasses={
-                                            "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[1px_1px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                                            "bg-[#024CAA] text-richblack-5 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[1px_1px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
                                         }
                                         disabled={loading}
                                         onclick={() => {

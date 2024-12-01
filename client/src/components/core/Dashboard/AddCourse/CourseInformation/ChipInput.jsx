@@ -4,13 +4,12 @@ import { useSelector } from "react-redux";
 import { RxCross2 } from "react-icons/rx";
 
 const ChipInput = ({ label, name, errors, register, setValue }) => {
-
     const { editCourse, course } = useSelector((state) => state.course);
     const [chips, setChips] = useState([]);
 
     useEffect(() => {
-        if(editCourse){
-            setChips(course?.tag)
+        if (editCourse) {
+            setChips(course?.tag);
         }
         register(name, {
             required: true,
@@ -27,7 +26,7 @@ const ChipInput = ({ label, name, errors, register, setValue }) => {
             e.preventDefault();
             const chipValue = e.target.value.trim();
             if (chipValue && !chips.includes(chipValue)) {
-                const newChips = [...chips, chipValue]
+                const newChips = [...chips, chipValue];
                 setChips(newChips);
             }
             e.target.value = "";
@@ -57,7 +56,11 @@ const ChipInput = ({ label, name, errors, register, setValue }) => {
             {
                 <div className="flex gap-2">
                     {chips.map((item, i) => (
-                        <span key={i} className="flex items-center justify-center text-xs gap-1 bg-yellow-50 rounded-full px-2 py-1 text-richblack-900 cursor-pointer" onClick={handleRemoveChip}>
+                        <span
+                            key={i}
+                            className="flex items-center justify-center text-xs gap-1 bg-[#024CAA] rounded-full px-2 py-1 text-richblack-900 cursor-pointer"
+                            onClick={handleRemoveChip}
+                        >
                             {item}
                             <RxCross2 />
                         </span>

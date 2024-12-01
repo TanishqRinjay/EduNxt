@@ -181,13 +181,13 @@ const ContactUsForm = () => {
             <button
                 disabled={loading}
                 type="submit"
-                className={`rounded-md bg-yellow-50 px-6 py-3 text-center text-[13px] font-bold text-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
+                className={`rounded-md bg-[#024CAA] px-6 py-3 text-center text-[13px] font-bold text-richblack-5 shadow-[1px_1px_0px_0px_rgba(243,243,224,0.8)]
          ${
              !loading &&
              "transition-all duration-200 hover:scale-95 hover:shadow-none"
          }  disabled:bg-richblack-500 sm:text-[16px] `}
             >
-                {loading ? "sending..." : "send message"}
+                {loading ? "Sending..." : "Send Message"}
             </button>
         </form>
     );

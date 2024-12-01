@@ -22,7 +22,7 @@ function Template({ title, description1, description2, image, formType }) {
                             <span className="text-richblack-100">
                                 {description1}
                             </span>{" "}
-                            <span className="font-edu-sa font-bold italic text-blue-100">
+                            <span className="font-edu-sa font-bold italic text-[#E1D7B7]">
                                 {description2}
                             </span>
                         </p>
@@ -36,6 +36,8 @@ function Template({ title, description1, description2, image, formType }) {
               height={504}
               loading="lazy"
             /> */}
+
+            {/* Uncomment This */}
                         <img
                             src={image}
                             alt="Students"

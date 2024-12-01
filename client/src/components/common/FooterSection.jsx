@@ -31,7 +31,7 @@ const FooterSection = () => {
                         {/* Company and Resources */}
                         <div className="flex flex-col gap-3 w-[50%] text-richblack-400 leading-[22px]">
                             <div className=" md:h-[32px] md:w-[160px] h-[26px] w-[130px] text-3xl font-[cursive] text-richblack-5 font-bold">
-                                <span className=" text-yellow-50">Edu</span>Nxt
+                                <span className=" text-[#024CAA]">Edu</span>Nxt
                             </div>
                             <h2 className=" font-semibold text-richblack-100">
                                 Company
@@ -243,7 +243,7 @@ const FooterSection = () => {
                     })}
                 </div>
                 <div>
-                    <p>Mady by Me @ EduNxt</p>
+                    <p>Mady by Tanishq @ EduNxt</p>
                 </div>
             </div>
         </div>

@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import IconBtn from "../../../../common/IconBtn";
 import { RiAddCircleLine } from "react-icons/ri";
-import {MdOutlineArrowBackIos, MdOutlineArrowForwardIos} from "react-icons/md"
+import {
+    MdOutlineArrowBackIos,
+    MdOutlineArrowForwardIos,
+} from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import NestedView from "./NestedView";
 import {
@@ -145,7 +148,7 @@ const CourseBuilderForm = () => {
                 />
             )}
             <div className="flex mt-10 justify-end gap-4">
-            <button
+                <button
                     className="bg-richblack-800 text-richblack-5 font-medium flex items-center justify-center gap-2 rounded-lg px-5 py-2 shadow-[2px_2px_0px_0px_rgba(255,255,255,0.1)] hover:scale-95 transition-all duration-200 hover:shadow-none"
                     onClick={goBack}
                 >
@@ -154,7 +157,7 @@ const CourseBuilderForm = () => {
                 </button>
                 <IconBtn
                     customClasses={
-                        "bg-yellow-50 text-richblack-900 font-medium flex items-center justify-center gap-2 rounded-lg px-4 py-2 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                        "bg-[#024CAA] text-richblack-5 font-medium flex items-center justify-center gap-2 rounded-lg px-4 py-2 shadow-[1px_1px_0px_0px_rgba(243,243,224,0.8)] hover:scale-95 transition-all duration-200 hover:shadow-none"
                     }
                     children={<MdOutlineArrowForwardIos />}
                     onclick={goToNext}

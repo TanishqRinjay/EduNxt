@@ -1,8 +1,9 @@
 import React from "react";
-import Status from "./Status"
+import Status from "./Status";
 
 const Courses = ({ courses, setCourses }) => {
-  const x = "lorem ipsum dolor sit amet tempor invid lorem ipsumsit amet tempor invid lorem ipsumsit amet tempor invid lorem ipsumsit amet tempor invid lorem ipsumsit amet tempor invid lorem ipsum"
+    const x =
+        "lorem ipsum dolor sit amet tempor invid lorem ipsumsit amet tempor invid lorem ipsumsit amet tempor invid lorem ipsumsit amet tempor invid lorem ipsumsit amet tempor invid lorem ipsum";
     return (
         <div className="flex flex-col gap-10">
             {courses.map((course, i) => (
@@ -21,11 +22,11 @@ const Courses = ({ courses, setCourses }) => {
                                 </h2>
                                 <p className=" text-richblack-100 text-sm">
                                     {/* {course.courseDescription.substring(0, 20)} */}
-                                    {x.substring(0,100)}
+                                    {x.substring(0, 100)}
                                 </p>
                             </div>
                             <p></p>
-                            <Status status={course?.status}/>
+                            <Status status={course?.status} />
                         </div>
                     </div>
                     <div className="flex gap-8">

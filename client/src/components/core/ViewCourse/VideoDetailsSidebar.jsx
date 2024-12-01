@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import IconBtn from "../../common/IconBtn";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
-import { IoIosArrowDown,  IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowBack } from "react-icons/io";
 import CourseReviewModal from "./CourseReviewModal";
 
 const VideoDetailsSidebar = ({ setReviewModal }) => {
@@ -11,7 +11,7 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
     const [videoBarActive, setVideoBarActive] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
-    const {sectionId, subSectionId } = useParams();
+    const { sectionId, subSectionId } = useParams();
     const {
         courseSectionData,
         courseEntireData,
@@ -50,18 +50,20 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                                 navigate("/dashboard/enrolled-courses")
                             }
                         >
-                            <MdOutlineKeyboardBackspace className=" text-3xl text-yellow-50 " />
+                            <MdOutlineKeyboardBackspace className=" text-3xl text-[#024CAA] " />
                         </button>
-                    {/* for heading and title */}
-                    <div className="flex items-center gap-4 p-1">
-                        <p className=" text-xl font-medium">{courseEntireData?.courseName}</p>
-                        <p className=" text-caribbeangreen-200 text-sm text-end">
-                            {completedLectures?.length}/{totalNoOfLectures}
-                        </p>
-                    </div>
+                        {/* for heading and title */}
+                        <div className="flex items-center gap-4 p-1">
+                            <p className=" text-xl font-medium">
+                                {courseEntireData?.courseName}
+                            </p>
+                            <p className=" text-caribbeangreen-200 text-sm text-end">
+                                {completedLectures?.length}/{totalNoOfLectures}
+                            </p>
+                        </div>
                         <IconBtn
                             customClasses={
-                                "bg-yellow-50 text-richblack-900 font-medium flex items-center justify-center gap-2 rounded-lg px-3 py-2 hover:scale-95 transition-all duration-200 hover:shadow-none w-[70%]"
+                                "bg-[#024CAA] text-richblack-5 font-medium flex items-center justify-center gap-2 rounded-lg px-3 py-2 hover:scale-95 transition-all duration-200 hover:shadow-none w-[70%]"
                             }
                             onclick={() => {
                                 setReviewModal(true);
@@ -69,7 +71,7 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                             text={"Add Review"}
                         />
                     </div>
-                        <div className="my-3 h-[1.5px] bg-richblack-700"></div>
+                    <div className="my-3 h-[1.5px] bg-richblack-700"></div>
                 </div>
                 {/* For Sections and Sub Sections */}
                 <div className="flex flex-col gap-2">
@@ -81,7 +83,9 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                             className=" cursor-pointer"
                         >
                             <div className="flex justify-between items-center bg-richblack-700 px-5 py-4 border-y border-richblack-700 font-medium">
-                                <div className=" bg-richblack-700">{section?.sectionName}</div>
+                                <div className=" bg-richblack-700">
+                                    {section?.sectionName}
+                                </div>
                                 {activeStatus === section?._id ? (
                                     <IoIosArrowDown className="text-lg" />
                                 ) : (
@@ -97,7 +101,7 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                                                     className={` flex gap-4 p-3 border-y border-richblack-900 text-sm ${
                                                         videoBarActive ===
                                                         lecture._id
-                                                            ? "bg-yellow-200 text-richblack-900"
+                                                            ? "bg-blue-200 text-richblack-5"
                                                             : " bg-richblack-800 text-richblack-5"
                                                     }`}
                                                     key={i}

@@ -64,16 +64,28 @@ const Instructor = () => {
                         <div className=" col-span-2 bg-richblack-800 p-4 border border-richblack-700 text-richblack-5 flex flex-col gap-3">
                             <h2 className="text-xl font-bold">Statistics</h2>
                             <div>
-                                <p className="text-lg font-medium text-richblack-100">Total Courses</p>
-                                <p className=" text-3xl font-medium">{courses.length}</p>
+                                <p className="text-lg font-medium text-richblack-100">
+                                    Total Courses
+                                </p>
+                                <p className=" text-3xl font-medium">
+                                    {courses.length}
+                                </p>
                             </div>
                             <div>
-                                <p className="text-lg font-medium text-richblack-100">Total Students</p>
-                                <p className=" text-3xl font-medium">{totalStudents}</p>
+                                <p className="text-lg font-medium text-richblack-100">
+                                    Total Students
+                                </p>
+                                <p className=" text-3xl font-medium">
+                                    {totalStudents}
+                                </p>
                             </div>
                             <div>
-                                <p className="text-lg font-medium text-richblack-100">Total Income</p>
-                                <p className=" text-3xl font-medium">&#8377; {totalAmount}</p>
+                                <p className="text-lg font-medium text-richblack-100">
+                                    Total Income
+                                </p>
+                                <p className=" text-3xl font-medium">
+                                    &#8377; {totalAmount}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -83,7 +95,7 @@ const Instructor = () => {
                             <h3 className="text-xl font-bold">Your Courses</h3>
                             <Link to={"/dashboard/my-courses"}>
                                 {" "}
-                                <p className=" text-yellow-50 font-medium">
+                                <p className=" text[#024CAA] font-medium">
                                     View all
                                 </p>{" "}
                             </Link>

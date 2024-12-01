@@ -79,7 +79,7 @@ const VerifyEmail = () => {
 
                         <button
                             type="submit"
-                            className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900 w-full"
+                            className="mt-6 rounded-[8px] bg-[#024CAA] py-[8px] px-[12px] font-medium text-richblack-5 w-full"
                         >
                             Create Account
                         </button>

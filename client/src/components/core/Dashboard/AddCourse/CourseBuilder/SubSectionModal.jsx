@@ -69,10 +69,10 @@ const SubSectionModal = ({
                 ? currentValues.lectureDesc
                 : modalData.description
         );
-        if(currentValues.lectureVideo !== modalData.videoUrl){
-            formData.append("videoFile", currentValues.lectureVideo)
-        }else{
-            formData.append("videoUrl", modalData.videoUrl)
+        if (currentValues.lectureVideo !== modalData.videoUrl) {
+            formData.append("videoFile", currentValues.lectureVideo);
+        } else {
+            formData.append("videoUrl", modalData.videoUrl);
         }
         // formData.append("videoFile", currentValues.lectureVideo!==modalData.videoUrl previ)
         formData.append(
@@ -90,11 +90,15 @@ const SubSectionModal = ({
         let updatedSubSectionArray = [];
         course.courseContent.map((section) =>
             section.subSections.map((subSection) =>
-                subSection._id === modalData._id ? updatedSubSectionArray.push(result) : updatedSubSectionArray.push(subSection)
+                subSection._id === modalData._id
+                    ? updatedSubSectionArray.push(result)
+                    : updatedSubSectionArray.push(subSection)
             )
         );
         const updatedCourseContent = course.courseContent.map((section) =>
-            section._id === modalData.sectionId ? {...section, subSections: updatedSubSectionArray} : section
+            section._id === modalData.sectionId
+                ? { ...section, subSections: updatedSubSectionArray }
+                : section
         );
         const updatedCourse = {
             ...course,
@@ -216,7 +220,7 @@ const SubSectionModal = ({
                     {!view && (
                         <IconBtn
                             customClasses={
-                                "bg-yellow-50 text-richblack-900 font-medium flex items-center justify-center gap-2 rounded-lg px-4 py-2 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                                "bg-[#024CAA] text-richblack-5 font-medium flex items-center justify-center gap-2 rounded-lg px-4 py-2 shadow-[2px_2px_0px_0px_rgba(243,243,224,0.8)] hover:scale-95 transition-all duration-200 hover:shadow-none"
                             }
                             text={
                                 loading

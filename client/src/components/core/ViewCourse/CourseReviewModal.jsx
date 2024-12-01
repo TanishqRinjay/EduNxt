@@ -90,7 +90,10 @@ const CourseReviewModal = ({ setReviewModal }) => {
                                 placeholder="How was your experience?"
                             />
                             {errors.courseExperience && (
-                                <span>Share Details of your own experience for this course</span>
+                                <span>
+                                    Share Details of your own experience for
+                                    this course
+                                </span>
                             )}
                         </div>
 
@@ -106,7 +109,7 @@ const CourseReviewModal = ({ setReviewModal }) => {
                             </button>
                             <IconBtn
                                 customClasses={
-                                    "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[2px_2px_0px_0px_rgba(255,214,10,0.6)] hover:scale-95 transition-all duration-200 hover:shadow-none"
+                                    "bg-[#024CAA] text-richblack-5 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-3 shadow-[1px_1px_0px_0px_rgba(243,243,224,0.8)] hover:scale-95 transition-all duration-200 hover:shadow-none"
                                 }
                                 text={"Save Review"}
                             />

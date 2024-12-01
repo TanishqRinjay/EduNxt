@@ -337,7 +337,7 @@ const CourseInformationForm = () => {
                 <IconBtn
                     type="submit"
                     customClasses={
-                        "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-2"
+                        "bg-[#024CAA] text-richblack-5 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-2"
                     }
                     text={editCourse ? "save changes" : "save and continue"}
                 />

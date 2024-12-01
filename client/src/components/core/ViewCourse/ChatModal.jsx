@@ -78,7 +78,7 @@ const ChatModal = ({ showChatModal, setShowChatModal, lectureURL }) => {
     return (
         <div className=" w-10 h-10 absolute bottom-7 right-7 outline-none">
             <div
-                className="rounded-full bg-yellow-50 w-full h-full cursor-pointer relative outline-none flex justify-center items-center"
+                className="rounded-full bg-[#024CAA] w-full h-full cursor-pointer relative outline-none flex justify-center items-center"
                 onClick={modalOpen}
             >
                 {showChatModal ? (
@@ -94,11 +94,11 @@ const ChatModal = ({ showChatModal, setShowChatModal, lectureURL }) => {
                             className="absolute -top-2 translate-y-[-100%] right-0 bg-richblack-400 rounded-lg cursor-default outline-none"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="text-black text-center text-xl font-bold font-[cursive] bg-yellow-100 rounded-t-lg py-1">
+                            <div className="text-richblack-5 text-center text-xl font-bold font-[cursive] bg-[#024CAA] rounded-t-lg py-1">
                                 <p>EduNxt Helper</p>
                                 <button
                                     onClick={handleDownload}
-                                    className=" font-[poppins] text-base border-2 border-yellow-100 rounded-md p-1 bg-yellow-100 hover:bg-yellow-200 hover:text-black transition-all duration-300 ease-in-out text-blue-200 underline"
+                                    className=" font-[poppins] text-base border-2 border-blue-100 rounded-md p-1 bg-blue-200 hover:bg-blue-200 hover:text-black transition-all duration-300 ease-in-out text-[#E1D7B7] underline"
                                 >
                                     Download brief lecture notes
                                 </button>

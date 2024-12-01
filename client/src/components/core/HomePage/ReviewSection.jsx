@@ -51,7 +51,7 @@ const ReviewSection = () => {
                     freeMode={true}
                     autoplay={{
                         delay: 2500,
-                        disableOnInteraction:false
+                        disableOnInteraction: false,
                     }}
                     modules={[FreeMode, Pagination, Autoplay]}
                     className="w-full"

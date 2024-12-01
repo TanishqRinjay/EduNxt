@@ -32,7 +32,7 @@ const MyProfile = () => {
                         children={<FiEdit />}
                         text="Edit"
                         customClasses={
-                            "bg-yellow-50 text-richblack-900 font-medium flex items-center justify-center gap-2 rounded-lg px-5 py-2"
+                            "bg-[#024CAA] text-richblack-25 font-medium flex items-center justify-center gap-2 rounded-lg px-5 py-2"
                         }
                         onclick={() => {
                             navigate("/dashboard/settings");
@@ -49,7 +49,7 @@ const MyProfile = () => {
                         children={<FiEdit />}
                         text="Edit"
                         customClasses={
-                            "bg-yellow-50 text-richblack-900 font-medium flex items-center justify-center gap-2 rounded-lg px-5 py-2"
+                            "bg-[#024CAA] text-richblack-25 font-medium flex items-center justify-center gap-2 rounded-lg px-5 py-2"
                         }
                         onclick={() => {
                             navigate("/dashboard/settings");
@@ -73,7 +73,7 @@ const MyProfile = () => {
                         children={<FiEdit />}
                         text="Edit"
                         customClasses={
-                            "bg-yellow-50 text-richblack-900 font-medium flex items-center justify-center gap-2 rounded-lg px-5 py-2"
+                            "bg-[#024CAA] text-richblack-25 font-medium flex items-center justify-center gap-2 rounded-lg px-5 py-2"
                         }
                         onclick={() => {
                             navigate("/dashboard/settings");

@@ -49,7 +49,7 @@ const UpdatePassword = () => {
                                 boxShadow:
                                     "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                             }}
-                            className="w-full focus:outline-none focus:ring-0 focus:border focus:border-yellow-50 rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
+                            className="w-full focus:outline-none focus:ring-0 focus:border focus:border-[#024CAA] rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
                             {...register("currentPassword", { required: true })}
                             defaultValue={user?.currentPassword}
                         />
@@ -75,7 +75,7 @@ const UpdatePassword = () => {
                                 boxShadow:
                                     "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                             }}
-                            className="w-full focus:outline-none focus:ring-0 focus:border focus:border-yellow-50 rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
+                            className="w-full focus:outline-none focus:ring-0 focus:border focus:border-[#024CAA] rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
                             {...register("newPassword", { required: true })}
                             defaultValue={user?.newPassword}
                         />
@@ -99,7 +99,7 @@ const UpdatePassword = () => {
                 />
                 <IconBtn
                     customClasses={
-                        "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-2 border border-yellow-5"
+                        "bg-[#024CAA] text-richblack-25 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-2 border border-blue-5"
                     }
                     type="submit"
                     text={"Update"}

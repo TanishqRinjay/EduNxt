@@ -30,14 +30,14 @@ const MyCourses = () => {
                     children={<BsPlusCircle />}
                     text="New"
                     customClasses={
-                        "bg-yellow-50 text-richblack-900 flex items-center justify-center gap-2 rounded-lg px-5 py-2"
+                        "bg-[#024CAA] text-richblack-5 flex items-center justify-center gap-2 rounded-lg px-5 py-2"
                     }
                     onclick={() => {
                         navigate("/dashboard/add-course");
                     }}
                 ></IconBtn>
             </div>
-            <CourseTable courses={courses} setCourses={setCourses}/>
+            <CourseTable courses={courses} setCourses={setCourses} />
         </div>
     );
 };

@@ -36,7 +36,7 @@ const RenderSteps = () => {
                                 key={item.id}
                                 className={` w-[40px] h-[40px] flex items-center justify-center text-lg rounded-full ${
                                     step >= item.id
-                                        ? " text-yellow-50 bg-yellow-900 border-yellow-50 border"
+                                        ? " text-[#024CAA] bg-blue-25 border-[#024CAA] border"
                                         : "border-richblack-700 bg-richblack-800 text-richblack-300 border"
                                 }`}
                             >
@@ -51,7 +51,7 @@ const RenderSteps = () => {
                             <div
                                 className={` border-t-2 border-dashed w-[130px] ${
                                     step > item.id
-                                        ? "border-yellow-50"
+                                        ? "border-[#024CAA]"
                                         : "border-richblack-600"
                                 }`}
                             ></div>

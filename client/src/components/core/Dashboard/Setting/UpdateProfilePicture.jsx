@@ -69,7 +69,7 @@ const UpdateProfilePicture = () => {
                             children={<FiUpload />}
                             text="Upload"
                             customClasses={
-                                "bg-yellow-50 text-richblack-900 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-2 border border-yellow-5"
+                                "bg-[#024CAA] text-richblack-25 font-semibold flex items-center justify-center gap-2 rounded-lg px-5 py-2 border border-blue-5"
                             }
                             onclick={() => {
                                 handleFileUpload();

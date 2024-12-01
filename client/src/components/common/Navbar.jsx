@@ -42,8 +42,8 @@ const Navbar = () => {
         <div className="h-14 w-full border-b border-richblack-700 bg-richblack-900 flex justify-center items-center">
             <div className="w-11/12 flex justify-between px-[70px] items-center h-8">
                 <Link to="/">
-                    <p className=" text-richblack-5 text-2xl font-bold font-[cursive]">
-                        <span className=" text-yellow-50">Edu</span>Nxt
+                    <p className=" text-[#F3F3E0] text-2xl font-bold font-[cursive]">
+                        <span className=" text-[#133E87]">Edu</span>Nxt
                     </p>
                     {/* <img
                         src={logoFullLight}
@@ -110,8 +110,8 @@ const Navbar = () => {
                                             <p
                                                 className={`${
                                                     matchRoute(link?.path)
-                                                        ? "text-yellow-25"
-                                                        : "text-richblack-25"
+                                                        ? "text-[#E1D7B7]"
+                                                        : "text-richblack-50"
                                                 }`}
                                             >
                                                 {link.title}

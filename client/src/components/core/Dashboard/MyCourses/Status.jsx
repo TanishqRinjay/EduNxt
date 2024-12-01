@@ -1,7 +1,7 @@
 import React from "react";
 import { AiFillClockCircle, AiFillCheckCircle } from "react-icons/ai";
 
-const Status = ({ status, classes}) => {
+const Status = ({ status, classes }) => {
     return (
         <div className={`w-fit ${classes}`}>
             {status !== "Published" ? (
@@ -10,7 +10,7 @@ const Status = ({ status, classes}) => {
                     Drafted
                 </div>
             ) : (
-                <div className="text-yellow-100 font-medium text-xs flex gap-[6px] items-center rounded-full bg-richblack-700 px-2 py-1 max-w-maxContent">
+                <div className="text-blue-100 font-medium text-xs flex gap-[6px] items-center rounded-full bg-richblack-700 px-2 py-1 max-w-maxContent">
                     <AiFillCheckCircle className=" text-sm" />
                     Published
                 </div>

@@ -37,7 +37,8 @@ EduNxt is a fully functional educational platform built using the MERN stack (Mo
 
 Run the following commands in your terminal:
 
-``` git clone https://github.com/TanishqRinjay/EduNxt.git  cd eduNxt ```
+``` git clone https://github.com/TanishqRinjay/EduNxt.git ```
+``` cd eduNxt ```
 
 
 ### Install Dependencies

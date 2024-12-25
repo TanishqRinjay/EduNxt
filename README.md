@@ -37,58 +37,62 @@ EduNxt is a fully functional educational platform built using the MERN stack (Mo
 
 Run the following commands in your terminal:
 
-git clone https://github.com/yourusername/eduNxt.git cd eduNxt
+``` git clone https://github.com/TanishqRinjay/EduNxt.git  cd eduNxt ```
 
 
 ### Install Dependencies
 
-#### Client (Frontend)
+#### Client (Frontend):
 
 1. Navigate to the `client` folder:
-2. cd client
+2. ``` cd client ```
 3. Install the dependencies:
-4. npm install  
+4. ``` npm install ```  
 5. Create a `.env` file in the `client` folder and add the following configuration:
+   ```
      REACT_APP_BASE_URL = http://localhost:4000/api/v1
+   ```
 
 
 
-#### Server (Backend)
+#### Server (Backend):
 
 1. Navigate to the `server` folder:
-2. cd server
+2. ``` cd server ```
 3. Install the dependencies:
-4. npm install
+4. ``` npm install ```
 3. Create a `.env` file in the `server` folder and add the following configuration:
-   
-### Mail Setup
-MAIL_USER =
-MAIL_HOST =
-MAIL_PASSWORD =
+```  
+# Mail Setup
+MAIL_USER = 
+MAIL_HOST = 
+MAIL_PASSWORD = 
 
-JWT Secret =
-JWT_SECRET =
+# JWT Secret
+JWT_SECRET = 
 
-### Razorpay
-RAZORPAY_KEY =
-RAZORPAY_SECRET =
+# Razorpay
+RAZORPAY_KEY = 
+RAZORPAY_SECRET = 
 
-### Cloudinary
-CLOUDINARY_CLOUD_NAME =
-CLOUDINARY_API_KEY =
-CLOUDINARY_API_SECRET =
-FOLDER_NAME =
+# Cloudinary
+CLOUDINARY_CLOUD_NAME = 
+CLOUDINARY_API_KEY = 
+CLOUDINARY_API_SECRET = 
+FOLDER_NAME = 
 
-### Assembly API
+# Assembly API
 ASSEMBLY_API_KEY =
 
-### OpenAI API
-OPENAI_API_KEY =
+# OpenAI API
 
-MongoDB
+OPENAI_API_KEY = 
+
+# MongoDB
 PORT = 4000
-MONGO_URL =
+MONGO_URL = 
+# MONGO_URL = 
 
-
+```
 
 
